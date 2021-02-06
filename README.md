@@ -1,3 +1,3 @@
-### rafagf.github.io
+# rafagf.github.io
 
-Rafa Garcia's website±
+Rafa Garcia's static website
