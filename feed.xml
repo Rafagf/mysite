@@ -1,1 +1,117 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://rafagf.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://rafagf.github.io/" rel="alternate" type="text/html" /><updated>2021-02-21T17:36:00+00:00</updated><id>https://rafagf.github.io/feed.xml</id><title type="html">Rafa Garcia</title><subtitle>Rafa Garcia's site.</subtitle><author><name>{&quot;avatar&quot;=&gt;&quot;/assets/images/rafa_avatar.jpeg&quot;, &quot;bio&quot;=&gt;&quot;Engineering in broken English&quot;, &quot;location&quot;=&gt;&quot;London&quot;, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;Email&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-envelope-square&quot;, &quot;url&quot;=&gt;&quot;mailto:rafagarfer@gmail.com&quot;}, {&quot;label&quot;=&gt;&quot;Twitter&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-twitter-square&quot;, &quot;url&quot;=&gt;&quot;https://twitter.com/rafa_piki&quot;}, {&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;, &quot;url&quot;=&gt;&quot;https://github.com/rafagf/&quot;}, {&quot;label&quot;=&gt;&quot;Linkedin&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin&quot;, &quot;url&quot;=&gt;&quot;https://www.linkedin.com/in/rafaelgarciafernandez/&quot;}]}</name></author><entry><title type="html">Welcome!</title><link href="https://rafagf.github.io/rafa-garcia-site-launched/" rel="alternate" type="text/html" title="Welcome!" /><published>2021-02-06T00:00:00+00:00</published><updated>2021-02-06T00:00:00+00:00</updated><id>https://rafagf.github.io/rafa-garcia-site-launched</id><content type="html" xml:base="https://rafagf.github.io/rafa-garcia-site-launched/">&lt;p&gt;Well. Finally got around to putting this site up where I’ll share random thoughts and learnings in broken English. Glad to have you!&lt;/p&gt;</content><author><name>{&quot;avatar&quot;=&gt;&quot;/assets/images/rafa_avatar.jpeg&quot;, &quot;bio&quot;=&gt;&quot;Engineering in broken English&quot;, &quot;location&quot;=&gt;&quot;London&quot;, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;Email&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-envelope-square&quot;, &quot;url&quot;=&gt;&quot;mailto:rafagarfer@gmail.com&quot;}, {&quot;label&quot;=&gt;&quot;Twitter&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-twitter-square&quot;, &quot;url&quot;=&gt;&quot;https://twitter.com/rafa_piki&quot;}, {&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;, &quot;url&quot;=&gt;&quot;https://github.com/rafagf/&quot;}, {&quot;label&quot;=&gt;&quot;Linkedin&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin&quot;, &quot;url&quot;=&gt;&quot;https://www.linkedin.com/in/rafaelgarciafernandez/&quot;}]}</name></author><summary type="html">Well. Finally got around to putting this site up where I’ll share random thoughts and learnings in broken English. Glad to have you!</summary></entry></feed>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://rafagf.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://rafagf.github.io/" rel="alternate" type="text/html" /><updated>2021-02-28T11:32:21+00:00</updated><id>https://rafagf.github.io/feed.xml</id><title type="html">Rafa Garcia</title><subtitle>Rafa Garcia's site.</subtitle><author><name>{&quot;avatar&quot;=&gt;&quot;/assets/images/rafa_avatar.jpeg&quot;, &quot;bio&quot;=&gt;&quot;Engineering in broken English&quot;, &quot;location&quot;=&gt;&quot;London&quot;, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;Email&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-envelope-square&quot;, &quot;url&quot;=&gt;&quot;mailto:rafagarfer@gmail.com&quot;}, {&quot;label&quot;=&gt;&quot;Twitter&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-twitter-square&quot;, &quot;url&quot;=&gt;&quot;https://twitter.com/rafa_piki&quot;}, {&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;, &quot;url&quot;=&gt;&quot;https://github.com/rafagf/&quot;}, {&quot;label&quot;=&gt;&quot;Linkedin&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin&quot;, &quot;url&quot;=&gt;&quot;https://www.linkedin.com/in/rafaelgarciafernandez/&quot;}]}</name></author><entry><title type="html">Building my site using GitHub and Jekyll</title><link href="https://rafagf.github.io/development/building-my-site-using-github/" rel="alternate" type="text/html" title="Building my site using GitHub and Jekyll" /><published>2021-02-28T00:00:00+00:00</published><updated>2021-02-28T00:00:00+00:00</updated><id>https://rafagf.github.io/development/building-my-site-using-github</id><content type="html" xml:base="https://rafagf.github.io/development/building-my-site-using-github/">&lt;p&gt;For 2021 I decided it was time to start sharing some of my developer adventures. I want to do this with the hope that it helps someone and as a way to learn for myself, as writing makes you aware of the things you know and the things you don’t.&lt;/p&gt;
+
+&lt;p&gt;The first step for this was to actually have a site for it, and embarrasingly enough, my web skills are close to none. I’ll blame Wordpress.&lt;/p&gt;
+
+&lt;p&gt;For my site I knew that:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;I didn’t want to pay for hosting. Sorry, been there, done that.&lt;/li&gt;
+  &lt;li&gt;I wanted to own the source code and use a very simple stack. Sounds like a static website generator tool!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;1-tools&quot;&gt;1. Tools&lt;/h2&gt;
+
+&lt;h3 id=&quot;hosting&quot;&gt;Hosting&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt; was a very easy choice. You can host and push your changes directly from a GitHub repository, something which I’m very familiar with. And it’s free!&lt;/p&gt;
+
+&lt;h3 id=&quot;static-website-generator&quot;&gt;Static Website Generator&lt;/h3&gt;
+
+&lt;p&gt;After a quick Google search it seemed to be a dilemma between &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; and &lt;a href=&quot;https://gohugo.io/&quot;&gt;Hugo&lt;/a&gt;. While they both looked great, I decided to go with Jekyll simply because it appeared to glue very well with GitHub Pages, as suggested in their main site or in this &lt;a href=&quot;https://docs.github.com/en/github/working-with-github-pages/setting-up-a-github-pages-site-with-jekyll&quot;&gt;official tutorial&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;2-building-the-site&quot;&gt;2. Building the site&lt;/h2&gt;
+
+&lt;p&gt;First, let’s install Jekyll to get that out of our way. They’ve got a great &lt;a href=&quot;https://jekyllrb.com/docs/&quot;&gt;tutorial&lt;/a&gt; on how to do it. Once you’re done, running &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt; will deploy the app to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://localhost:4000/&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;It was time to look for a Jekyll theme. I chose &lt;a href=&quot;https://mmistakes.github.io/minimal-mistakes/&quot;&gt;minimal mistakes&lt;/a&gt; by Michael Rose, because it looked great for personal sites/blogs and because it’s GitHub repository is super well maintaned. Big kudos to Michael!&lt;/p&gt;
+
+&lt;p&gt;Time to build my actual site in the next few steps:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Integrating minimal mistakes. There are a few ways to do it but since I didn’t have an existing website, I forked the whole &lt;a href=&quot;https://github.com/mmistakes/minimal-mistakes&quot;&gt;project&lt;/a&gt; and deployed it locally.&lt;/li&gt;
+  &lt;li&gt;I then went file by file to first, understand how the project is built, and second, to remove all the clutter that I’m not going to need.&lt;/li&gt;
+  &lt;li&gt;Tweaking the site settings in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;. Pick a skin theme (of course had to be &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dark&lt;/code&gt;) ✅, fill in my personal information ✅, choose a photo where I look like someone professional ✅, SEO and Analytics (if any) ✅, etc.&lt;/li&gt;
+  &lt;li&gt;Modifying &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_data/navigation.yml&lt;/code&gt; to add the pages I want to have: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;blog&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CV&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Portfolio&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;About&lt;/code&gt;. And of course adding the content.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;3-deployment&quot;&gt;3. Deployment&lt;/h2&gt;
+
+&lt;p&gt;The deployment part is actually very simple. You just need to host your source code into a GitHub repository named &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;your-github-username.github.io&lt;/code&gt; and tell Jekyll to build your static site. For this, you can use this GitHub action:&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Build and deploy Jekyll site to GitHub Pages&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;branches&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;main&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;jobs&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;github-pages&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;runs-on&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ubuntu-latest&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;steps&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;actions/checkout@v2&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;actions/cache@v2&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;vendor/bundle&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;$-gems-$&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;restore-keys&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;|&lt;/span&gt;
+            &lt;span class=&quot;s&quot;&gt;$-gems-&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;helaili/jekyll-action@2.0.5&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;JEKYLL_PAT&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;$&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;There’s a small but: you’ll need to have your source code repo public in GitHub. For you to have it private, you can either pay for GitHub Pro or alternatively as a middle ground, you can do the following: have 2 repos, one private and one public. The private repo will have your source code and run the Jekyll action into a separate branch, and then we’ll have another GitHub action to move the generated code (aka our website) to the public repo. This is how it looks like:&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Build and deploy Jekyll site to GitHub Pages&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;branches&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;main&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;jobs&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;github-pages&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;runs-on&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ubuntu-latest&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;steps&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;actions/checkout@v2&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;actions/cache@v2&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;vendor/bundle&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;$-gems-$&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;restore-keys&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;|&lt;/span&gt;
+            &lt;span class=&quot;s&quot;&gt;$-gems-&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;helaili/jekyll-action@2.0.5&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;JEKYLL_PAT&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;$&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;target_branch&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;temp-static-site'&lt;/span&gt;
+
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;actions/checkout@v2&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;persist-credentials&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;ref&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;temp-static-site&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;clean&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;
+
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Pushes to public repository&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;dmnemec/copy_file_to_another_repo_action@v1.0.4&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;API_TOKEN_GITHUB&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;$&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;source_file&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;*'&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;destination_repo&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;your-repo'&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;user_email&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;your-mail'&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;user_name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;your-github-username'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And ​🎉 Every commit into master will update our site!&lt;/p&gt;
+
+&lt;h2 id=&quot;4-domain&quot;&gt;4. Domain&lt;/h2&gt;
+
+&lt;p&gt;Your site will be automatically hosted in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;your-github-username.github.io&lt;/code&gt;. You probably want to give it a more personal touch, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.dev&lt;/code&gt; domains sounds like a great domain for a developer’s site, right!?&lt;/p&gt;
+
+&lt;p&gt;There are many domain providers so I’ll really don’t get into that. To me they all seem to provide very similar functionality so I went with something familiar and cheap: &lt;a href=&quot;https://domains.google.com/&quot;&gt;Google Domains&lt;/a&gt;. The yearly price is £10 which sounds fair to me. I only hope Google don’t kill Google Domains and I gotta switch to a new one 🤭&lt;/p&gt;
+
+&lt;p&gt;There are many tutorials on how to connect your just bought domain into your github page, like &lt;a href=&quot;https://dev.to/trentyang/how-to-setup-google-domain-for-github-pages-1p58&quot;&gt;this&lt;/a&gt;. Something to not forget, is to enforce https as it’s a requirement for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dev&lt;/code&gt; domains.&lt;/p&gt;
+
+&lt;p&gt;This is all! Hope you enjoyed the article. For any questions, &lt;a href=&quot;https://twitter.com/rafa_piki&quot;&gt;twitter&lt;/a&gt; is the best place for them! Thanks!&lt;/p&gt;</content><author><name>{&quot;avatar&quot;=&gt;&quot;/assets/images/rafa_avatar.jpeg&quot;, &quot;bio&quot;=&gt;&quot;Engineering in broken English&quot;, &quot;location&quot;=&gt;&quot;London&quot;, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;Email&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-envelope-square&quot;, &quot;url&quot;=&gt;&quot;mailto:rafagarfer@gmail.com&quot;}, {&quot;label&quot;=&gt;&quot;Twitter&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-twitter-square&quot;, &quot;url&quot;=&gt;&quot;https://twitter.com/rafa_piki&quot;}, {&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;, &quot;url&quot;=&gt;&quot;https://github.com/rafagf/&quot;}, {&quot;label&quot;=&gt;&quot;Linkedin&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin&quot;, &quot;url&quot;=&gt;&quot;https://www.linkedin.com/in/rafaelgarciafernandez/&quot;}]}</name></author><category term="development" /><category term="web" /><category term="jekyll" /><category term="github" /><summary type="html">For 2021 I decided it was time to start sharing some of my developer adventures. I want to do this with the hope that it helps someone and as a way to learn for myself, as writing makes you aware of the things you know and the things you don’t.</summary></entry></feed>
