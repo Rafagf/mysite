@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://rafagf.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://rafagf.github.io/" rel="alternate" type="text/html" /><updated>2021-03-07T19:53:31+00:00</updated><id>https://rafagf.github.io/feed.xml</id><title type="html">Rafa Garcia</title><subtitle>Android development and random dev stuff</subtitle><author><name>{&quot;avatar&quot;=&gt;&quot;/assets/images/rafa_avatar.jpeg&quot;, &quot;bio&quot;=&gt;&quot;Engineering in broken English&quot;, &quot;location&quot;=&gt;&quot;London&quot;, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;Email&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-envelope-square&quot;, &quot;url&quot;=&gt;&quot;mailto:rafagarfer@gmail.com&quot;}, {&quot;label&quot;=&gt;&quot;Twitter&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-twitter-square&quot;, &quot;url&quot;=&gt;&quot;https://twitter.com/rafa_piki&quot;}, {&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;, &quot;url&quot;=&gt;&quot;https://github.com/rafagf/&quot;}, {&quot;label&quot;=&gt;&quot;Linkedin&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin&quot;, &quot;url&quot;=&gt;&quot;https://www.linkedin.com/in/rafaelgarciafernandez/&quot;}]}</name></author><entry><title type="html">Building a backend, an API and a web client using Ktor</title><link href="https://rafagf.github.io/development/building-a-backend-an-api-and-a-web-client-using-ktor/" rel="alternate" type="text/html" title="Building a backend, an API and a web client using Ktor" /><published>2021-03-07T00:00:00+00:00</published><updated>2021-03-07T00:00:00+00:00</updated><id>https://rafagf.github.io/development/building-a-backend-an-api-and-a-web-client-using-ktor</id><content type="html" xml:base="https://rafagf.github.io/development/building-a-backend-an-api-and-a-web-client-using-ktor/">&lt;p&gt;Some time ago I had a potential client that wanted the following:&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://rafagf.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://rafagf.github.io/" rel="alternate" type="text/html" /><updated>2021-03-07T20:21:27+00:00</updated><id>https://rafagf.github.io/feed.xml</id><title type="html">Rafa Garcia</title><subtitle>Android development and random dev stuff</subtitle><author><name>{&quot;avatar&quot;=&gt;&quot;/assets/images/rafa_avatar.jpeg&quot;, &quot;bio&quot;=&gt;&quot;Engineering in broken English&quot;, &quot;location&quot;=&gt;&quot;London&quot;, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;Email&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-envelope-square&quot;, &quot;url&quot;=&gt;&quot;mailto:rafagarfer@gmail.com&quot;}, {&quot;label&quot;=&gt;&quot;Twitter&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-twitter-square&quot;, &quot;url&quot;=&gt;&quot;https://twitter.com/rafa_piki&quot;}, {&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;, &quot;url&quot;=&gt;&quot;https://github.com/rafagf/&quot;}, {&quot;label&quot;=&gt;&quot;Linkedin&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin&quot;, &quot;url&quot;=&gt;&quot;https://www.linkedin.com/in/rafaelgarciafernandez/&quot;}]}</name></author><entry><title type="html">Building a backend, an API and a web client using Ktor</title><link href="https://rafagf.github.io/development/building-a-backend-an-api-and-a-web-client-using-ktor/" rel="alternate" type="text/html" title="Building a backend, an API and a web client using Ktor" /><published>2021-03-07T00:00:00+00:00</published><updated>2021-03-07T00:00:00+00:00</updated><id>https://rafagf.github.io/development/building-a-backend-an-api-and-a-web-client-using-ktor</id><content type="html" xml:base="https://rafagf.github.io/development/building-a-backend-an-api-and-a-web-client-using-ktor/">&lt;p&gt;Some time ago I had a potential client that wanted the following:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;An Android app that would send data to a backend.&lt;/li&gt;
@@ -6,9 +6,9 @@
   &lt;li&gt;The consumed data would be created by an administrator in a website (dashboard look-alike).&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Pretty standard, right? But there was a small caveat: I specialise on Android development and I wasn’t sure if I could deliver the backend and web experience to the needed standards.&lt;/p&gt;
+&lt;p&gt;Pretty standard, right? But there was a small caveat: I specialise in Android development and I wasn’t sure if I could deliver the backend and web experience to the required standard.&lt;/p&gt;
 
-&lt;p&gt;With this in mind, I started looking into potential solutions before taking the project. &lt;a href=&quot;https://ktor.io/&quot;&gt;Ktor&lt;/a&gt;, an asynchronous framework for building microservices and web applications, was an easy choice since it looked quite straight forward and it is based in Kotlin, a language that I’m very familiar with.&lt;/p&gt;
+&lt;p&gt;With this in mind, I started looking into potential solutions before taking on the project. &lt;a href=&quot;https://ktor.io/&quot;&gt;Ktor&lt;/a&gt;, an asynchronous framework for building microservices and web applications, was an easy choice since it looked quite straightforward and it is based in Kotlin, a language that I’m very familiar with.&lt;/p&gt;
 
 &lt;p&gt;That’s how I decided to build &lt;a href=&quot;https://theflightplanner.herokuapp.com/&quot;&gt;FlightPlanner&lt;/a&gt; with Ktor, a small pet project to track booked flights with similar requirements to the client’s project: a backend application backed by a DB, an API to be used by mobile clients and a web client to visualise and add new data.&lt;/p&gt;
 
@@ -34,7 +34,7 @@
 
 &lt;h3 id=&quot;building-our-first-endpoint&quot;&gt;Building our first endpoint&lt;/h3&gt;
 
-&lt;p&gt;One of greatest Ktor features is &lt;a href=&quot;https://ktor.io/docs/routing-in-ktor.html&quot;&gt;Routing&lt;/a&gt;. Routing lets us decide how the backend should handle a client request. For FlightPlanner, I wanted to have a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/flights&lt;/code&gt; endpoint to fetch user’s flights.&lt;/p&gt;
+&lt;p&gt;One of the greatest Ktor features is &lt;a href=&quot;https://ktor.io/docs/routing-in-ktor.html&quot;&gt;Routing&lt;/a&gt;. Routing allows us to decide how the backend should handle a client request. For FlightPlanner, I wanted to have a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/flights&lt;/code&gt; endpoint to fetch user’s flights.&lt;/p&gt;
 
 &lt;p&gt;First, we install the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Routing&lt;/code&gt; feature in our &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Application.kt&lt;/code&gt;:&lt;/p&gt;
 
@@ -110,7 +110,7 @@
 
 &lt;p&gt;We want to store our users’s flights, meaning we need a database. Luckily, with Ktor we can use &lt;a href=&quot;https://github.com/JetBrains/Exposed&quot;&gt;Exposed&lt;/a&gt; (ORM for Kotlin) and a &lt;a href=&quot;https://www.postgresql.org/&quot;&gt;PostgreSQL&lt;/a&gt; database for it.&lt;/p&gt;
 
-&lt;p&gt;The setup is relatively straight forward:&lt;/p&gt;
+&lt;p&gt;The setup is relatively straightforward:&lt;/p&gt;
 
 &lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DatabaseFactory&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
 
@@ -247,7 +247,7 @@
 
 &lt;h3 id=&quot;web-client&quot;&gt;Web Client&lt;/h3&gt;
 
-&lt;p&gt;Ktor allow us to build webs by using HTML/CSS and the Kotlin DSL or you can do what I did and use a JVM template engines called &lt;a href=&quot;https://ktor.io/docs/freemarker.html&quot;&gt;Freemarker&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Ktor allow us to build webs by using HTML/CSS and the Kotlin DSL or you can do what I did and use a JVM template engine called &lt;a href=&quot;https://ktor.io/docs/freemarker.html&quot;&gt;Freemarker&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;First, we need to sort out the routing of our web. For this, we’re going to expand our &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Routing&lt;/code&gt; setup:&lt;/p&gt;
 

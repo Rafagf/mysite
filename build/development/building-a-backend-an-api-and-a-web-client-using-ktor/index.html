@@ -312,9 +312,9 @@
   <li>The consumed data would be created by an administrator in a website (dashboard look-alike).</li>
 </ul>
 
-<p>Pretty standard, right? But there was a small caveat: I specialise on Android development and I wasn’t sure if I could deliver the backend and web experience to the needed standards.</p>
+<p>Pretty standard, right? But there was a small caveat: I specialise in Android development and I wasn’t sure if I could deliver the backend and web experience to the required standard.</p>
 
-<p>With this in mind, I started looking into potential solutions before taking the project. <a href="https://ktor.io/">Ktor</a>, an asynchronous framework for building microservices and web applications, was an easy choice since it looked quite straight forward and it is based in Kotlin, a language that I’m very familiar with.</p>
+<p>With this in mind, I started looking into potential solutions before taking on the project. <a href="https://ktor.io/">Ktor</a>, an asynchronous framework for building microservices and web applications, was an easy choice since it looked quite straightforward and it is based in Kotlin, a language that I’m very familiar with.</p>
 
 <p>That’s how I decided to build <a href="https://theflightplanner.herokuapp.com/">FlightPlanner</a> with Ktor, a small pet project to track booked flights with similar requirements to the client’s project: a backend application backed by a DB, an API to be used by mobile clients and a web client to visualise and add new data.</p>
 
@@ -340,7 +340,7 @@
 
 <h3 id="building-our-first-endpoint">Building our first endpoint</h3>
 
-<p>One of greatest Ktor features is <a href="https://ktor.io/docs/routing-in-ktor.html">Routing</a>. Routing lets us decide how the backend should handle a client request. For FlightPlanner, I wanted to have a <code class="language-plaintext highlighter-rouge">/flights</code> endpoint to fetch user’s flights.</p>
+<p>One of the greatest Ktor features is <a href="https://ktor.io/docs/routing-in-ktor.html">Routing</a>. Routing allows us to decide how the backend should handle a client request. For FlightPlanner, I wanted to have a <code class="language-plaintext highlighter-rouge">/flights</code> endpoint to fetch user’s flights.</p>
 
 <p>First, we install the <code class="language-plaintext highlighter-rouge">Routing</code> feature in our <code class="language-plaintext highlighter-rouge">Application.kt</code>:</p>
 
@@ -416,7 +416,7 @@
 
 <p>We want to store our users’s flights, meaning we need a database. Luckily, with Ktor we can use <a href="https://github.com/JetBrains/Exposed">Exposed</a> (ORM for Kotlin) and a <a href="https://www.postgresql.org/">PostgreSQL</a> database for it.</p>
 
-<p>The setup is relatively straight forward:</p>
+<p>The setup is relatively straightforward:</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">object</span> <span class="nc">DatabaseFactory</span> <span class="p">{</span>
 
@@ -553,7 +553,7 @@
 
 <h3 id="web-client">Web Client</h3>
 
-<p>Ktor allow us to build webs by using HTML/CSS and the Kotlin DSL or you can do what I did and use a JVM template engines called <a href="https://ktor.io/docs/freemarker.html">Freemarker</a>.</p>
+<p>Ktor allow us to build webs by using HTML/CSS and the Kotlin DSL or you can do what I did and use a JVM template engine called <a href="https://ktor.io/docs/freemarker.html">Freemarker</a>.</p>
 
 <p>First, we need to sort out the routing of our web. For this, we’re going to expand our <code class="language-plaintext highlighter-rouge">Routing</code> setup:</p>
 
