@@ -1,4 +1,125 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://rafagf.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://rafagf.github.io/" rel="alternate" type="text/html" /><updated>2021-03-09T10:18:23+00:00</updated><id>https://rafagf.github.io/feed.xml</id><title type="html">Rafa Garcia</title><subtitle>Android development and random dev stuff</subtitle><author><name>{&quot;avatar&quot;=&gt;&quot;/assets/images/rafa_avatar.jpeg&quot;, &quot;bio&quot;=&gt;&quot;Engineering in broken English&quot;, &quot;location&quot;=&gt;&quot;London&quot;, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;Email&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-envelope-square&quot;, &quot;url&quot;=&gt;&quot;mailto:rafagarfer@gmail.com&quot;}, {&quot;label&quot;=&gt;&quot;Twitter&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-twitter-square&quot;, &quot;url&quot;=&gt;&quot;https://twitter.com/rafa_piki&quot;}, {&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;, &quot;url&quot;=&gt;&quot;https://github.com/rafagf/&quot;}, {&quot;label&quot;=&gt;&quot;Linkedin&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin&quot;, &quot;url&quot;=&gt;&quot;https://www.linkedin.com/in/rafaelgarciafernandez/&quot;}]}</name></author><entry><title type="html">Building a backend, an API and a web client using Ktor</title><link href="https://rafagf.github.io/development/building-a-backend-an-api-and-a-web-client-using-ktor/" rel="alternate" type="text/html" title="Building a backend, an API and a web client using Ktor" /><published>2021-03-09T00:00:00+00:00</published><updated>2021-03-09T00:00:00+00:00</updated><id>https://rafagf.github.io/development/building-a-backend-an-api-and-a-web-client-using-ktor</id><content type="html" xml:base="https://rafagf.github.io/development/building-a-backend-an-api-and-a-web-client-using-ktor/">&lt;p&gt;Some time ago I had a potential client that wanted the following:&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://rafagf.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://rafagf.github.io/" rel="alternate" type="text/html" /><updated>2021-04-24T16:58:21+00:00</updated><id>https://rafagf.github.io/feed.xml</id><title type="html">Rafa Garcia</title><subtitle>Android development and random dev stuff</subtitle><author><name>{&quot;avatar&quot;=&gt;&quot;/assets/images/rafa_avatar.jpeg&quot;, &quot;bio&quot;=&gt;&quot;Engineering in broken English&quot;, &quot;location&quot;=&gt;&quot;London&quot;, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;Email&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-envelope-square&quot;, &quot;url&quot;=&gt;&quot;mailto:rafagarfer@gmail.com&quot;}, {&quot;label&quot;=&gt;&quot;Twitter&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-twitter-square&quot;, &quot;url&quot;=&gt;&quot;https://twitter.com/rafa_piki&quot;}, {&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;, &quot;url&quot;=&gt;&quot;https://github.com/rafagf/&quot;}, {&quot;label&quot;=&gt;&quot;Linkedin&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin&quot;, &quot;url&quot;=&gt;&quot;https://www.linkedin.com/in/rafaelgarciafernandez/&quot;}]}</name></author><entry><title type="html">Tracking code coverage for free</title><link href="https://rafagf.github.io/development/tracking-code-coverage-for-free/" rel="alternate" type="text/html" title="Tracking code coverage for free" /><published>2021-04-24T00:00:00+00:00</published><updated>2021-04-24T00:00:00+00:00</updated><id>https://rafagf.github.io/development/tracking-code-coverage-for-free</id><content type="html" xml:base="https://rafagf.github.io/development/tracking-code-coverage-for-free/">&lt;p&gt;&lt;em&gt;This article was first published in the &lt;a href=&quot;https://engineering.memrise.com/tracking-code-coverage-for-free-9d8ebd929293&quot;&gt;Engineering Blog of Memrise&lt;/a&gt;, where I currently work. Check the blog out, there’s great content!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;In the Android team at Memrise, we’ve gotten a lot of value from tracking code coverage. It’s something we’ve worked very hard to improve over the last few years. The main two reasons being:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Tests are great&lt;/strong&gt;. They help us move faster and safer! Coverage is the indicator of how well we’re doing.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Coverage helps us find areas that need some love&lt;/strong&gt; ❤️ Setting coverage goals as quarterly KPIs is a great motivator to improve our codebase.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;How do you track coverage? Well, as you’re probably aware, there are companies out there providing built-in solutions so you don’t have to do it yourself. We previously used one of the popular solutions but found that their pricing model wasn’t a good fit for our use case. After researching potential alternatives and not being convinced by any, we decided that building our own coverage tracking was the way to go!&lt;/p&gt;
+
+&lt;h2 id=&quot;the-goal&quot;&gt;The goal&lt;/h2&gt;
+
+&lt;p&gt;Implementation speed and maintenance were key aspects for us, as we prefer to spend our time making Memrise great! With this in mind, we wanted our solution to cover two requirements:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Easy visualization of coverage stats&lt;/strong&gt;. At Memrise we use Data Studio dashboards to track health metrics and KPIs, so we wanted to have a page to see stats like global coverage and coverage breakdown by module.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Coverage reports in Pull Requests.&lt;/strong&gt; Coverage reports in PRs raise quality awareness and provide great immediate feedback to add those unit tests that you were lazy about.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;generating-coverage&quot;&gt;Generating coverage&lt;/h3&gt;
+
+&lt;p&gt;To generate the coverage of our codebase we use&lt;a href=&quot;https://www.eclemma.org/jacoco/&quot;&gt; Jacoco&lt;/a&gt;, an open-source code coverage library for Java and Kotlin. Jacoco gives you some goodies for free such as the ability to exclude code (i.e generated code or UI classes like Activities, Fragments, or Adapters) or choose the format of the generated report. It’s worth saying that Jacoco can be run at both global or module level. We do the latter since in the Memrise Android app we go big on modularisation.&lt;/p&gt;
+
+&lt;p&gt;To get an idea of how a CSV Jacoco report looks like, have a look at the screenshot.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/tracking-coverage-jacoco-example.png&quot; alt=&quot;Example of a Jacoco report&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Every row is a different class and every column an attribute. We’ll be using the &lt;em&gt;LINE_MISSED&lt;/em&gt; and &lt;em&gt;LINE_COVERED&lt;/em&gt; attributes.&lt;/p&gt;
+
+&lt;p&gt;To generate the report whenever we want it, we need to create a Gradle task (&lt;em&gt;:allCoverage)&lt;/em&gt; that will do the following:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;For each module, it runs Jacoco and generates &lt;em&gt;coverage.csv&lt;/em&gt;. It then calculates total lines missed and total lines covered to come up with a coverage percentage for the module.&lt;/li&gt;
+  &lt;li&gt;Once it’s done with all the modules, it calculates the global coverage.&lt;/li&gt;
+  &lt;li&gt;Builds a JSON and stores it in &lt;em&gt;/build/coverage.json&lt;/em&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The generated JSON looks like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+   &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;global&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;88.29%&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+   &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;billings&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;80%&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+   &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;downloader&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;23.76%&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+   &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;module-1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;99.47%&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+   &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;module-2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;0.47%&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+   &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;module-n&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;0.47%&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+   &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;Disclaimer: all coverage values in this article are dummy!&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;storing-reports-remotely&quot;&gt;Storing reports remotely&lt;/h3&gt;
+
+&lt;p&gt;Now that we’re able to generate our coverage report, we need to put it somewhere. This could be a database or if you want to go for simplicity like us, a spreadsheet. The steps are relatively simple:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;On every commit merged in &lt;em&gt;develop,&lt;/em&gt; our CI will run the Gradle :&lt;em&gt;allCoverage&lt;/em&gt; task.&lt;/li&gt;
+  &lt;li&gt;It will then look for our generated coverage.json inside the build directory and do a CURL (POST) to an &lt;a href=&quot;https://developers.google.com/apps-script&quot;&gt;AppScript&lt;/a&gt; function linked to our new coverage spreadsheet.&lt;/li&gt;
+  &lt;li&gt;The script will parse the JSON and dump the data into our spreadsheet.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/tracking-coverage-spreadsheet.png&quot; alt=&quot;Coverage data stored in a spreadsheet&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This is the result! 🎉 We store unique records per day and every new module will be added as a new column.&lt;/p&gt;
+
+&lt;h3 id=&quot;visualizing-coverage&quot;&gt;Visualizing coverage&lt;/h3&gt;
+
+&lt;p&gt;We needed to be able to easily visualize coverage reports. Since spreadsheets can be added as data sources in Data Studio, all we had to do is decide what type of data we want to see. Some examples could be plotting &lt;em&gt;global&lt;/em&gt; coverage to make sure it keeps going up, or any specific feature module where the team wants to refactor or increase coverage.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/tracking-coverage-dashboard.png&quot; alt=&quot;Example of coverage reports in our metrics dashboard&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;With this we’ve completed our first requirement: &lt;strong&gt;Easy visualization of coverage stats ✅&lt;/strong&gt; Let’s now move onto coverage PR reports!&lt;/p&gt;
+
+&lt;h3 id=&quot;coverage-reports-in-pull-requests&quot;&gt;Coverage reports in Pull Requests&lt;/h3&gt;
+
+&lt;p&gt;Now that we’ve got a nice way to visualize our current coverage, it’s time to add reports to our Pull Requests to see if our changes are increasing or decreasing code coverage. To be more precise, we want to show the following: taking a branch with a PR open, we want to highlight coverage changes (both global and modules) versus &lt;em&gt;develop.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;At Memrise, our Mobile Release Pipeline project automates different steps of our releases for both iOS and Android. The pipeline is composed of Firebase Functions that will execute different tasks, such as creating a release candidate in GitHub, posting a comment in a Jira ticket, or posting release notes in a Slack channel. In order to have coverage reports in Pull Requests, we use our release pipeline, but keep in mind it could be done with any system capable of making a call to GitHub’s API.&lt;/p&gt;
+
+&lt;p&gt;We’re going to create a new coverage Firebase Function in our Mobile Release Pipeline that can take the following parameters:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Pull request URL&lt;/li&gt;
+  &lt;li&gt;Branch name&lt;/li&gt;
+  &lt;li&gt;Coverage JSON&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Then, let’s split our commit workflows into 2 different scenarios:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Committing to develop (AKA merging a PR)&lt;/strong&gt;. Here we don’t want to show any report but to update our coverage spreadsheet. In other words, we want to have the same behavior as we had before but through the release pipeline. Instead of having our CI directly hitting our spreadsheet script, we’re going to hit our coverage Firebase Function. Then, our pipeline will do the POST to the spreadsheet script to update our coverage records.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Committing to any other branch with an open PR&lt;/strong&gt;: Our CI will hit the coverage Firebase Function providing all the requested parameters. Then, the following steps will be performed in order:&lt;/p&gt;
+    &lt;ol&gt;
+      &lt;li&gt;Fetch &lt;em&gt;develop&lt;/em&gt; coverage JSON by doing a GET to the spreadsheet script.&lt;/li&gt;
+      &lt;li&gt;Compare coverage reports and create a diff report using Markdown syntax.&lt;/li&gt;
+      &lt;li&gt;Find our PR in GitHub using GitHub’s API and post the report as a comment. It’s worth saying that if the coverage report already exists from a previous commit, we edit it instead of adding a new comment.&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;And with this, we’ll get beautiful reports in our Pull Requests, making our code coverage tracking work completed! ✅ 🚀🚀🚀&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/tracking-coverage-github-comment.png&quot; alt=&quot;Coverage report in GitHub&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;next-steps&quot;&gt;Next steps&lt;/h3&gt;
+
+&lt;p&gt;At this stage, we’ve got a fully functional solution to track coverage, so future improvements are optional and something to add when/if needed. Some ideas could be:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;PR Checks (as in failing PRs if coverage goes down).&lt;/li&gt;
+  &lt;li&gt;Different base branches for coverage diff reports. Because we use a spreadsheet to store coverage records, we’re currently limited to &lt;em&gt;develop&lt;/em&gt; for the diff reports. But it doesn’t need to be this way. A database would provide more flexibility.&lt;/li&gt;
+  &lt;li&gt;Using it on other platforms. The fact that it was built for Android doesn’t mean much since the tool itself is platform agnostic.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;conclusions&quot;&gt;Conclusions&lt;/h3&gt;
+
+&lt;p&gt;Tracking coverage has been valuable for our team and is something every team can do to improve the quality of the code they ship. There are good solutions out there, but if you’re looking for minimum cost and maximum flexibility, building an in-house tool to track coverage is much less complicated than you might think!&lt;/p&gt;</content><author><name>{&quot;avatar&quot;=&gt;&quot;/assets/images/rafa_avatar.jpeg&quot;, &quot;bio&quot;=&gt;&quot;Engineering in broken English&quot;, &quot;location&quot;=&gt;&quot;London&quot;, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;Email&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-envelope-square&quot;, &quot;url&quot;=&gt;&quot;mailto:rafagarfer@gmail.com&quot;}, {&quot;label&quot;=&gt;&quot;Twitter&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-twitter-square&quot;, &quot;url&quot;=&gt;&quot;https://twitter.com/rafa_piki&quot;}, {&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;, &quot;url&quot;=&gt;&quot;https://github.com/rafagf/&quot;}, {&quot;label&quot;=&gt;&quot;Linkedin&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin&quot;, &quot;url&quot;=&gt;&quot;https://www.linkedin.com/in/rafaelgarciafernandez/&quot;}]}</name></author><category term="development" /><category term="testing" /><category term="android" /><summary type="html">This article was first published in the Engineering Blog of Memrise, where I currently work. Check the blog out, there’s great content!</summary></entry><entry><title type="html">Building a backend, an API and a web client using Ktor</title><link href="https://rafagf.github.io/development/building-a-backend-an-api-and-a-web-client-using-ktor/" rel="alternate" type="text/html" title="Building a backend, an API and a web client using Ktor" /><published>2021-03-09T00:00:00+00:00</published><updated>2021-03-09T00:00:00+00:00</updated><id>https://rafagf.github.io/development/building-a-backend-an-api-and-a-web-client-using-ktor</id><content type="html" xml:base="https://rafagf.github.io/development/building-a-backend-an-api-and-a-web-client-using-ktor/">&lt;p&gt;Some time ago I had a potential client that wanted the following:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;An Android app that would send data to a backend.&lt;/li&gt;
