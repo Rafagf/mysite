@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>Tracking code coverage for free - Rafa Garcia</title>
-<meta name="description" content="This article was first published in the Engineering Blog of Memrise, where I currently work. Check the blog out, there’s great content!">
+<meta name="description" content="This article was first published in the Memrise Engineering Blog, where I currently work. Check the blog out, there’s great content!">
 
 
 
@@ -21,7 +21,7 @@
 <meta property="og:url" content="https://engineering.memrise.com/tracking-code-coverage-for-free-9d8ebd929293">
 
 
-  <meta property="og:description" content="This article was first published in the Engineering Blog of Memrise, where I currently work. Check the blog out, there’s great content!">
+  <meta property="og:description" content="This article was first published in the Memrise Engineering Blog, where I currently work. Check the blog out, there’s great content!">
 
 
 
@@ -269,7 +269,7 @@
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="Tracking code coverage for free">
-    <meta itemprop="description" content="This article was first published in the Engineering Blog of Memrise, where I currently work. Check the blog out, there’s great content!">
+    <meta itemprop="description" content="This article was first published in the Memrise Engineering Blog, where I currently work. Check the blog out, there’s great content!">
     <meta itemprop="datePublished" content="2021-04-24T00:00:00+00:00">
     
 
@@ -304,7 +304,7 @@
 
       <section class="page__content" itemprop="text">
         
-        <p><em>This article was first published in the <a href="https://engineering.memrise.com/tracking-code-coverage-for-free-9d8ebd929293">Engineering Blog of Memrise</a>, where I currently work. Check the blog out, there’s great content!</em></p>
+        <p><em>This article was first published in the <a href="https://engineering.memrise.com/tracking-code-coverage-for-free-9d8ebd929293">Memrise Engineering Blog</a>, where I currently work. Check the blog out, there’s great content!</em></p>
 
 <p>In the Android team at Memrise, we’ve gotten a lot of value from tracking code coverage. It’s something we’ve worked very hard to improve over the last few years. The main two reasons being:</p>
 
@@ -396,11 +396,8 @@
 <p>Then, let’s split our commit workflows into 2 different scenarios:</p>
 
 <ul>
-  <li>
-    <p><strong>Committing to develop (AKA merging a PR)</strong>. Here we don’t want to show any report but to update our coverage spreadsheet. In other words, we want to have the same behavior as we had before but through the release pipeline. Instead of having our CI directly hitting our spreadsheet script, we’re going to hit our coverage Firebase Function. Then, our pipeline will do the POST to the spreadsheet script to update our coverage records.</p>
-  </li>
-  <li>
-    <p><strong>Committing to any other branch with an open PR</strong>: Our CI will hit the coverage Firebase Function providing all the requested parameters. Then, the following steps will be performed in order:</p>
+  <li><strong>Committing to develop (AKA merging a PR)</strong>. Here we don’t want to show any report but to update our coverage spreadsheet. In other words, we want to have the same behavior as we had before but through the release pipeline. Instead of having our CI directly hitting our spreadsheet script, we’re going to hit our coverage Firebase Function. Then, our pipeline will do the POST to the spreadsheet script to update our coverage records.</li>
+  <li><strong>Committing to any other branch with an open PR</strong>. Our CI will hit the coverage Firebase Function providing all the requested parameters. Then, the following steps will be performed in order:
     <ol>
       <li>Fetch <em>develop</em> coverage JSON by doing a GET to the spreadsheet script.</li>
       <li>Compare coverage reports and create a diff report using Markdown syntax.</li>
@@ -409,7 +406,7 @@
   </li>
 </ul>
 
-<p>And with this, we’ll get beautiful reports in our Pull Requests, making our code coverage tracking work completed! ✅ 🚀🚀🚀</p>
+<p>And with this, we’ll get beautiful reports in our Pull Requests, making our code coverage tracking work completed! <strong>✅ 🚀🚀🚀</strong></p>
 
 <p><img src="/assets/images/tracking-coverage-github-comment.png" alt="Coverage report in GitHub" /></p>
 

@@ -12,7 +12,7 @@ var store = [{
         "teaser": null
       },{
         "title": "Tracking code coverage for free",
-        "excerpt":"This article was first published in the Engineering Blog of Memrise, where I currently work. Check the blog out, there’s great content! In the Android team at Memrise, we’ve gotten a lot of value from tracking code coverage. It’s something we’ve worked very hard to improve over the last few...","categories": ["development"],
+        "excerpt":"This article was first published in the Memrise Engineering Blog, where I currently work. Check the blog out, there’s great content! In the Android team at Memrise, we’ve gotten a lot of value from tracking code coverage. It’s something we’ve worked very hard to improve over the last few years....","categories": ["development"],
         "tags": ["testing","android"],
         "url": "https://rafagf.github.io/development/tracking-code-coverage-for-free/",
         "teaser": null
