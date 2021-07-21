@@ -12,8 +12,14 @@ var store = [{
         "teaser": null
       },{
         "title": "Tracking code coverage for free",
-        "excerpt":"This article was first published in the Memrise Engineering Blog, where I currently work. Check the blog out, there’s great content! In the Android team at Memrise, we’ve gotten a lot of value from tracking code coverage. It’s something we’ve worked very hard to improve over the last few years....","categories": ["development"],
+        "excerpt":"In the Android team at Memrise, we’ve gotten a lot of value from tracking code coverage. It’s something we’ve worked very hard to improve over the last few years. The main two reasons being: Tests are great. They help us move faster and safer! Coverage is the indicator of how...","categories": ["development"],
         "tags": ["testing","android","mobile development"],
         "url": "https://rafagf.github.io/development/tracking-code-coverage-for-free/",
+        "teaser": null
+      },{
+        "title": "Modelling the domain layer using composable use cases",
+        "excerpt":"Some time ago we had a problem inside the Memrise Android codebase with our domain layer. Repositories and Use Cases were heavily used but there weren’t clear guidelines on what they were supposed to do and not do. It was common to find them being used in combination, which in...","categories": ["development"],
+        "tags": ["android","mobile development","architecture"],
+        "url": "https://rafagf.github.io/development/modelling-the-domain-layer-using-composables-use-cases/",
         "teaser": null
       }]

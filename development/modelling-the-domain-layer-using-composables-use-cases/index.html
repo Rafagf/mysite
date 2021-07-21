@@ -1,0 +1,743 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.21.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Modelling the domain layer using composable use cases - Rafa Garcia</title>
+<meta name="description" content="Some time ago we had a problem inside the Memrise Android codebase with our domain layer. Repositories and Use Cases were heavily used but there weren’t clear guidelines on what they were supposed to do and not do. It was common to find them being used in combination, which in reality meant we didn’t have Repositories at all but Use Cases with direct access to our Data Sources.">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_UK">
+<meta property="og:site_name" content="Rafa Garcia">
+<meta property="og:title" content="Modelling the domain layer using composable use cases">
+<meta property="og:url" content="https://engineering.memrise.com/modeling-the-domain-layer-using-composable-use-cases-8d0813792eeb">
+
+
+  <meta property="og:description" content="Some time ago we had a problem inside the Memrise Android codebase with our domain layer. Repositories and Use Cases were heavily used but there weren’t clear guidelines on what they were supposed to do and not do. It was common to find them being used in combination, which in reality meant we didn’t have Repositories at all but Use Cases with direct access to our Data Sources.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2021-07-21T00:00:00+00:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://engineering.memrise.com/modeling-the-domain-layer-using-composable-use-cases-8d0813792eeb">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Rafa Garcia",
+      "url": "https://rafagf.github.io/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Rafa Garcia Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+    <style>
+</style>
+    <style>
+</style>
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Rafa Garcia
+          <span class="site-subtitle">Android Developer | Software Engineer</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/blog/">Blog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/cv/">CV</a>
+            </li><li class="masthead__menu-item">
+              <a href="/portfolio/">Portfolio</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content"
+  padding-left: 80px>
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/rafa_avatar.jpeg" alt="" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name"></h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Engineering in broken English</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">London</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:rafagarfer@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/rafa_piki" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/rafagf/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/rafaelgarciafernandez/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">Linkedin</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Modelling the domain layer using composable use cases">
+    <meta itemprop="description" content="Some time ago we had a problem inside the Memrise Android codebase with our domain layer. Repositories and Use Cases were heavily used but there weren’t clear guidelines on what they were supposed to do and not do. It was common to find them being used in combination, which in reality meant we didn’t have Repositories at all but Use Cases with direct access to our Data Sources.">
+    <meta itemprop="datePublished" content="2021-07-21T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Modelling the domain layer using composable use cases
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>Some time ago we had a problem inside the Memrise Android codebase with our domain layer. Repositories and Use Cases were heavily used but there weren’t clear guidelines on what they were supposed to do and not do. It was common to find them being used in combination, which in reality meant we didn’t have Repositories at all but Use Cases with direct access to our Data Sources.</p>
+
+<p>With this in mind, we started looking for a brighter future and thinking about what was right and what wasn’t:</p>
+
+<ol>
+  <li>
+    <p><strong>Repositories with other Repositories as dependencies</strong> ❌
+Repositories should only depend on their Data Sources (i.e <code class="language-plaintext highlighter-rouge">memory</code>, <code class="language-plaintext highlighter-rouge">persistence</code> or <code class="language-plaintext highlighter-rouge">api</code>). Whenever we have a Repository doing more than this, we should treat it as a red flag and as a symptom that what we want is a Use Case.</p>
+  </li>
+  <li><strong>Repositories with Use Cases as dependencies</strong> ❌
+Also bad. If our Repository has a Use Case as a dependency… Well, what we’ve got is a Use Case that is acting both as a Use Case and as a Repository! But we want our classes to have a single responsibility.</li>
+  <li><strong>Use Cases with Repositories as dependencies</strong> ✅
+Yes! This is the classic showcase of a Use Case. Calls a Repository to fetch the data, not caring <em>how</em> the data was fetched or where it’s coming from (api? persistence? it doesn’t matter). Then, it implements the domain/business logic before passing it back to the presentation layer, where it will be transformed into some sort of <code class="language-plaintext highlighter-rouge">ViewState</code> to be consumed by views.</li>
+  <li><strong>Use Cases with Use Cases as dependencies</strong> ❓
+This one had us thinking since we had some questions, such as:</li>
+</ol>
+
+<ul>
+  <li>Will this lead to circular dependencies?</li>
+  <li>Will this work well with modularisation or will we end up with a massive <code class="language-plaintext highlighter-rouge">core</code> module?</li>
+  <li>
+    <p>What about when a particular screen needs to tweak the logic, will that detail leak to other callers?</p>
+  </li>
+  <li>As <a href="https://twitter.com/Sotttti">Pablo Costa</a> pointed out (thanks 🙏) it violates the <a href="https://khalilstemmler.com/wiki/dependency-rule/">Dependency Rule</a></li>
+</ul>
+
+<p>The real answer for Use Cases within Use Cases, or in other words, <em>Composable Use Cases</em> is that…THEY’RE GREAT! ✅✅✅</p>
+
+<p>Let’s see some examples to see why they’re great and get a grasp of them.</p>
+
+<h3 id="use-cases">Use Cases</h3>
+
+<p>Before we start seeing some code, it’s worth describing some basic rules we normally follow when creating Use Cases:</p>
+
+<ul>
+  <li>Ideally, they’ve got a single function (i.e <code class="language-plaintext highlighter-rouge">invoke()</code>) that receives a parameter and returns something.</li>
+  <li>No threading details on them, these live in the Presentation layer (they’ll normally be run asynchronously).</li>
+  <li>Chaining using Rx or any other framework of your liking.</li>
+  <li>Dependencies are injected using Dependency Injection.</li>
+  <li>They don’t hold state.</li>
+</ul>
+
+<p>NOTE: <em>all code below is inspired in real implementations but simplified</em></p>
+
+<h3 id="low-level-use-cases">Low-level Use Cases</h3>
+
+<p>Low-level Use Cases won’t do much. They are a single function that takes a parameter, calls a Repository, and returns some data. For example:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">GetEnrolledCourseUseCase</span> <span class="nd">@Inject</span> <span class="k">constructor</span><span class="p">(</span>
+    <span class="k">private</span> <span class="kd">val</span> <span class="py">coursesRepository</span><span class="p">:</span> <span class="nc">CoursesRepository</span><span class="p">,</span>
+<span class="p">)</span> <span class="p">:</span> <span class="p">(</span><span class="nc">String</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nc">Single</span><span class="p">&lt;</span><span class="nc">Course</span><span class="p">&gt;</span> <span class="p">{</span>
+
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">invoke</span><span class="p">(</span><span class="n">courseId</span><span class="p">:</span> <span class="nc">String</span><span class="p">):</span> <span class="nc">Single</span><span class="p">&lt;</span><span class="nc">EnrolledCourse</span><span class="p">&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">coursesRepository</span><span class="p">.</span><span class="nf">getEnrolledCourse</span><span class="p">(</span><span class="n">courseId</span><span class="p">)</span>
+                <span class="p">.</span><span class="nf">onErrorResumeNext</span> <span class="p">{</span>
+                    <span class="nc">Single</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="nc">CourseNotAvailable</span><span class="p">(</span><span class="n">courseId</span><span class="p">))</span>
+                <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">data class</span> <span class="nc">CourseNotAvailable</span><span class="p">(</span><span class="kd">val</span> <span class="py">courseId</span><span class="p">:</span> <span class="nc">String</span><span class="p">)</span> <span class="p">:</span> <span class="nc">Throwable</span><span class="p">(</span><span class="s">"Course not found: $courseId"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Not much going on here: a single dependency, the Repository. It calls the <code class="language-plaintext highlighter-rouge">getEnrolledCourse</code> method, if found it will be returned, otherwise, it throws an error. Can’t get more low-level than this!</p>
+
+<h3 id="simple-composable-use-cases">Simple Composable Use Cases</h3>
+
+<p>Now, let’s go one step further. We’ve got a screen that shows if an enrolled course is available for offline mode. We can do this without writing much code by composing a few low-level Use Cases, including the one we presented above. It would be something like this</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">IsCourseAvailableOfflineUseCase</span> <span class="nd">@Inject</span> <span class="k">constructor</span><span class="p">(</span>
+    <span class="k">private</span> <span class="kd">val</span> <span class="py">getEnrollCourseUseCase</span><span class="p">:</span> <span class="nc">GetEnrollCourseUseCase</span><span class="p">,</span>
+    <span class="k">private</span> <span class="kd">val</span> <span class="py">isCourseDownloadedUseCase</span><span class="p">:</span> <span class="nc">IsCourseDownloadedUseCase</span><span class="p">,</span>
+    <span class="k">private</span> <span class="kd">val</span> <span class="py">isUserProUseCase</span><span class="p">:</span> <span class="nc">IsUserProUseCase</span><span class="p">,</span>
+<span class="p">)</span> <span class="p">:</span> <span class="p">(</span><span class="nc">String</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nc">Completable</span> <span class="p">{</span>
+
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">invoke</span><span class="p">(</span><span class="n">courseId</span><span class="p">:</span> <span class="nc">String</span><span class="p">):</span> <span class="nc">Completable</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">when</span> <span class="p">{</span>
+            <span class="p">!</span><span class="nf">isUserProUseCase</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nc">Completable</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="nc">UserIsNotProError</span><span class="p">())</span>
+            <span class="k">else</span> <span class="p">-&gt;</span> <span class="p">{</span>
+                <span class="nf">getEnrollCourseUseCase</span><span class="p">(</span><span class="n">courseId</span><span class="p">).</span><span class="nf">flatMapCompletable</span> <span class="p">{</span> <span class="n">enrolledCourse</span> <span class="p">-&gt;</span>
+                    <span class="nf">isCourseDownloadedUseCase</span><span class="p">(</span><span class="n">courseId</span><span class="p">).</span><span class="nf">flatMapCompletable</span> <span class="p">{</span> <span class="n">downloaded</span> <span class="p">-&gt;</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="n">downloaded</span><span class="p">)</span> <span class="p">{</span>
+                            <span class="nc">Completable</span><span class="p">.</span><span class="nf">complete</span><span class="p">()</span>
+                        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                            <span class="nc">Completable</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="nc">CourseNotDownloadedError</span><span class="p">(</span><span class="n">courseId</span> <span class="p">=</span> <span class="n">courseId</span><span class="p">,</span> <span class="n">courseName</span> <span class="p">=</span> <span class="n">enrolledCourse</span><span class="p">.</span><span class="n">name</span><span class="p">))</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="delegating-complexity-to-other-use-cases">Delegating Complexity to other Use Cases</h3>
+
+<p>Use Cases can get very complicated very quickly. When that happens, it’s important to apply a bit of Single-Responsibility-Principle and delegate to other Use Cases. At Memrise we’ve got a component called the <code class="language-plaintext highlighter-rouge">Single Continue Button</code> (SCB from now on) that it’s a great example of this. The SCB is a button that can appear on multiple screens that will launch a new session when clicked. Depending on the screen where the user is at (<code class="language-plaintext highlighter-rouge">dashboard</code>, <code class="language-plaintext highlighter-rouge">level</code>, <code class="language-plaintext highlighter-rouge">course</code>, <code class="language-plaintext highlighter-rouge">end of session</code>, etc) and the user’s progress, the session type will be different.</p>
+
+<p>Instead of having all this logic in a massive Use Case or several Use Cases as entry points, we can have the main entry point Use Case that checks the provided payload and delegates to the right Use Case:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">ScbUseCase</span> <span class="nd">@Inject</span> <span class="k">constructor</span><span class="p">(</span>
+    <span class="k">private</span> <span class="kd">val</span> <span class="py">scbEosUseCase</span><span class="p">:</span> <span class="nc">ScbEosUseCase</span><span class="p">,</span>
+    <span class="k">private</span> <span class="kd">val</span> <span class="py">scbLevelUseCase</span><span class="p">:</span> <span class="nc">ScbLevelUseCase</span><span class="p">,</span>
+    <span class="k">private</span> <span class="kd">val</span> <span class="py">scbCourseUseCase</span><span class="p">:</span> <span class="nc">ScbCourseUseCase</span><span class="p">,</span>
+    <span class="k">private</span> <span class="kd">val</span> <span class="py">scbLandingUseCase</span><span class="p">:</span> <span class="nc">ScbLandingUseCase</span>
+<span class="p">)</span> <span class="p">:</span> <span class="p">(</span><span class="nc">ScbScreenPayload</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nc">Single</span><span class="p">&lt;</span><span class="nc">ScbFetchResult</span><span class="p">&gt;</span> <span class="p">{</span>
+
+     <span class="k">override</span> <span class="k">fun</span> <span class="nf">invoke</span><span class="p">(</span><span class="n">payload</span><span class="p">:</span> <span class="nc">ScbScreenPayload</span><span class="p">):</span> <span class="nc">Single</span><span class="p">&lt;</span><span class="nc">ScbFetchResult</span><span class="p">&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">when</span> <span class="p">(</span><span class="n">payload</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">is</span> <span class="nc">Landing</span> <span class="p">-&gt;</span> <span class="nf">scbLandingUseCase</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+            <span class="k">is</span> <span class="nc">Tooltip</span> <span class="p">-&gt;</span> <span class="nf">scbLandingUseCase</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+            <span class="k">is</span> <span class="nc">Course</span> <span class="p">-&gt;</span> <span class="nf">scbCourseUseCase</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+            <span class="k">is</span> <span class="nc">Level</span> <span class="p">-&gt;</span> <span class="nf">scbLevelUseCase</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+            <span class="k">is</span> <span class="nc">EndOfSession</span> <span class="p">-&gt;</span> <span class="nf">scbEosUseCase</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">sealed</span> <span class="kd">class</span> <span class="nc">ScbScreenPayload</span><span class="p">(</span>
+    <span class="k">open</span> <span class="kd">val</span> <span class="py">courseId</span><span class="p">:</span> <span class="nc">String</span>
+<span class="p">)</span> <span class="p">{</span>
+    <span class="kd">data class</span> <span class="nc">Landing</span><span class="p">(</span><span class="o">..</span><span class="p">.)</span> <span class="p">:</span> <span class="nc">ScbScreenPayload</span><span class="p">(</span><span class="n">courseId</span><span class="p">)</span>
+    <span class="kd">data class</span> <span class="nc">Tooltip</span><span class="p">(</span><span class="o">..</span><span class="p">.)</span> <span class="p">:</span> <span class="nc">ScbScreenPayload</span><span class="p">(</span><span class="n">courseId</span><span class="p">)</span>
+    <span class="kd">data class</span> <span class="nc">Course</span><span class="p">(</span><span class="o">..</span><span class="p">.)</span> <span class="p">:</span> <span class="nc">ScbScreenPayload</span><span class="p">(</span><span class="n">courseId</span><span class="p">)</span>
+    <span class="kd">data class</span> <span class="nc">EndOfSession</span><span class="p">(</span><span class="o">..</span><span class="p">.)</span> <span class="p">:</span> <span class="nc">ScbScreenPayload</span><span class="p">(</span><span class="n">courseId</span><span class="p">)</span>
+		<span class="o">..</span><span class="p">.</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="chaining-set-of-actions-use-cases">Chaining set of actions Use Cases</h3>
+
+<p>Somehow similar to the previous example, we can have a Use Case that orchestrates the chaining/order of different actions. This will not only help to visualize logic easily, but it’ll make testing easier, as it moves away from implementation details. Fetching the Learnables for a particular session is a good example of it:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">SessionLearnablesUseCase</span> <span class="nd">@Inject</span> <span class="k">constructor</span><span class="p">(</span>
+    <span class="k">private</span> <span class="kd">val</span> <span class="py">isOnlineOrDownloadedCourseUseCase</span><span class="p">:</span> <span class="nc">IsOnlineOrDownloadedCourseUseCase</span><span class="p">,</span>
+    <span class="k">private</span> <span class="kd">val</span> <span class="py">getEnrollCourseUseCase</span><span class="p">:</span> <span class="nc">GetEnrollCourseUseCase</span><span class="p">,</span>
+    <span class="k">private</span> <span class="kd">val</span> <span class="py">getLevelsUseCase</span><span class="p">:</span> <span class="nc">GetLevelsUseCase</span><span class="p">,</span>
+    <span class="k">private</span> <span class="kd">val</span> <span class="py">getSessionLearnablesUseCase</span><span class="p">:</span> <span class="nc">GetSessionLearnablesUseCase</span><span class="p">,</span>
+    <span class="k">private</span> <span class="kd">val</span> <span class="py">getProgressUseCase</span><span class="p">:</span> <span class="nc">GetProgressUseCase</span><span class="p">,</span>
+<span class="p">)</span> <span class="p">:</span> <span class="p">(</span><span class="nc">SessionsPayload</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nc">Single</span><span class="p">&lt;</span><span class="nc">List</span><span class="p">&lt;</span><span class="nc">LearnableWithProgress</span><span class="p">&gt;&gt;</span> <span class="p">{</span>
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">invoke</span><span class="p">(</span><span class="n">payload</span><span class="p">:</span> <span class="nc">SessionsPayload</span><span class="p">):</span> <span class="nc">Single</span><span class="p">&lt;</span><span class="nc">List</span><span class="p">&lt;</span><span class="nc">LearnableWithProgress</span><span class="p">&gt;&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nf">isOnlineOrDownloadedCourseUseCase</span><span class="p">(</span><span class="n">payload</span><span class="p">.</span><span class="n">courseId</span><span class="p">).</span><span class="nf">andThen</span><span class="p">(</span>
+            <span class="nf">getOrEnrollCourseUseCase</span><span class="p">(</span><span class="n">payload</span><span class="p">.</span><span class="n">courseId</span><span class="p">).</span><span class="nf">flatMap</span> <span class="p">{</span> <span class="n">course</span> <span class="p">-&gt;</span>
+                <span class="nf">getLevelsUseCase</span><span class="p">(</span><span class="n">payload</span><span class="p">).</span><span class="nf">flatMap</span> <span class="p">{</span> <span class="n">levels</span> <span class="p">-&gt;</span>
+                    <span class="nf">getProgressUseCase</span><span class="p">(</span><span class="n">levels</span><span class="p">,</span> <span class="n">course</span><span class="p">.</span><span class="n">id</span><span class="p">).</span><span class="nf">flatMap</span> <span class="p">{</span> <span class="n">progress</span> <span class="p">-&gt;</span>
+                        <span class="nf">getSessionLearnablesUseCase</span><span class="p">(</span><span class="n">progress</span><span class="p">).</span><span class="nf">map</span> <span class="p">{</span> <span class="n">learnables</span> <span class="p">-&gt;</span>
+                            <span class="n">learnables</span><span class="p">.</span><span class="nf">toLearnablesWithProgress</span><span class="p">(</span><span class="n">progress</span><span class="p">)</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="k">private</span> <span class="k">fun</span> <span class="nf">getLevels</span><span class="p">(</span><span class="n">payload</span><span class="p">:</span> <span class="nc">SessionsPayload</span><span class="p">):</span> <span class="nc">Single</span><span class="p">&lt;</span><span class="nc">List</span><span class="p">&lt;</span><span class="nc">Level</span><span class="p">&gt;&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">when</span> <span class="p">(</span><span class="n">payload</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">is</span> <span class="nc">SessionsCourseIdPayload</span> <span class="p">-&gt;</span> <span class="nf">getCourseLevelsUseCase</span><span class="p">(</span><span class="n">payload</span><span class="p">.</span><span class="n">courseId</span><span class="p">)</span>
+            <span class="k">is</span> <span class="nc">SessionsLevelIdPayload</span> <span class="p">-&gt;</span> <span class="nf">getCourseLevel</span><span class="p">(</span><span class="n">payload</span><span class="p">.</span><span class="n">courseId</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="summing-up">Summing up</h3>
+
+<p>Composable Use Cases are a great way to effectively model the domain logic of our software, abstracting away our Repositories and data layers. On top of this, they’re a very scalable solution as the more Use Cases we write, the more we can re-use and quickly ship new features to our users!</p>
+
+<p>NOTE: <em>This article was first published in the <a href="https://engineering.memrise.com/modeling-the-domain-layer-using-composable-use-cases-8d0813792eeb">Memrise Engineering Blog</a>. Check the blog out, there’s great content!</em></p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#android" class="page__taxonomy-item" rel="tag">android</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#architecture" class="page__taxonomy-item" rel="tag">architecture</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#mobile-development" class="page__taxonomy-item" rel="tag">mobile development</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#development" class="page__taxonomy-item" rel="tag">development</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-07-21T00:00:00+00:00">July 21, 2021</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Modelling+the+domain+layer+using+composable+use+cases%20https%3A%2F%2Frafagf.github.io%2Fdevelopment%2Fmodelling-the-domain-layer-using-composables-use-cases%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frafagf.github.io%2Fdevelopment%2Fmodelling-the-domain-layer-using-composables-use-cases%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Frafagf.github.io%2Fdevelopment%2Fmodelling-the-domain-layer-using-composables-use-cases%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/development/tracking-code-coverage-for-free/" class="pagination--pager" title="Tracking code coverage for free
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/development/tracking-code-coverage-for-free/" rel="permalink">Tracking code coverage for free
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">In the Android team at Memrise, we’ve gotten a lot of value from tracking code coverage. It’s something we’ve worked very hard to improve over the last few y...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/development/building-a-backend-an-api-and-a-web-client-using-ktor/" rel="permalink">Building a backend, an API and a web client using Ktor
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Some time ago I had a potential client that wanted the following:
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/development/building-my-site-using-github-and-jekyll/" rel="permalink">Building my site using GitHub and Jekyll
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">For 2021 I decided it was time to start sharing some of my developer adventures. I want to do this with the hope that it helps someone and as a way to learn ...</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Rafa Garcia. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JQN7MDGSH4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JQN7MDGSH4', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+
+  </body>
+</html>

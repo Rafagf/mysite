@@ -1,5 +1,5 @@
 current directory: /github/workspace/vendor/bundle/ruby/2.7.0/gems/sassc-2.4.0/ext
-/usr/local/bin/ruby -I /usr/local/lib/ruby/2.7.0 -r ./siteconf20210519-15-15dliy1.rb extconf.rb
+/usr/local/bin/ruby -I /usr/local/lib/ruby/2.7.0 -r ./siteconf20210721-17-tijx25.rb extconf.rb
 creating Makefile
 
 current directory: /github/workspace/vendor/bundle/ruby/2.7.0/gems/sassc-2.4.0/ext
@@ -77,4 +77,4 @@ linking shared-object sassc/libsass.so
 
 current directory: /github/workspace/vendor/bundle/ruby/2.7.0/gems/sassc-2.4.0/ext
 make "DESTDIR=" install
-/usr/bin/install -c -m 0755 libsass.so ./.gem.20210519-15-143k2kf/sassc
+/usr/bin/install -c -m 0755 libsass.so ./.gem.20210721-17-rif7ba/sassc
