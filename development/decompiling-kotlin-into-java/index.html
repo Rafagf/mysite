@@ -1,0 +1,983 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.21.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Decompiling Kotlin into Java - Few years late - Rafa Garcia</title>
+<meta name="description" content="Recently I was asked by a co-worker “what are sealed classes?” and realised the classic answer “enums in steroid” falls really short and a clear sign that I didn’t fully understand what they are. Because of this, I decided to spend some time decompiling Kotlin code into Bytecode and then back into Java with the idea to better understand the language features.">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_UK">
+<meta property="og:site_name" content="Rafa Garcia">
+<meta property="og:title" content="Decompiling Kotlin into Java - Few years late">
+<meta property="og:url" content="https://rafagf.github.io/development/decompiling-kotlin-into-java/">
+
+
+  <meta property="og:description" content="Recently I was asked by a co-worker “what are sealed classes?” and realised the classic answer “enums in steroid” falls really short and a clear sign that I didn’t fully understand what they are. Because of this, I decided to spend some time decompiling Kotlin code into Bytecode and then back into Java with the idea to better understand the language features.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2021-07-23T00:00:00+00:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://rafagf.github.io/development/decompiling-kotlin-into-java/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Rafa Garcia",
+      "url": "https://rafagf.github.io/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Rafa Garcia Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+    <style>
+</style>
+    <style>
+</style>
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Rafa Garcia
+          <span class="site-subtitle">Android Developer | Software Engineer</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/blog/">Blog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/cv/">CV</a>
+            </li><li class="masthead__menu-item">
+              <a href="/portfolio/">Portfolio</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content"
+  padding-left: 80px>
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/rafa_avatar.jpeg" alt="" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name"></h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Engineering in broken English</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">London</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:rafagarfer@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/rafa_piki" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/rafagf/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/rafaelgarciafernandez/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">Linkedin</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Decompiling Kotlin into Java - Few years late">
+    <meta itemprop="description" content="Recently I was asked by a co-worker “what are sealed classes?” and realised the classic answer “enums in steroid” falls really short and a clear sign that I didn’t fully understand what they are. Because of this, I decided to spend some time decompiling Kotlin code into Bytecode and then back into Java with the idea to better understand the language features.">
+    <meta itemprop="datePublished" content="2021-07-23T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Decompiling Kotlin into Java - Few years late
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>Recently I was asked by a co-worker “what are sealed classes?” and realised the classic answer “enums in steroid” falls really short and a clear sign that I didn’t fully understand what they are. Because of this, I decided to spend some time decompiling Kotlin code into Bytecode and then back into Java with the idea to better understand the language features.</p>
+
+<p>Because this is such a big topic, in this article I’ll cover the very well known and basic features. While boring for the broad audience, I found that there were still a few things to be learned. I’ll probably do a second part of the article discovering more complex features. In this article, we’ll see:</p>
+
+<ol>
+  <li><a href="#objects">Objects</a></li>
+  <li><a href="#classes">Classes</a></li>
+  <li><a href="#data-classes">Data Classes</a></li>
+  <li><a href="#sealed-classes">Sealed Classes</a></li>
+</ol>
+
+<h2 id="objects-">Objects <a name="objects"></a></h2>
+
+<p>Let’s start easy with <code class="language-plaintext highlighter-rouge">Objects</code>.  <code class="language-plaintext highlighter-rouge">Objects</code> in Kotlin are widely known to be equivalent to Java Singletons.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">object</span> <span class="nc">KotlinObject</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="py">aString</span><span class="p">:</span> <span class="nc">String</span> <span class="p">=</span> <span class="s">"foo"</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>After doing the dance to decompile into bytecode and then into Java, we can see its equivalent.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">JavaKotlinObject</span> <span class="o">{</span>
+    <span class="nd">@NotNull</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="nc">String</span> <span class="n">aString</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">JavaKotlinObject</span> <span class="no">INSTANCE</span><span class="o">;</span>
+
+    <span class="nd">@NotNull</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="nc">String</span> <span class="nf">getAString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">aString</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">final</span> <span class="kt">void</span> <span class="nf">setAString</span><span class="o">(</span><span class="nd">@NotNull</span> <span class="nc">String</span> <span class="n">var1</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Intrinsics</span><span class="o">.</span><span class="na">checkParameterIsNotNull</span><span class="o">(</span><span class="n">var1</span><span class="o">,</span> <span class="s">"&lt;set-?&gt;"</span><span class="o">);</span>
+        <span class="n">aString</span> <span class="o">=</span> <span class="n">var1</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="nf">JavaKotlinObject</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="kd">static</span> <span class="o">{</span>
+        <span class="nc">JavaKotlinObject</span> <span class="n">var0</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JavaKotlinObject</span><span class="o">();</span>
+        <span class="no">INSTANCE</span> <span class="o">=</span> <span class="n">var0</span><span class="o">;</span>
+        <span class="n">aString</span> <span class="o">=</span> <span class="s">"foo"</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>We can see we’ve got a Singleton after decompiling into Java. Something interesting to note is that it’s using an <strong>eager implementation</strong> and the instance will be created when the class loader loads.</p>
+
+<h2 id="classes-">Classes <a name="classes"></a></h2>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">MyKotlinRegularClass</span><span class="p">(</span>
+    <span class="kd">val</span> <span class="py">aString</span><span class="p">:</span> <span class="nc">String</span><span class="p">,</span>
+    <span class="kd">val</span> <span class="py">aNumber</span><span class="p">:</span> <span class="nc">Int</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">MyKotlinRegularClass</span> <span class="o">{</span>
+    <span class="nd">@NotNull</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">String</span> <span class="n">aString</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">aNumber</span><span class="o">;</span>
+
+    <span class="nd">@NotNull</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="nc">String</span> <span class="nf">getAString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">aString</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">final</span> <span class="kt">int</span> <span class="nf">getANumber</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">aNumber</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nf">MyKotlinRegularClass</span><span class="o">(</span><span class="nd">@NotNull</span> <span class="nc">String</span> <span class="n">aString</span><span class="o">,</span> <span class="kt">int</span> <span class="n">aNumber</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Intrinsics</span><span class="o">.</span><span class="na">checkParameterIsNotNull</span><span class="o">(</span><span class="n">aString</span><span class="o">,</span> <span class="s">"aString"</span><span class="o">);</span>
+        <span class="kd">super</span><span class="o">();</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">aString</span> <span class="o">=</span> <span class="n">aString</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">aNumber</span> <span class="o">=</span> <span class="n">aNumber</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Even if this is a super simple example, there are some interesting things to talk about:</p>
+
+<ul>
+  <li>Our Java class is <strong>final</strong> since our Kotlin class isn’t <code class="language-plaintext highlighter-rouge">open</code>.</li>
+  <li>Annotations for null parameters - this however isn’t enough to enforce nullability, that’s why inside the constructor we find nullability checks ( <code class="language-plaintext highlighter-rouge">checkParameterIsNotNull</code>) that will throw at runtime. That is why when using Java we <strong>lose the nullability safety net we get at compile time</strong> when using Kotlin.</li>
+  <li>Getters but not setters since in our Kotlin class all our fields are <code class="language-plaintext highlighter-rouge">val</code> (aka immutable).</li>
+</ul>
+
+<p>Let’s now make the class <code class="language-plaintext highlighter-rouge">open</code> and add some mutable fields, like this:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">open</span> <span class="kd">class</span> <span class="nc">MutableOpenKotlinClass</span><span class="p">(</span>
+    <span class="kd">val</span> <span class="py">aString</span><span class="p">:</span> <span class="nc">String</span><span class="p">,</span>
+    <span class="kd">var</span> <span class="py">aMutableString</span><span class="p">:</span> <span class="nc">String</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p>And its Java counterpart:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MutableOpenKotlinClass</span> <span class="o">{</span>
+    <span class="nd">@NotNull</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">String</span> <span class="n">aString</span><span class="o">;</span>
+    <span class="nd">@NotNull</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">aMutableString</span><span class="o">;</span>
+      
+    <span class="nd">@NotNull</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="nc">String</span> <span class="nf">getAMutableString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">aMutableNullableString</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">final</span> <span class="kt">void</span> <span class="nf">setAMutableString</span><span class="o">(</span><span class="nd">@NotNull</span> <span class="nc">String</span> <span class="n">var1</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Intrinsics</span><span class="o">.</span><span class="na">checkParameterIsNotNull</span><span class="o">(</span><span class="n">var1</span><span class="o">,</span> <span class="s">"&lt;set-?&gt;"</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">aMutableString</span> <span class="o">=</span> <span class="n">var1</span><span class="o">;</span>
+    <span class="o">}</span>
+  
+    <span class="o">...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>We can now notice that:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">final</code> is gone, meaning our class can be extended.</li>
+  <li>We’ve got getters and also setters for the properties declared as <code class="language-plaintext highlighter-rouge">var</code>.</li>
+</ul>
+
+<h2 id="data-classes-">Data Classes <a name="data-classes"></a></h2>
+
+<p>Data classes are probably the most known Kotlin class types and its adventages over regular Java classes are well known: you get the implementation of <code class="language-plaintext highlighter-rouge">equals</code>, <code class="language-plaintext highlighter-rouge">toString</code> and <code class="language-plaintext highlighter-rouge">hashCode</code> for free. Despite knowing this, seeing its Java counterpart was very surprising for me.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">data class</span> <span class="nc">MyKotlinDataClass</span><span class="p">(</span>
+    <span class="kd">val</span> <span class="py">aString1</span><span class="p">:</span> <span class="nc">String</span><span class="p">,</span>
+    <span class="kd">val</span> <span class="py">aString2</span><span class="p">:</span> <span class="nc">String</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">MyJavaKotlinDataClass</span> <span class="o">{</span>
+    <span class="nd">@NotNull</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">String</span> <span class="n">aString1</span><span class="o">;</span>
+    <span class="nd">@NotNull</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">String</span> <span class="n">aString2</span><span class="o">;</span>
+
+    <span class="nd">@NotNull</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="nc">String</span> <span class="nf">getAString1</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">aString1</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@NotNull</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="nc">String</span> <span class="nf">getAString2</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">aString2</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nf">MyKotlinRegularClass</span><span class="o">(</span><span class="nd">@NotNull</span> <span class="nc">String</span> <span class="n">aString1</span><span class="o">,</span> <span class="nd">@NotNull</span> <span class="nc">String</span> <span class="n">aString2</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Intrinsics</span><span class="o">.</span><span class="na">checkParameterIsNotNull</span><span class="o">(</span><span class="n">aString1</span><span class="o">,</span> <span class="s">"aString1"</span><span class="o">);</span>
+        <span class="nc">Intrinsics</span><span class="o">.</span><span class="na">checkParameterIsNotNull</span><span class="o">(</span><span class="n">aString2</span><span class="o">,</span> <span class="s">"aString2"</span><span class="o">);</span>
+        <span class="kd">super</span><span class="o">();</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">aString1</span> <span class="o">=</span> <span class="n">aString1</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">aString2</span> <span class="o">=</span> <span class="n">aString2</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@NotNull</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="nc">String</span> <span class="nf">component1</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">aString1</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@NotNull</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="nc">String</span> <span class="nf">component2</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">aString2</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@NotNull</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="nc">MyKotlinRegularClass</span> <span class="nf">copy</span><span class="o">(</span><span class="nd">@NotNull</span> <span class="nc">String</span> <span class="n">aString1</span><span class="o">,</span> <span class="nd">@NotNull</span> <span class="nc">String</span> <span class="n">aString2</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Intrinsics</span><span class="o">.</span><span class="na">checkParameterIsNotNull</span><span class="o">(</span><span class="n">aString1</span><span class="o">,</span> <span class="s">"aString1"</span><span class="o">);</span>
+        <span class="nc">Intrinsics</span><span class="o">.</span><span class="na">checkParameterIsNotNull</span><span class="o">(</span><span class="n">aString2</span><span class="o">,</span> <span class="s">"aString2"</span><span class="o">);</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">MyKotlinRegularClass</span><span class="o">(</span><span class="n">aString1</span><span class="o">,</span> <span class="n">aString2</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// $FF: synthetic method</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">MyKotlinRegularClass</span> <span class="n">copy$default</span><span class="o">(</span><span class="nc">MyKotlinRegularClass</span> <span class="n">var0</span><span class="o">,</span> <span class="nc">String</span> <span class="n">var1</span><span class="o">,</span> <span class="nc">String</span> <span class="n">var2</span><span class="o">,</span> <span class="kt">int</span> <span class="n">var3</span><span class="o">,</span> <span class="nc">Object</span> <span class="n">var4</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">((</span><span class="n">var3</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="o">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">var1</span> <span class="o">=</span> <span class="n">var0</span><span class="o">.</span><span class="na">aString1</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="k">if</span> <span class="o">((</span><span class="n">var3</span> <span class="o">&amp;</span> <span class="mi">2</span><span class="o">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">var2</span> <span class="o">=</span> <span class="n">var0</span><span class="o">.</span><span class="na">aString2</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="n">var0</span><span class="o">.</span><span class="na">copy</span><span class="o">(</span><span class="n">var1</span><span class="o">,</span> <span class="n">var2</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@NotNull</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"MyKotlinRegularClass(aString1="</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">aString1</span> <span class="o">+</span> <span class="s">", aString2="</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">aString2</span> <span class="o">+</span> <span class="s">")"</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">var10000</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">aString1</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">var1</span> <span class="o">=</span> <span class="o">(</span><span class="n">var10000</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">?</span> <span class="n">var10000</span><span class="o">.</span><span class="na">hashCode</span><span class="o">()</span> <span class="o">:</span> <span class="mi">0</span><span class="o">)</span> <span class="o">*</span> <span class="mi">31</span><span class="o">;</span>
+        <span class="nc">String</span> <span class="n">var10001</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">aString2</span><span class="o">;</span>
+        <span class="k">return</span> <span class="n">var1</span> <span class="o">+</span> <span class="o">(</span><span class="n">var10001</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">?</span> <span class="n">var10001</span><span class="o">.</span><span class="na">hashCode</span><span class="o">()</span> <span class="o">:</span> <span class="mi">0</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="nd">@Nullable</span> <span class="nc">Object</span> <span class="n">var1</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="k">this</span> <span class="o">!=</span> <span class="n">var1</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">var1</span> <span class="k">instanceof</span> <span class="nc">MyKotlinRegularClass</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">MyKotlinRegularClass</span> <span class="n">var2</span> <span class="o">=</span> <span class="o">(</span><span class="nc">MyKotlinRegularClass</span><span class="o">)</span><span class="n">var1</span><span class="o">;</span>
+                <span class="k">if</span> <span class="o">(</span><span class="nc">Intrinsics</span><span class="o">.</span><span class="na">areEqual</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">aString1</span><span class="o">,</span> <span class="n">var2</span><span class="o">.</span><span class="na">aString1</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="nc">Intrinsics</span><span class="o">.</span><span class="na">areEqual</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">aString2</span><span class="o">,</span> <span class="n">var2</span><span class="o">.</span><span class="na">aString2</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+
+            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Things to note:</p>
+
+<ol>
+  <li>
+    <p>As it’s been mentioned a few times 😅 the Java version is very verbose compared to Kotlin.</p>
+  </li>
+  <li>
+    <p>We can indeed see the implementation of <code class="language-plaintext highlighter-rouge">hashCode</code>, <code class="language-plaintext highlighter-rouge">equals</code> and <code class="language-plaintext highlighter-rouge">toString</code>.</p>
+  </li>
+  <li>
+    <p>2 getters per field: <code class="language-plaintext highlighter-rouge">getString1()</code> and <code class="language-plaintext highlighter-rouge">getComponent1</code>. Why is this needed?!</p>
+
+    <p align="center">   <img width="460" height="300" src="https://media.giphy.com/media/3cXmze4Y8igXdnkc3U/giphy.gif" /> </p>
+    <p>After some head scratching, I bumped into <a href="https://sudonull.com/post/10420-Kotlin-under-the-hood-look-decompiled-bytecode">sudonull</a>’s post which explains it pretty well. Turns out it’s needed to port Kotlin’s <a href="https://kotlinlang.org/docs/destructuring-declarations.html">destructuring declarations</a>:</p>
+
+    <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">val</span> <span class="p">(</span><span class="py">name</span><span class="p">,</span> <span class="py">age</span><span class="p">)</span> <span class="p">=</span> <span class="n">person</span>
+<span class="nf">println</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="nf">println</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+</code></pre></div>    </div>
+
+    <p>Which in Java equals to</p>
+
+    <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">name</span> <span class="p">=</span> <span class="n">person</span><span class="p">.</span><span class="nf">component1</span><span class="p">()</span>
+<span class="n">int</span> <span class="n">age</span> <span class="p">=</span> <span class="n">person</span><span class="p">.</span><span class="nf">component2</span><span class="p">()</span>
+<span class="nf">println</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="nf">println</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Another adventage of Kotlin’s data classes is the <code class="language-plaintext highlighter-rouge">copy</code> method, which allows to create a new object changing <em>some</em> of its properties but keeping the rest unchanged. Strangely, we can notice there are 2  <code class="language-plaintext highlighter-rouge">copy</code> methods:</p>
+
+    <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@NotNull</span> 
+<span class="k">public</span> <span class="k">final</span> <span class="nc">MyKotlinRegularClass</span> <span class="nf">copy</span><span class="p">(</span><span class="nd">@NotNull</span> <span class="nc">String</span> <span class="n">aString1</span><span class="p">,</span> <span class="nd">@NotNull</span> <span class="nc">String</span> <span class="n">aString2</span><span class="p">)</span> <span class="p">{</span>       
+	<span class="nc">Intrinsics</span><span class="p">.</span><span class="nf">checkParameterIsNotNull</span><span class="p">(</span><span class="n">aString1</span><span class="p">,</span> <span class="s">"aString1"</span><span class="p">);</span>       
+	<span class="nc">Intrinsics</span><span class="p">.</span><span class="nf">checkParameterIsNotNull</span><span class="p">(</span><span class="n">aString2</span><span class="p">,</span> <span class="s">"aString2"</span><span class="p">);</span>       
+	<span class="k">return</span> <span class="n">new</span> <span class="nc">MyKotlinRegularClass</span><span class="p">(</span><span class="n">aString1</span><span class="p">,</span> <span class="n">aString2</span><span class="p">);</span> 
+<span class="p">}</span>   
+   
+<span class="c1">// $FF: synthetic method   </span>
+<span class="k">public</span> <span class="n">static</span> <span class="nc">MyKotlinRegularClass</span> <span class="n">copy</span><span class="err">$</span><span class="nf">default</span><span class="p">(</span><span class="nc">MyKotlinRegularClass</span> <span class="n">var0</span><span class="p">,</span> <span class="nc">String</span> <span class="n">var1</span><span class="p">,</span> <span class="nc">String</span> <span class="n">var2</span><span class="p">,</span> <span class="n">int</span> <span class="n">var3</span><span class="p">,</span> <span class="nc">Object</span> <span class="n">var4</span><span class="p">)</span> <span class="p">{</span>   
+  <span class="k">if</span> <span class="p">((</span><span class="n">var3</span> <span class="p">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>        
+    <span class="n">var1</span> <span class="p">=</span> <span class="n">var0</span><span class="p">.</span><span class="n">aString1</span><span class="p">;</span>      
+  <span class="p">}</span>        
+  <span class="k">if</span> <span class="p">((</span><span class="n">var3</span> <span class="p">&amp;</span> <span class="mi">2</span><span class="p">)</span> <span class="p">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>       
+    <span class="n">var2</span> <span class="p">=</span> <span class="n">var0</span><span class="p">.</span><span class="n">aString2</span><span class="p">;</span>       
+  <span class="p">}</span>       
+  <span class="k">return</span> <span class="n">var0</span><span class="p">.</span><span class="nf">copy</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">);</span> 
+<span class="p">}</span>
+</code></pre></div>    </div>
+
+    <p>To be entirely honest, I’m still not sure what the first one is doing, since it simply calls the constructor and the caller needs to provide all the parameters. It doesn’t look the Kotlin’s counterpart at all.</p>
+
+    <p>The second <code class="language-plaintext highlighter-rouge">copy</code> it’s more interesting. If you’re like me, you might be wondering:</p>
+
+    <blockquote>
+      <p>what the heck is a synthetic method?</p>
+    </blockquote>
+
+    <p>Thanks to some clever references in the internet, I found out that a <em>synthetic</em> method is a <em>construct introduced by the Java compiler to do extra things that otherwise couldn’t do</em>. For example, when having Java nested class, the compiler will create synthetic getters of its private fields so the enclosing class can access to them.</p>
+
+    <p>Our <code class="language-plaintext highlighter-rouge">copy</code> synthetic method is using <code class="language-plaintext highlighter-rouge">var3</code> as a mask to tell which parameters were provided and then it’ll create a copy. As an oddity, <code class="language-plaintext highlighter-rouge">Object var4</code> is no used and looks like it could be removed.</p>
+  </li>
+</ol>
+
+<h2 id="sealed-classes-">Sealed Classes <a name="sealed-classes"></a></h2>
+
+<blockquote>
+  <p>sealed classes are enum classes on storoids</p>
+</blockquote>
+
+<p>I myself have given this answer when asked about sealed classes, but the reality is that it is quite a vague answer and in my personal situation, a flag that <strong>I didn’t fully understand what’s going on behind the scenes</strong>. Let’s live into details by taking <a href="https://kotlinlang.org/docs/sealed-classes.html">Kotlin’s documentation sealed class</a> example:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">interface</span> <span class="nc">Expr</span> 
+<span class="k">sealed</span> <span class="kd">class</span> <span class="nc">MathExpr</span> <span class="p">:</span> <span class="nc">Expr</span>
+<span class="kd">data class</span> <span class="nc">Const</span><span class="p">(</span><span class="kd">val</span> <span class="py">number</span><span class="p">:</span> <span class="nc">Double</span><span class="p">)</span> <span class="p">:</span> <span class="nc">MathExpr</span><span class="p">()</span>
+<span class="kd">data class</span> <span class="nc">Sum</span><span class="p">(</span><span class="kd">val</span> <span class="py">e1</span><span class="p">:</span> <span class="nc">Expr</span><span class="p">,</span> <span class="kd">val</span> <span class="py">e2</span><span class="p">:</span> <span class="nc">Expr</span><span class="p">)</span> <span class="p">:</span> <span class="nc">MathExpr</span><span class="p">()</span>
+<span class="kd">object</span> <span class="nc">NotANumber</span> <span class="p">:</span> <span class="nc">MathExpr</span>
+</code></pre></div></div>
+
+<p>And its Java counterpart (removing no relevant data class details to reduce noise)</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">interface</span> <span class="nc">Expr</span> <span class="o">{}</span>
+<span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">MathExpr</span> <span class="kd">implements</span> <span class="nc">Expr</span> <span class="o">{</span>  
+  <span class="kd">private</span> <span class="nf">MathExpr</span><span class="o">()</span> <span class="o">{}</span>
+  
+  <span class="c1">// $FF: synthetic method  </span>
+  <span class="kd">public</span> <span class="nf">MathExpr</span><span class="o">(</span><span class="nc">DefaultConstructorMarker</span> <span class="n">$constructor_marker</span><span class="o">)</span> <span class="o">{</span> 
+    <span class="k">this</span><span class="o">();</span>    
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">Sum</span> <span class="kd">extends</span> <span class="nc">MathExpr</span> <span class="o">{</span> 
+  <span class="nd">@NotNull</span>   
+  <span class="kd">private</span> <span class="kd">final</span> <span class="nc">Expr</span> <span class="n">e1</span><span class="o">;</span> 
+  
+  <span class="nd">@NotNull</span>  
+  <span class="kd">private</span> <span class="kd">final</span> <span class="nc">Expr</span> <span class="n">e2</span><span class="o">;</span>    
+  
+  <span class="kd">public</span> <span class="nf">Sum</span><span class="o">(</span><span class="nd">@NotNull</span> <span class="nc">Expr</span> <span class="n">e1</span><span class="o">,</span> <span class="nd">@NotNull</span> <span class="nc">Expr</span> <span class="n">e2</span><span class="o">)</span> <span class="o">{</span>       
+    <span class="nc">Intrinsics</span><span class="o">.</span><span class="na">checkParameterIsNotNull</span><span class="o">(</span><span class="n">e1</span><span class="o">,</span> <span class="s">"e1"</span><span class="o">);</span>   
+    <span class="nc">Intrinsics</span><span class="o">.</span><span class="na">checkParameterIsNotNull</span><span class="o">(</span><span class="n">e2</span><span class="o">,</span> <span class="s">"e2"</span><span class="o">);</span> 
+    <span class="kd">super</span><span class="o">((</span><span class="nc">DefaultConstructorMarker</span><span class="o">)</span><span class="kc">null</span><span class="o">);</span>    
+    <span class="k">this</span><span class="o">.</span><span class="na">e1</span> <span class="o">=</span> <span class="n">e1</span><span class="o">;</span>      
+    <span class="k">this</span><span class="o">.</span><span class="na">e2</span> <span class="o">=</span> <span class="n">e2</span><span class="o">;</span> 
+  <span class="o">}</span>   
+  
+  <span class="c1">//...Plus all data classes details...</span>
+  
+  <span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">Const</span> <span class="kd">extends</span> <span class="nc">MathExpr</span> <span class="o">{</span>  
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">double</span> <span class="n">number</span><span class="o">;</span>  
+    <span class="kd">public</span> <span class="nf">Const</span><span class="o">(</span><span class="kt">double</span> <span class="n">number</span><span class="o">)</span> <span class="o">{</span>     
+      <span class="kd">super</span><span class="o">((</span><span class="nc">DefaultConstructorMarker</span><span class="o">)</span><span class="kc">null</span><span class="o">);</span>     
+      <span class="k">this</span><span class="o">.</span><span class="na">number</span> <span class="o">=</span> <span class="n">number</span><span class="o">;</span>  
+    <span class="o">}</span>
+  <span class="o">}</span>
+  
+  <span class="c1">//...Plus all data classes details...</span>
+
+  <span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">NotANumber</span> <span class="kd">extends</span> <span class="nc">MathExpr</span> <span class="o">{</span>  
+  	<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">NotANumber</span> <span class="no">INSTANCE</span><span class="o">;</span>  
+    <span class="kd">private</span> <span class="nf">NotANumber</span><span class="o">()</span> <span class="o">{}</span>
+    <span class="kd">static</span> <span class="o">{</span>    
+        <span class="nc">NotANumber</span> <span class="n">var0</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">NotANumber</span><span class="o">();</span>   
+        <span class="no">INSTANCE</span> <span class="o">=</span> <span class="n">var0</span><span class="o">;</span>   
+    <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre></div></div>
+
+<p>Interesting things to note:</p>
+
+<ul>
+  <li>One to one <code class="language-plaintext highlighter-rouge">Expr</code> interface as expected</li>
+  <li>Our sealed class <code class="language-plaintext highlighter-rouge">MathExpr</code> <strong>implements</strong> <code class="language-plaintext highlighter-rouge">Expr</code>, is <strong>abstract</strong> and has a <strong>private constructor</strong>. This serves us as a reminder that <strong>sealed classes cannot be instanciated.</strong></li>
+  <li><code class="language-plaintext highlighter-rouge">Const</code> and <code class="language-plaintext highlighter-rouge">Sum</code> (kotlin data classes) and <code class="language-plaintext highlighter-rouge">NotANumber</code> (Kotlin object/singleton) <strong>subclass</strong> (java <strong>extends</strong>) our <code class="language-plaintext highlighter-rouge">MathExpr</code> sealed class.</li>
+</ul>
+
+<p>Some points of interesting when comparing enums and sealed classes:</p>
+
+<ul>
+  <li><em>sealed</em> means no more subclasses can appear outside the module, meaning <strong>all subclasses of sealed classes are known at compile time</strong>. This differs to how traditional inheritance works, where a new subclass can be declared from anywhere.</li>
+  <li>both enum and sealed classes are similar in the sense that <strong>they both have a number of values <em>restricted</em></strong>.</li>
+  <li>However, each enum constant exists as a single instance. Sealed classes on the other hand can be an object but also a class, meaning they can hold state. In other words, <strong>subclasses of a sealed class can have multiple instances</strong>.</li>
+</ul>
+
+<p>I think saying <strong>sealed classes are a finite/concrete way to represent hierarchies is a better definition</strong>, since it has touches of enums but with multiple instances and touches of inheritance but way more controlled since all subclases are known at compile time.</p>
+
+<h2 id="conclusions">Conclusions</h2>
+
+<p>Summing up, decompilying Kotlin code into Java is a great way to better understand how the language works behind the scenes. I’ll try to create a second part covering features such as <code class="language-plaintext highlighter-rouge">Extension Functions</code>, <code class="language-plaintext highlighter-rouge">infix</code>, <code class="language-plaintext highlighter-rouge">reified</code>, <code class="language-plaintext highlighter-rouge">by</code>, <code class="language-plaintext highlighter-rouge">delegate</code> and more!</p>
+
+<p>Hope you enjoyed the article. Any questions, my <a href="https://twitter.com/rafa_piki">twitter</a> account is the best place to ask. Thanks for your time!</p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#android" class="page__taxonomy-item" rel="tag">android</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#kotlin" class="page__taxonomy-item" rel="tag">kotlin</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#mobile-development" class="page__taxonomy-item" rel="tag">mobile development</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#development" class="page__taxonomy-item" rel="tag">development</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-07-23T00:00:00+00:00">July 23, 2021</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Decompiling+Kotlin+into+Java+-+Few+years+late%20https%3A%2F%2Frafagf.github.io%2Fdevelopment%2Fdecompiling-kotlin-into-java%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frafagf.github.io%2Fdevelopment%2Fdecompiling-kotlin-into-java%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Frafagf.github.io%2Fdevelopment%2Fdecompiling-kotlin-into-java%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/development/modelling-the-domain-layer-using-composables-use-cases/" class="pagination--pager" title="Modelling the domain layer using composable use cases
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/development/modelling-the-domain-layer-using-composables-use-cases/" rel="permalink">Modelling the domain layer using composable use cases
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Some time ago we had a problem inside the Memrise Android codebase with our domain layer. Repositories and Use Cases were heavily used but there weren’t clea...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/development/tracking-code-coverage-for-free/" rel="permalink">Tracking code coverage for free
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">In the Android team at Memrise, we’ve gotten a lot of value from tracking code coverage. It’s something we’ve worked very hard to improve over the last few y...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/development/building-a-backend-an-api-and-a-web-client-using-ktor/" rel="permalink">Building a backend, an API and a web client using Ktor
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Some time ago I had a potential client that wanted the following:
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/development/building-my-site-using-github-and-jekyll/" rel="permalink">Building my site using GitHub and Jekyll
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">For 2021 I decided it was time to start sharing some of my developer adventures. I want to do this with the hope that it helps someone and as a way to learn ...</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Rafa Garcia. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JQN7MDGSH4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JQN7MDGSH4', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+
+  </body>
+</html>
