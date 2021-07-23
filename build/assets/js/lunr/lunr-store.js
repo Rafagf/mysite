@@ -22,4 +22,10 @@ var store = [{
         "tags": ["android","mobile development","architecture"],
         "url": "https://rafagf.github.io/development/modelling-the-domain-layer-using-composables-use-cases/",
         "teaser": null
+      },{
+        "title": "Decompiling Kotlin into Java Bytecode - Few years late",
+        "excerpt":"Recently I was asked by a co-worker “what are sealed classes?” and realised the classic answer “enums in steroid” falls really short and a clear sign that I didn’t fully understand what they are. Because of this, I decided to spend some time decompiling Kotlin code into Java bytecode with...","categories": ["development"],
+        "tags": ["android","mobile development","kotlin"],
+        "url": "https://rafagf.github.io/development/decompiling-kotlin-into-java-bytecode/",
+        "teaser": null
       }]
