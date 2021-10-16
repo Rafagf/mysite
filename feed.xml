@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://rafagf.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://rafagf.github.io/" rel="alternate" type="text/html" /><updated>2021-10-16T19:11:48+00:00</updated><id>https://rafagf.github.io/feed.xml</id><title type="html">Rafa Garcia</title><subtitle>Android development and random dev stuff</subtitle><author><name>{&quot;avatar&quot;=&gt;&quot;/assets/images/rafa_avatar.jpeg&quot;, &quot;bio&quot;=&gt;&quot;Engineering in broken English&quot;, &quot;location&quot;=&gt;&quot;London&quot;, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;Email&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-envelope-square&quot;, &quot;url&quot;=&gt;&quot;mailto:rafagarfer@gmail.com&quot;}, {&quot;label&quot;=&gt;&quot;Twitter&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-twitter-square&quot;, &quot;url&quot;=&gt;&quot;https://twitter.com/rafa_piki&quot;}, {&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;, &quot;url&quot;=&gt;&quot;https://github.com/rafagf/&quot;}, {&quot;label&quot;=&gt;&quot;Linkedin&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin&quot;, &quot;url&quot;=&gt;&quot;https://www.linkedin.com/in/rafaelgarciafernandez/&quot;}]}</name></author><entry><title type="html">Architecting apps with Kotlin Multiplatform</title><link href="https://rafagf.github.io/development/architecting-apps-with-kotlin-multiplatform/" rel="alternate" type="text/html" title="Architecting apps with Kotlin Multiplatform" /><published>2021-10-16T00:00:00+00:00</published><updated>2021-10-16T00:00:00+00:00</updated><id>https://rafagf.github.io/development/architecting-apps-with-kotlin-multiplatform</id><content type="html" xml:base="https://rafagf.github.io/development/architecting-apps-with-kotlin-multiplatform/">&lt;p&gt;&lt;em&gt;Note: This article focuses on Kotlin Multiplatform Mobile (KMM), which can be seen as a subset of Kotlin Multiplatform (KMP).&lt;/em&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://rafagf.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://rafagf.github.io/" rel="alternate" type="text/html" /><updated>2021-10-16T19:18:12+00:00</updated><id>https://rafagf.github.io/feed.xml</id><title type="html">Rafa Garcia</title><subtitle>Android development and random dev stuff</subtitle><author><name>{&quot;avatar&quot;=&gt;&quot;/assets/images/rafa_avatar.jpeg&quot;, &quot;bio&quot;=&gt;&quot;Engineering in broken English&quot;, &quot;location&quot;=&gt;&quot;London&quot;, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;Email&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-envelope-square&quot;, &quot;url&quot;=&gt;&quot;mailto:rafagarfer@gmail.com&quot;}, {&quot;label&quot;=&gt;&quot;Twitter&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-twitter-square&quot;, &quot;url&quot;=&gt;&quot;https://twitter.com/rafa_piki&quot;}, {&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;, &quot;url&quot;=&gt;&quot;https://github.com/rafagf/&quot;}, {&quot;label&quot;=&gt;&quot;Linkedin&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin&quot;, &quot;url&quot;=&gt;&quot;https://www.linkedin.com/in/rafaelgarciafernandez/&quot;}]}</name></author><entry><title type="html">Architecting apps with Kotlin Multiplatform</title><link href="https://rafagf.github.io/development/architecting-apps-with-kotlin-multiplatform/" rel="alternate" type="text/html" title="Architecting apps with Kotlin Multiplatform" /><published>2021-10-16T00:00:00+00:00</published><updated>2021-10-16T00:00:00+00:00</updated><id>https://rafagf.github.io/development/architecting-apps-with-kotlin-multiplatform</id><content type="html" xml:base="https://rafagf.github.io/development/architecting-apps-with-kotlin-multiplatform/">&lt;p&gt;&lt;em&gt;Note: This article focuses on Kotlin Multiplatform Mobile (KMM), which can be seen as a subset of Kotlin Multiplatform (KMP).&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;Kotlin Multiplatform Mobile (KMM from now on) is a hot topic in mobile development. It has several adventages, which can be summarised as:&lt;/p&gt;
 
@@ -7,7 +7,7 @@
   &lt;li&gt;&lt;strong&gt;UI remains to be managed by platform specialists&lt;/strong&gt;: Android or iOS devs can do their magic interacting directly with their prefered UI toolkits, just the way they’re used to.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;As KMM popularity grows and more teams adopt it, more questions about how to architecture mobile apps around it arise. While adoption might sound like a big shift on how we normally build mobile apps, it actually turns out that the change can be relatively sttraight forward if we already a decent architecture in place.&lt;/p&gt;
+&lt;p&gt;As KMM popularity grows and more teams adopt it, more questions about how to architecture mobile apps around it arise. While adoption might sound like a big shift on how we normally build mobile apps, it actually turns out that the change can be relatively straight forward if we already a decent architecture in place.&lt;/p&gt;
 
 &lt;h3 id=&quot;quick-refresher-on-mobile-archicture&quot;&gt;Quick refresher on mobile archicture&lt;/h3&gt;
 
@@ -15,8 +15,8 @@
 
 &lt;ul&gt;
   &lt;li&gt;&lt;strong&gt;UI&lt;/strong&gt;: views that are displayed in screen, rendered using &lt;em&gt;UIKit&lt;/em&gt; or &lt;em&gt;SwiftUI&lt;/em&gt; in iOS and the &lt;em&gt;Android UI toolkit&lt;/em&gt; or &lt;em&gt;Jetpack Compose&lt;/em&gt; in Android.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Presentation&lt;/strong&gt;: logic about what is about to be &lt;em&gt;presented&lt;/em&gt; in the screen (i.e &lt;em&gt;ViewModels&lt;/em&gt; or &lt;em&gt;Presenters&lt;/em&gt;)&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Domain&lt;/strong&gt;: the logic/rules of our business, normally driven by the usage of &lt;em&gt;UseCases&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Presentation&lt;/strong&gt;: logic about what is about to be &lt;em&gt;presented&lt;/em&gt; in the screen (i.e &lt;em&gt;ViewModels&lt;/em&gt; or &lt;em&gt;Presenters&lt;/em&gt;).&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Domain&lt;/strong&gt;: the logic/rules of our business, normally driven by the usage of &lt;em&gt;UseCases&lt;/em&gt;.&lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;Data&lt;/strong&gt;: repositories to orquestrate fetching data from different data sources, like a database or a remote API.&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -24,9 +24,9 @@
 
 &lt;h3 id=&quot;lets-get-to-business&quot;&gt;Let’s get to business&lt;/h3&gt;
 
-&lt;p&gt;To showcase how an app using KMM could look like, I’ve built &lt;a href=&quot;https://github.com/Rafagf/stonks&quot;&gt;stonks&lt;/a&gt;, a small open source KMM library with a companion Android app consuming it - iOS will follow, I’m a simple person with a dog that likes to be walked way too often!-.&lt;/p&gt;
+&lt;p&gt;To showcase how an app using KMM could look like I’ve built &lt;a href=&quot;https://github.com/Rafagf/stonks&quot;&gt;&lt;em&gt;Stonks&lt;/em&gt;&lt;/a&gt;, a small open source KMM library with a companion Android app consuming it - iOS will follow, I’m a simple person with a dog that likes to be walked way too often!-.&lt;/p&gt;
 
-&lt;p&gt;Stonks is a small app to track stocks: it has a search screen to search and start following them, and the main screen where you can see the stock’s current price (aka &lt;em&gt;Quote&lt;/em&gt;) and its change in the last 24 hours.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Stonks&lt;/em&gt; is a small app to track stocks: it has a search screen where the user can like stocks, and the main screen where you can see the stock’s current price (aka &lt;em&gt;Quote&lt;/em&gt;) and its change in the last 24 hours.&lt;/p&gt;
 
 &lt;p align=&quot;center&quot;&gt;
 &lt;img src=&quot;/assets/images/stonks-faved-light.png&quot; height=&quot;500&quot; width=&quot;250&quot; /&gt; | &lt;img src=&quot;/assets/images/stonks-search-light.png&quot; height=&quot;500&quot; width=&quot;250&quot; /&gt;
@@ -44,10 +44,10 @@
 
 &lt;ul&gt;
   &lt;li&gt;&lt;strong&gt;Fetch data from a remote data source&lt;/strong&gt;: we need to fetch our stocks from somewhere, right? Luckily for us, &lt;a href=&quot;https://kotlinlang.org/docs/kmm-use-ktor-for-networking.html&quot;&gt;Ktor client&lt;/a&gt; is available on KMM, which allow us to do API calls to any given server.  ✅&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Fetch data from a persinstence data source&lt;/strong&gt;: being online is great, but sometimes our phone will not have connection and we want our app to still work. KMM to the rescue again thanks to the awesome library &lt;a href=&quot;https://cashapp.github.io/sqldelight/multiplatform_sqlite/&quot;&gt;SQLDelight&lt;/a&gt;, which will allow us to persist our data in a database (along all the goodies that comes with SQLDelight, like typesafe APIs from SQL statements, migrations checks at compile time, etc). ✅&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Fetch data from a persistence data source&lt;/strong&gt;: being online is great, but sometimes our phone won’t have connection and we want our app to still work. KMM to the rescue again thanks to the awesome library &lt;a href=&quot;https://cashapp.github.io/sqldelight/multiplatform_sqlite/&quot;&gt;SQLDelight&lt;/a&gt;, which will allow us to persist our data in a database (along with goodies such as typesafe APIs from SQL statements, migrations checks at compile time, etc). ✅&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Sounds like we all is good to put the data layer in our shared KMM library 🎉&lt;/p&gt;
+&lt;p&gt;Sounds like we are good to put the data layer in our shared KMM library 🎉&lt;/p&gt;
 
 &lt;h3 id=&quot;implementing-our-data-sources&quot;&gt;Implementing our data sources&lt;/h3&gt;
 
@@ -128,7 +128,9 @@
 
 &lt;p&gt;Let’s focus on building the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;QuoteRepository&lt;/code&gt;, which will be used to fetch a stock quote given a symbol (i.e &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GOOGL&lt;/code&gt; for Google).&lt;/p&gt;
 
-&lt;p&gt;From now on we’ll be only using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;commonMain&lt;/code&gt; folder, since everything is going to be common for both platforms. First step is creating our repository’s interface, which will technically live in a package called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;domain&lt;/code&gt; since repositories interfaces are considered to be part of this layer.&lt;/p&gt;
+&lt;p&gt;From now on we’ll be only using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;commonMain&lt;/code&gt; folder, since everything is going to be common for both platforms.&lt;/p&gt;
+
+&lt;p&gt;First step is creating our repository’s interface, which will technically live in a package called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;domain&lt;/code&gt; since repositories interfaces are considered to be part of this layer.&lt;/p&gt;
 
 &lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;QuoteRepository&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;suspend&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;quote&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;symbol&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Quote&lt;/span&gt;
@@ -266,9 +268,9 @@
 
 &lt;h3 id=&quot;propagating-db-changes-with-kotlin-flow&quot;&gt;Propagating DB changes with Kotlin Flow&lt;/h3&gt;
 
-&lt;p&gt;Before we move into higher layers, I’d like to talk about something else. One of my coding dreams has always been having an architecture where table changes are immediately propagated to ‘connected’ views by reactive patterns. I was stampted at how easy this is when using &lt;a href=&quot;https://kotlinlang.org/docs/flow.html&quot;&gt;Kotlin Flow&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;One of my coding dreams as an Android Developer has always been having an architecture where table updates are immediately propagated to ‘connected’ views by reactive patterns. I was stampted at how easy this is using &lt;a href=&quot;https://kotlinlang.org/docs/flow.html&quot;&gt;Kotlin Flow&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;We want our user to be able to select favourites stocks. For simplicity, this information will only live in the device (persinstence data source). The implementation would be like this:&lt;/p&gt;
+&lt;p&gt;For example, we want &lt;em&gt;Stonks&lt;/em&gt; users to be able to select favourites stocks. For simplicity, this information will only live in the device (persinstence data source). The implementation would be like this:&lt;/p&gt;
 
 &lt;div class=&quot;language-kotlin highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FavouritesRepository&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
 
@@ -325,7 +327,7 @@
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Keen eyes might have notice that our &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getAll()&lt;/code&gt; method returns a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Flow&amp;lt;List&amp;lt;String&amp;gt;&amp;gt;&lt;/code&gt;. This is because our persistence &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getAll&lt;/code&gt; returns  favouites as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.asFlow().mapToList()&lt;/code&gt;, which basically will trigger the method and introduce its returned content into the Flow’s pipeline as soon as there is any update in the table. This means that &lt;strong&gt;any client using our repository could render live updates as they happen&lt;/strong&gt;. Imagine the user faving a stock in the search screen, when going back to the main screen, the stock would magically be there, just because the screen was listening at the Flow.&lt;/p&gt;
+&lt;p&gt;Keen eyes might have notice that our &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getAll()&lt;/code&gt; method returns a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Flow&amp;lt;List&amp;lt;String&amp;gt;&amp;gt;&lt;/code&gt;. This is because our persistence &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getAll&lt;/code&gt; returns  favouites as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.asFlow().mapToList()&lt;/code&gt;, which basically will trigger the method and introduce its returned content into the Flow’s pipeline as soon as there is any update in the table. This means that &lt;strong&gt;any client using the Flow could render live updates as they happen&lt;/strong&gt;.&lt;/p&gt;
 
 &lt;p&gt;For example, in Android we could have something like this to unwrap the DB updates:&lt;/p&gt;
 
@@ -346,24 +348,20 @@
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Example on how it looks like for &lt;em&gt;stonks&lt;/em&gt; :point_down:&lt;/p&gt;
+&lt;p&gt;To see this in action in &lt;em&gt;Stonks&lt;/em&gt;, we can go to the search page, mark a stonk as liked and come back to the main page. The stock will be there waiting for us magically without us having to refresh the page :point_down:&lt;/p&gt;
 &lt;p align=&quot;center&quot; width=&quot;100%&quot;&gt;
   &lt;img src=&quot;/assets/images/stonks-flow.gif&quot; height=&quot;500&quot; width=&quot;250&quot; /&gt;
 &lt;/p&gt;
 
-&lt;h3 id=&quot;hmmcan-we-go-any-further&quot;&gt;Hmm…can we go any further?&lt;/h3&gt;
+&lt;h3 id=&quot;could-we-go-any-further&quot;&gt;Could we go any further?&lt;/h3&gt;
 
-&lt;p align=&quot;center&quot; width=&quot;100%&quot;&gt;
-  &lt;img src=&quot;/assets/images/nala-surprised.jpeg&quot; height=&quot;600&quot; /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://media.giphy.com/media/3iwRj8JrhaBfvQMSx9/giphy-downsized-large.gif&quot; alt=&quot;gif&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Alright alright, but this is nothing new, you already knew that we could share our repositories/Data layer into a KMM module. But…can we go any further? 🧐&lt;/p&gt;
-
-&lt;p&gt;The answer is &lt;strong&gt;YES! And we should definitely do it!&lt;/strong&gt; And before we get to the code, I want to highlight what are the adventages of moving all our domain logic into our KMM library. And from now on, I think we can simplify the term domain logic by just saying ‘our use cases’.&lt;/p&gt;
+&lt;p&gt;The answer is &lt;strong&gt;YES! And we should definitely do it!&lt;/strong&gt; Before we get to the code, I want to highlight what are the adventages of moving all our domain logic into our KMM library. Fom now on, I think we can simplify the term &lt;em&gt;domain logic&lt;/em&gt; to ‘use cases’.&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;By sharing them &lt;strong&gt;we get consistency on how they’re consumed in the presentation layer across Android &amp;amp; iOS&lt;/strong&gt;, which can help to more consistent features across teams.&lt;/li&gt;
-  &lt;li&gt;We &lt;strong&gt;no longer need to expose data/repositories to clients&lt;/strong&gt; (aka we can make them &lt;em&gt;internal&lt;/em&gt; in our shared library), which avoid bad usage of them (hands up who hasn’t worked in an app where repositories were injected all over the place…)&lt;/li&gt;
+  &lt;li&gt;We &lt;strong&gt;no longer need to expose data/repositories to clients&lt;/strong&gt; (aka we can make them &lt;em&gt;internal&lt;/em&gt; in our shared library), which avoid bad usage of them on clients (hands up who hasn’t worked in an app where repositories were injected all over the place…)&lt;/li&gt;
   &lt;li&gt;It could already be the case without sharing them, but in general &lt;strong&gt;we contribute to a &lt;em&gt;Use Case Driven&lt;/em&gt; architecture&lt;/strong&gt;, where each app action has a use case &lt;em&gt;and&lt;/em&gt; potentially each repository method has an Use Case associated to it.&lt;/li&gt;
   &lt;li&gt;And of course, &lt;strong&gt;we reduce at least by half the number of code to write&lt;/strong&gt;, and therefore the bugs 🐛.&lt;/li&gt;
 &lt;/ul&gt;
@@ -446,12 +444,12 @@
 
 &lt;ul&gt;
   &lt;li&gt;The iOS companion app implementation is missing. In general, its implementation is relatively straight forward, but there are some oddities depending on the Swift version used. More information about this can be found on &lt;a href=&quot;https://github.com/rickclephas/KMP-NativeCoroutines&quot;&gt;KMO-NativeCorouttines&lt;/a&gt; or &lt;a href=&quot;https://johnoreilly.dev/posts/swift_async_await_kotlin_coroutines/&quot;&gt;Using Swift’s new async/await when invoking Kotlin Multiplatform code&lt;/a&gt;.&lt;/li&gt;
-  &lt;li&gt;In &lt;a href=&quot;https://github.com/Rafagf/stonks&quot;&gt;stonks&lt;/a&gt;, we have a mono-repo where the shared library and both Android and iOS live. This is fine for a pet project but not realistic for the real world. I’ll create another article in which they’re decoupled and clients can consume them as another regular dependency, getting library updates with &lt;a href=&quot;https://dependabot.com/&quot;&gt;Dependabot&lt;/a&gt; raising PRs.&lt;/li&gt;
+  &lt;li&gt;In &lt;a href=&quot;https://github.com/Rafagf/stonks&quot;&gt;&lt;em&gt;Stonks&lt;/em&gt;&lt;/a&gt;, we have a mono-repo where the shared library and both Android and iOS live. This is fine for a pet project but not realistic for the real world. I’ll create another article in which I’ll explain how to decouple the library, so clients can consume it as another regular dependency, getting library updates with &lt;a href=&quot;https://dependabot.com/&quot;&gt;Dependabot&lt;/a&gt; raising PRs.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3 id=&quot;summing-up&quot;&gt;Summing up&lt;/h3&gt;
 
-&lt;p&gt;KMM is a fantastic tool reaching stable levels. Writing entire features twice, one for Android and one for iOS, is expensive and bug prone, and probably not realistic in not too far future. KMM provides a relatively straight forward solution to this problem, while leaving the UI work to be built natively, which Native Mobile Developers are passionate and excited about, specially with the arrival of declarative frameworks like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Jetpack Compose&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SwiftUI&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;KMM is a fantastic tool reaching stable levels. Writing entire features twice, one for Android and one for iOS, is expensive and bug prone, and probably not acceptable for engineering teams in a not too far future. KMM provides a relatively straight forward solution to this problem, while leaving the UI work to be built natively, which Native Mobile Developers are passionate and excited about, specially with the arrival of declarative frameworks like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Jetpack Compose&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SwiftUI&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;Hope you enjoyed the article. For any questions, my &lt;a href=&quot;https://twitter.com/rafa_piki&quot;&gt;twitter&lt;/a&gt; account is the best place, but feel free to reach my anywhere! Thanks for your time!&lt;/p&gt;</content><author><name>{&quot;avatar&quot;=&gt;&quot;/assets/images/rafa_avatar.jpeg&quot;, &quot;bio&quot;=&gt;&quot;Engineering in broken English&quot;, &quot;location&quot;=&gt;&quot;London&quot;, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;Email&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-envelope-square&quot;, &quot;url&quot;=&gt;&quot;mailto:rafagarfer@gmail.com&quot;}, {&quot;label&quot;=&gt;&quot;Twitter&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-twitter-square&quot;, &quot;url&quot;=&gt;&quot;https://twitter.com/rafa_piki&quot;}, {&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;, &quot;url&quot;=&gt;&quot;https://github.com/rafagf/&quot;}, {&quot;label&quot;=&gt;&quot;Linkedin&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin&quot;, &quot;url&quot;=&gt;&quot;https://www.linkedin.com/in/rafaelgarciafernandez/&quot;}]}</name></author><category term="development" /><category term="android" /><category term="iOS" /><category term="mobile development" /><category term="kotlin multiplatform" /><category term="kotlin" /><summary type="html">Note: This article focuses on Kotlin Multiplatform Mobile (KMM), which can be seen as a subset of Kotlin Multiplatform (KMP).</summary></entry><entry><title type="html">Decompiling Kotlin into Java - Few years late</title><link href="https://rafagf.github.io/development/decompiling-kotlin-into-java/" rel="alternate" type="text/html" title="Decompiling Kotlin into Java - Few years late" /><published>2021-07-23T00:00:00+00:00</published><updated>2021-07-23T00:00:00+00:00</updated><id>https://rafagf.github.io/development/decompiling-kotlin-into-java</id><content type="html" xml:base="https://rafagf.github.io/development/decompiling-kotlin-into-java/">&lt;p&gt;Recently I was asked by a co-worker “what are sealed classes?” and realised the classic answer “enums in steroid” falls really short and a clear sign that I didn’t fully understand what they are. Because of this, I decided to spend some time decompiling Kotlin code into Bytecode and then back into Java with the idea to better understand the language features.&lt;/p&gt;
 
