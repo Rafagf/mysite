@@ -28,4 +28,10 @@ var store = [{
         "tags": ["android","mobile development","kotlin"],
         "url": "https://rafagf.github.io/development/decompiling-kotlin-into-java/",
         "teaser": null
+      },{
+        "title": "Architecting apps with Kotlin Multiplatform",
+        "excerpt":"Note: This article focuses on Kotlin Multiplatform Mobile (KMM), which can be seen as a subset of Kotlin Multiplatform (KMP). Kotlin Multiplatform Mobile (KMM from now on) is a hot topic in mobile development. It has several adventages, which can be summarised as: Sharing code across platforms: meaning fewer code...","categories": ["development"],
+        "tags": ["android","iOS","mobile development","kotlin multiplatform","kotlin"],
+        "url": "https://rafagf.github.io/development/architecting-apps-with-kotlin-multiplatform/",
+        "teaser": null
       }]
