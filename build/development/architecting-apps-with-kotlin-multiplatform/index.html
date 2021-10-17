@@ -31,7 +31,7 @@
 
 
 
-  <meta property="article:published_time" content="2021-10-15T00:00:00+00:00">
+  <meta property="article:published_time" content="2021-10-16T00:00:00+00:00">
 
 
 
@@ -290,7 +290,7 @@
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="Architecting apps with Kotlin Multiplatform">
     <meta itemprop="description" content="Note: This article focuses on Kotlin Multiplatform Mobile (KMM), which can be seen as a subset of Kotlin Multiplatform (KMP).">
-    <meta itemprop="datePublished" content="2021-10-15T00:00:00+00:00">
+    <meta itemprop="datePublished" content="2021-10-16T00:00:00+00:00">
     
 
     <div class="page__inner-wrap">
@@ -452,9 +452,7 @@
 
 <h3 id="building-our-first-repository">Building our first repository</h3>
 
-<p>Let’s focus on building the <code class="language-plaintext highlighter-rouge">QuoteRepository</code>, which will be used to fetch a stock quote given a symbol (i.e <code class="language-plaintext highlighter-rouge">GOOGL</code> for Google).</p>
-
-<p>From now on we’ll be only using <code class="language-plaintext highlighter-rouge">commonMain</code> folder since everything is going to be common for both platforms.</p>
+<p>Let’s focus on building the <code class="language-plaintext highlighter-rouge">QuoteRepository</code>, which will be used to fetch a stock quote given a symbol (i.e <code class="language-plaintext highlighter-rouge">GOOGL</code> for Google). From now on we’ll be only using <code class="language-plaintext highlighter-rouge">commonMain</code> folder since everything is going to be common for both platforms.</p>
 
 <p>The first step is creating our repository’s interface, which will technically live in a package called <code class="language-plaintext highlighter-rouge">domain</code> since repositories interfaces are considered to be part of this layer.</p>
 
@@ -681,7 +679,7 @@
 
 <h3 id="could-we-go-even-further">Could we go even further?</h3>
 
-<p><img src="https://media.giphy.com/media/3iwRj8JrhaBfvQMSx9/giphy-downsized-large.gif" alt="gif" /></p>
+<p><img src="https://media.giphy.com/media/kPtv3UIPrv36cjxqLs/giphy.gif" alt="gif" /></p>
 
 <p>Next layer on our diagram would be <code class="language-plaintext highlighter-rouge">Domain</code>. Can we move it to a KMM library?</p>
 
@@ -689,7 +687,7 @@
 
 <ul>
   <li>By sharing use cases <strong>we get consistency on how they’re consumed in the presentation layer across Android &amp; iOS</strong>, which helps to more consistent features across teams.</li>
-  <li>We <strong>no longer need to expose repositories to clients</strong> (i.e they can have <em>internal</em> visibility in our shared library), which avoid bad usage of them on clients - hands up who hasn’t worked in an app where repositories were injected all over the place…</li>
+  <li>We <strong>no longer need to expose repositories to clients</strong> (i.e they can have <em>internal</em> visibility in our shared library), which avoid bad usage of them - hands up who hasn’t worked in an app where repositories were injected all over the place…</li>
   <li>It could already be the case without using a KMM library, but in general, we contribute to a <a href="https://proandroiddev.com/why-you-need-use-cases-interactors-142e8a6fe576">Use Case Driven architecture</a>, where each app action has a use case <em>and</em> potentially each repository method has a Use Case associated to it.</li>
   <li>And of course, <strong>we reduce at least by half the number of code to write</strong>, and therefore the bugs 🐛.</li>
 </ul>
@@ -782,6 +780,7 @@
 
 <p>Hope you enjoyed the article. For any questions, my <a href="https://twitter.com/rafa_piki">twitter</a> account is the best place, but feel free to reach me anywhere you like! Thanks for your time!</p>
 
+
         
       </section>
 
@@ -845,7 +844,7 @@
 
 
         
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-10-15T00:00:00+00:00">October 15, 2021</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-10-16T00:00:00+00:00">October 16, 2021</time></p>
 
 
       </footer>
