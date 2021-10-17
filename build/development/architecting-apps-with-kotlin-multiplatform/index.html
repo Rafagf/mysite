@@ -25,13 +25,13 @@
 
 
 
-  <meta property="og:image" content="https://rafagf.github.io/assets/images/alhambra-stonks.jpeg">
+  <meta property="og:image" content="https://rafagf.github.io/assets/images/alhambra-stonks.jpg">
 
 
 
 
 
-  <meta property="article:published_time" content="2021-10-16T00:00:00+00:00">
+  <meta property="article:published_time" content="2021-10-15T00:00:00+00:00">
 
 
 
@@ -165,7 +165,7 @@
   style=" background-image: url('');"
 >
   
-    <img src="/assets/images/alhambra-stonks.jpeg" alt="Architecting apps with Kotlin Multiplatform" class="page__hero-image">
+    <img src="/assets/images/alhambra-stonks.jpg" alt="Architecting apps with Kotlin Multiplatform" class="page__hero-image">
   
   
 </div>
@@ -290,7 +290,7 @@
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="Architecting apps with Kotlin Multiplatform">
     <meta itemprop="description" content="Note: This article focuses on Kotlin Multiplatform Mobile (KMM), which can be seen as a subset of Kotlin Multiplatform (KMP).">
-    <meta itemprop="datePublished" content="2021-10-16T00:00:00+00:00">
+    <meta itemprop="datePublished" content="2021-10-15T00:00:00+00:00">
     
 
     <div class="page__inner-wrap">
@@ -326,60 +326,60 @@
         
         <p><em>Note: This article focuses on Kotlin Multiplatform Mobile (KMM), which can be seen as a subset of Kotlin Multiplatform (KMP).</em></p>
 
-<p>Kotlin Multiplatform Mobile (KMM from now on) is a hot topic in mobile development. It has several adventages, which can be summarised as:</p>
+<p>KMM is a hot topic in mobile development. Its main advantages can be summarised as:</p>
 
 <ul>
-  <li><strong>Sharing code across platforms</strong>: meaning fewer code to maintain, fewer bugs (or at least consinstent bugs across platforms!) and in general fewer effort to ship new features.</li>
-  <li><strong>UI remains to be managed by platform specialists</strong>: Android or iOS devs can do their magic interacting directly with their prefered UI toolkits, just the way they’re used to.</li>
+  <li><strong>Sharing code across platforms</strong>: meaning less code to maintain, fewer bugs (or at least consistent bugs across platforms! 😄) and, in general fewer efforts to ship new features.</li>
+  <li><strong>UI remains managed by platform specialists</strong>: Android or iOS devs can do their magic interacting directly with their preferred UI toolkits, just the way they’re used to.</li>
 </ul>
 
-<p>As KMM popularity grows and more teams adopt it, more questions about how to architecture mobile apps around it arise. While adoption might sound like a big shift on how we normally build mobile apps, it actually turns out that the change can be relatively straight forward if we already a decent architecture in place.</p>
+<p>As KMM’s popularity grows and more teams adopt it, questions about how to architecture mobile apps around it arise. While adoption might sound like a big shift on how we normally build mobile apps, it actually turns out that the change can be relatively straightforward if we already have a decent architecture in place (🤞).</p>
 
-<h3 id="quick-refresher-on-mobile-archicture">Quick refresher on mobile archicture</h3>
+<h3 id="quick-refresher-on-mobile-architecture">Quick refresher on mobile architecture</h3>
 
-<p>Mobile architecture/design is a vast topic that would be impossible to cover here, however I’d like to lay out at a very high level the main layers a mobile app would normally have before we start seeing code:</p>
+<p>Mobile architecture/design is a vast topic that would be impossible to cover here, however, I’d like to layout at a very high level the main layers a mobile app would normally have before we start seeing code:</p>
 
 <ul>
-  <li><strong>UI</strong>: views that are displayed in screen, rendered using <em>UIKit</em> or <em>SwiftUI</em> in iOS and the <em>Android UI toolkit</em> or <em>Jetpack Compose</em> in Android.</li>
+  <li><strong>UI</strong>: views that are displayed in the screen, rendered using <em>UIKit</em> or <em>SwiftUI</em> in iOS and the <em>Android UI toolkit</em> or <em>Jetpack Compose</em> in Android.</li>
   <li><strong>Presentation</strong>: logic about what is about to be <em>presented</em> in the screen (i.e <em>ViewModels</em> or <em>Presenters</em>).</li>
   <li><strong>Domain</strong>: the logic/rules of our business, normally driven by the usage of <em>UseCases</em>.</li>
-  <li><strong>Data</strong>: repositories to orquestrate fetching data from different data sources, like a database or a remote API.</li>
+  <li><strong>Data</strong>: repositories to orchestrate fetching data from different data sources, like a database or a remote API.</li>
 </ul>
 
-<p>Modern patterns focus on having a reactive uni-directional data flow through these layers: <strong>UI</strong> -&gt; <strong>Presentation</strong> -&gt; <strong>Domain</strong> -&gt; <strong>Data</strong> -&gt; <strong>Domain</strong> -&gt; <strong>Presentation</strong> -&gt; <strong>UI</strong>, where a layer only knows its deeper neighbour (i.e <em>Data</em> is only known by <em>Domain</em> and not the other way around).</p>
+<p>Modern patterns focus on having a reactive uni-directional data flow through these layers: <strong>UI</strong> -&gt; <strong>Presentation</strong> -&gt; <strong>Domain</strong> -&gt; <strong>Data</strong> -&gt; <strong>Domain</strong> -&gt; <strong>Presentation</strong> -&gt; <strong>UI</strong>, where a layer only knows its lower neighbour (i.e <em>Data</em> is only known by <em>Domain</em> and not the other way around).</p>
 
 <h3 id="lets-get-to-business">Let’s get to business</h3>
 
-<p>To showcase how an app using KMM could look like I’ve built <a href="https://github.com/Rafagf/stonks"><em>Stonks</em></a>, a small open source KMM library with a companion Android app consuming it - iOS will follow, I’m a simple person with a dog that likes to be walked way too often!-.</p>
+<p>To showcase how an app using KMM could look like I’ve built <a href="https://github.com/Rafagf/stonks"><em>Stonks</em></a>, a small open-source KMM library with a companion Android app consuming it - iOS will follow, I’m a simple person with a dog that likes to be walked way too often!-.</p>
 
-<p><em>Stonks</em> is a small app to track stocks: it has a search screen where the user can like stocks, and the main screen where you can see the stock’s current price (aka <em>Quote</em>) and its change in the last 24 hours.</p>
+<p><em>Stonks</em> is a small app to track stocks: it has a search screen where the user can favourite stocks, and the main screen where you can see the stock’s current price (aka <em>Quote</em>) and its change in the last 24 hours.</p>
 
 <p align="center">
 <img src="/assets/images/stonks-faved-light.png" height="500" width="250" /> | <img src="/assets/images/stonks-search-light.png" height="500" width="250" />
 </p>
 
-<h3 id="what-can-we-reuse">What can we reuse?</h3>
+<h3 id="what-layers-could-we-reuse">What layers could we reuse?</h3>
 
-<p>Looking at all our archicture layers, we need to start from the <strong>bottom</strong> (as in, the lowest) and ask ourselves</p>
+<p>Looking at our architecture layers, we need to start from the lowest and ask ourselves:</p>
 
 <blockquote>
   <p>Is this something that iOS and Android can reuse?</p>
 </blockquote>
 
-<p>The first layer we should consider is <strong>Data</strong> (aka repositories). To know if it can be part of the shared KMM library, we need to understand what <strong>Data</strong> will be doing:</p>
+<p>The first layer we should consider is <strong>Data</strong> (aka repositories). To know if it can be part of a shared KMM library, we need to understand its responsibilities:</p>
 
 <ul>
-  <li><strong>Fetch data from a remote data source</strong>: we need to fetch our stocks from somewhere, right? Luckily for us, <a href="https://kotlinlang.org/docs/kmm-use-ktor-for-networking.html">Ktor client</a> is available on KMM, which allow us to do API calls to any given server.  ✅</li>
-  <li><strong>Fetch data from a persistence data source</strong>: being online is great, but sometimes our phone won’t have connection and we want our app to still work. KMM to the rescue again thanks to the awesome library <a href="https://cashapp.github.io/sqldelight/multiplatform_sqlite/">SQLDelight</a>, which will allow us to persist our data in a database (along with goodies such as typesafe APIs from SQL statements, migrations checks at compile time, etc). ✅</li>
+  <li><strong>Fetch data from a remote data source</strong>: we need to fetch our stocks from somewhere, right? Luckily for us, <a href="https://kotlinlang.org/docs/kmm-use-ktor-for-networking.html">Ktor client</a> is available on KMM, which allows us to do API calls to any given server.  ✅</li>
+  <li><strong>Fetch data from a persistence data source</strong>: being online is great, but sometimes our phone won’t have internet connection and we want our app to still work. KMM to the rescue again thanks to the awesome library <a href="https://cashapp.github.io/sqldelight/multiplatform_sqlite/">SQLDelight</a>, which allow us to persist our data in a database (along with goodies such as typesafe APIs from SQL statements, migrations checks at compile time, etc). ✅</li>
 </ul>
 
-<p>Sounds like we are good to put the data layer in our shared KMM library 🎉</p>
+<p>Sounds like we are good to put the data layer in our shared KMM library, let’s get to it 🎉.</p>
 
 <h3 id="implementing-our-data-sources">Implementing our data sources</h3>
 
-<p>Before we get to work on one of our repositories, let’s make sure we get both remote and local data sources working.</p>
+<p>Before we get to work on our first repository, let’s make sure we get both remote and local data sources working.</p>
 
-<p>The remote data source is quite straight forward, we can create a http client by doing this:</p>
+<p>The remote data source is quite straightforward, we can create a http client by doing this:</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">private</span> <span class="k">const</span> <span class="kd">val</span> <span class="py">BASE_URL</span> <span class="p">=</span> <span class="s">"https://myurl/api/v1"</span>
 
@@ -423,7 +423,7 @@
 <span class="k">enum</span> <span class="kd">class</span> <span class="nc">Method</span> <span class="p">{</span> <span class="nc">GET</span><span class="p">,</span> <span class="nc">POST</span><span class="p">,</span> <span class="nc">DELETE</span> <span class="p">}</span>
 </code></pre></div></div>
 
-<p>For the persistence daya layer it gets a bit more complicated. We need to provide <a href="https://kotlinlang.org/docs/kmm-configure-sqldelight-for-data-storage.html#create-an-sqlite-driver">multiple platform-specific implementations of the SQLite Driver</a>. We can do this by using the <code class="language-plaintext highlighter-rouge">expect / anual</code> mechanism of KMM.</p>
+<p>For the persistence data source, it gets a bit more complicated. We need to provide <a href="https://kotlinlang.org/docs/kmm-configure-sqldelight-for-data-storage.html#create-an-sqlite-driver">multiple platform-specific implementations of the SQLite Driver</a>. We can do this by using the <code class="language-plaintext highlighter-rouge">expect / actual</code> mechanism of KMM.</p>
 
 <p>In the folder <code class="language-plaintext highlighter-rouge">commonMain</code> (where common code for all platforms live), we can have the following interface:</p>
 
@@ -448,15 +448,15 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>And voila, we’re now ready to start specifying our database tables, which we’ll do shortly.</p>
+<p>And voila, we’re now ready to create our database tables, which we’ll do shortly.</p>
 
-<h3 id="building-our-first-repository">Building our first Repository</h3>
+<h3 id="building-our-first-repository">Building our first repository</h3>
 
 <p>Let’s focus on building the <code class="language-plaintext highlighter-rouge">QuoteRepository</code>, which will be used to fetch a stock quote given a symbol (i.e <code class="language-plaintext highlighter-rouge">GOOGL</code> for Google).</p>
 
-<p>From now on we’ll be only using <code class="language-plaintext highlighter-rouge">commonMain</code> folder, since everything is going to be common for both platforms.</p>
+<p>From now on we’ll be only using <code class="language-plaintext highlighter-rouge">commonMain</code> folder since everything is going to be common for both platforms.</p>
 
-<p>First step is creating our repository’s interface, which will technically live in a package called <code class="language-plaintext highlighter-rouge">domain</code> since repositories interfaces are considered to be part of this layer.</p>
+<p>The first step is creating our repository’s interface, which will technically live in a package called <code class="language-plaintext highlighter-rouge">domain</code> since repositories interfaces are considered to be part of this layer.</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">interface</span> <span class="nc">QuoteRepository</span> <span class="p">{</span>
     <span class="k">suspend</span> <span class="k">fun</span> <span class="nf">quote</span><span class="p">(</span><span class="n">symbol</span><span class="p">:</span> <span class="nc">String</span><span class="p">):</span> <span class="nc">Quote</span>
@@ -472,9 +472,9 @@
 <span class="p">)</span>
 </code></pre></div></div>
 
-<p>We’ve got our <code class="language-plaintext highlighter-rouge">StonksHttpClient</code> ready to make api calls, however we haven’t created how a request looks like yet.</p>
+<p>We’ve got our <code class="language-plaintext highlighter-rouge">StonksHttpClient</code> ready to make API calls, however, we haven’t created how a request looks like yet. Let’s do it.</p>
 
-<p><em>Note: For Stonks, we’re using a open source stock provider called <a href="https://finnhub.io/">Finnhub</a> to fetch stock quotes.</em></p>
+<p><em>Note: For Stonks, we’re using an open source stock provider called <a href="https://finnhub.io/">Finnhub</a> to fetch stock quotes.</em></p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">internal</span> <span class="kd">object</span> <span class="nc">QuoteApi</span> <span class="p">{</span>
 
@@ -494,7 +494,7 @@
 <span class="p">)</span>
 </code></pre></div></div>
 
-<p>And similarly for the persistence data source, we’ve got our db running but we haven’t specified any tables. We can create our <code class="language-plaintext highlighter-rouge">Quote</code> table by creating a <code class="language-plaintext highlighter-rouge">DbQuote.sq</code> file.</p>
+<p>And similarly, for the persistence data source, we’ve got our DB setup but we haven’t created any tables. We can create our <code class="language-plaintext highlighter-rouge">DbQuote</code> table by creating a <code class="language-plaintext highlighter-rouge">DbQuote.sq</code> file.</p>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">DbQuote</span> <span class="p">(</span>
   <span class="n">symbol</span> <span class="nb">TEXT</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
@@ -516,7 +516,7 @@
 
 </code></pre></div></div>
 
-<p>In here, we’ve specified how the table should look like and how we want to interact with it (<code class="language-plaintext highlighter-rouge">get</code> to fetch a quote, <code class="language-plaintext highlighter-rouge">upsert</code> to update/insert new ones). This file will generate the table and kotlin APIs to interact with it. For better readability, we can wrap its usage under a <code class="language-plaintext highlighter-rouge">QuotePersistence</code> class like this:</p>
+<p>In here, we’ve specified how the table should look like and how we want to interact with it (<code class="language-plaintext highlighter-rouge">get</code> to fetch a quote, <code class="language-plaintext highlighter-rouge">upsert</code> to update/insert new ones). This file will generate the table and Kotlin APIs to interact with it. For better readability, we can wrap its usage under a <code class="language-plaintext highlighter-rouge">QuotePersistence</code> class like this:</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">internal</span> <span class="kd">class</span> <span class="nc">QuotePersistence</span><span class="p">(</span>
     <span class="k">private</span> <span class="kd">val</span> <span class="py">db</span><span class="p">:</span> <span class="nc">StonksDatabase</span><span class="p">,</span>
@@ -539,7 +539,7 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>Aaaand we’re now in a great position to create the implementation of our <code class="language-plaintext highlighter-rouge">QuoteRepository</code>.</p>
+<p>Aaaand we’re now in a great position to create the implementation of our <code class="language-plaintext highlighter-rouge">QuoteRepository</code> :100:</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">internal</span> <span class="kd">class</span> <span class="nc">QuoteRepositoryImpl</span><span class="p">(</span>
     <span class="k">private</span> <span class="kd">val</span> <span class="py">httpClient</span><span class="p">:</span> <span class="nc">StonksHttpClient</span><span class="p">,</span>
@@ -590,13 +590,13 @@
 <span class="p">)</span>
 </code></pre></div></div>
 
-<p>As you can see, the repository specifies a policy in which it will always check first the remote data source and then fallback to persistence in case of error. Boom, we’re done 💥</p>
+<p>As you can see, the repository specifies a policy in which it will always check first the remote data source and then fall back to persistence in case of error. Boom, we’re done 💥</p>
 
 <h3 id="propagating-db-changes-with-kotlin-flow">Propagating DB changes with Kotlin Flow</h3>
 
-<p>One of my coding dreams as an Android Developer has always been having an architecture where table updates are immediately propagated to ‘connected’ views by reactive patterns. I was stampted at how easy this is using <a href="https://kotlinlang.org/docs/flow.html">Kotlin Flow</a>.</p>
+<p>One of my coding dreams as an Android Developer has always been having an architecture where table updates are immediately propagated to ‘connected’ views by reactive patterns. I was stamped at how easy this is using <a href="https://kotlinlang.org/docs/flow.html">Kotlin Flow</a>.</p>
 
-<p>For example, we want <em>Stonks</em> users to be able to select favourites stocks. For simplicity, this information will only live in the device (persinstence data source). The implementation would be like this:</p>
+<p>For example, we want <em>Stonks</em> users to be able to select favourites stocks. For simplicity, this information will only live in the device (persistence data source). The final implementation of this <code class="language-plaintext highlighter-rouge">FavouritesRepository</code> would be like this:</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">interface</span> <span class="nc">FavouritesRepository</span> <span class="p">{</span>
 
@@ -653,7 +653,7 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>Keen eyes might have notice that our <code class="language-plaintext highlighter-rouge">getAll()</code> method returns a <code class="language-plaintext highlighter-rouge">Flow&lt;List&lt;String&gt;&gt;</code>. This is because our persistence <code class="language-plaintext highlighter-rouge">getAll</code> returns  favouites as <code class="language-plaintext highlighter-rouge">.asFlow().mapToList()</code>, which basically will trigger the method and introduce its returned content into the Flow’s pipeline as soon as there is any update in the table. This means that <strong>any client using the Flow could render live updates as they happen</strong>.</p>
+<p>Keen eyes might have noticed that our <code class="language-plaintext highlighter-rouge">getAll()</code> method returns a <code class="language-plaintext highlighter-rouge">Flow&lt;List&lt;String&gt;&gt;</code>. This is because our persistence <code class="language-plaintext highlighter-rouge">getAll</code> returns  favourites as <code class="language-plaintext highlighter-rouge">.asFlow().mapToList()</code>, which basically will trigger the method and introduce its returned content into the Flow’s pipeline as soon as there is any update in the table. This means that <strong>any client using the Flow could render live updates as they happen</strong>.</p>
 
 <p>For example, in Android we could have something like this to unwrap the DB updates:</p>
 
@@ -674,32 +674,35 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>To see this in action in <em>Stonks</em>, we can go to the search page, mark a stonk as liked and come back to the main page. The stock will be there waiting for us magically without us having to refresh the page :point_down:</p>
+<p>To see this in action in <em>Stonks</em>, we can go to the search page, mark a stonk as favourite and come back to the main page. The stock will be there waiting for us magically without us having to refresh the page :point_down:</p>
 <p align="center" width="100%">
   <img src="/assets/images/stonks-flow.gif" height="500" width="250" />
 </p>
 
-<h3 id="could-we-go-any-further">Could we go any further?</h3>
+<h3 id="could-we-go-even-further">Could we go even further?</h3>
 
 <p><img src="https://media.giphy.com/media/3iwRj8JrhaBfvQMSx9/giphy-downsized-large.gif" alt="gif" /></p>
 
-<p>The answer is <strong>YES! And we should definitely do it!</strong> Before we get to the code, I want to highlight what are the adventages of moving all our domain logic into our KMM library. Fom now on, I think we can simplify the term <em>domain logic</em> to ‘use cases’.</p>
+<p>Next layer on our diagram would be <code class="language-plaintext highlighter-rouge">Domain</code>. Can we move it to a KMM library?</p>
+
+<p>The answer is <strong>YES! And we should definitely do it!</strong> Before we get to the code, I want to highlight what are the advantages of moving this into our KMM library. Also, for simplicity, I think we can simplify the term <em>domain logic</em> to ‘use cases’.</p>
 
 <ul>
-  <li>By sharing them <strong>we get consistency on how they’re consumed in the presentation layer across Android &amp; iOS</strong>, which can help to more consistent features across teams.</li>
-  <li>We <strong>no longer need to expose data/repositories to clients</strong> (aka we can make them <em>internal</em> in our shared library), which avoid bad usage of them on clients (hands up who hasn’t worked in an app where repositories were injected all over the place…)</li>
-  <li>It could already be the case without sharing them, but in general <strong>we contribute to a <em>Use Case Driven</em> architecture</strong>, where each app action has a use case <em>and</em> potentially each repository method has an Use Case associated to it.</li>
+  <li>By sharing use cases <strong>we get consistency on how they’re consumed in the presentation layer across Android &amp; iOS</strong>, which helps to more consistent features across teams.</li>
+  <li>We <strong>no longer need to expose repositories to clients</strong> (i.e they can have <em>internal</em> visibility in our shared library), which avoid bad usage of them on clients - hands up who hasn’t worked in an app where repositories were injected all over the place…</li>
+  <li>It could already be the case without using a KMM library, but in general, we contribute to a <a href="https://proandroiddev.com/why-you-need-use-cases-interactors-142e8a6fe576">Use Case Driven architecture</a>, where each app action has a use case <em>and</em> potentially each repository method has a Use Case associated to it.</li>
   <li>And of course, <strong>we reduce at least by half the number of code to write</strong>, and therefore the bugs 🐛.</li>
 </ul>
 
-<p>In <em>Stonks</em>, our main screen will display a list of quotes for all the stocks that have been faved by the user, meaning we need to make use of two repositories (<code class="language-plaintext highlighter-rouge">QuoteRepository</code> and <code class="language-plaintext highlighter-rouge">FavouritesRepository</code>) to combine our data. Our cross platform use case would look like this:</p>
+<p>Back to <em>Stonks</em>, our main screen will display a list of quotes for all the stocks that have been faved by the user, meaning we need to make use of two repositories to fetch the data we need: <code class="language-plaintext highlighter-rouge">QuoteRepository</code> and <code class="language-plaintext highlighter-rouge">FavouritesRepository</code>.</p>
+
+<p>Our cross-platform use case would look like this:</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">FetchFavedQuotesUseCase</span><span class="p">(</span>
     <span class="k">private</span> <span class="kd">val</span> <span class="py">quoteRepository</span><span class="p">:</span> <span class="nc">QuoteRepository</span><span class="p">,</span>
     <span class="k">private</span> <span class="kd">val</span> <span class="py">favouritesRepository</span><span class="p">:</span> <span class="nc">FavouritesRepository</span>
 <span class="p">)</span> <span class="p">{</span>
 
-    <span class="nd">@OptIn</span><span class="p">(</span><span class="nc">FlowPreview</span><span class="o">::</span><span class="k">class</span><span class="p">)</span>
     <span class="k">suspend</span> <span class="k">fun</span> <span class="nf">invoke</span><span class="p">():</span> <span class="nc">Flow</span><span class="p">&lt;</span><span class="nc">List</span><span class="p">&lt;</span><span class="nc">FavedQuote</span><span class="p">&gt;&gt;</span> <span class="p">{</span>
         <span class="k">return</span> <span class="n">favouritesRepository</span><span class="p">.</span><span class="nf">getAll</span><span class="p">().</span><span class="nf">flatMapConcat</span> <span class="p">{</span> <span class="n">favedSymbols</span> <span class="p">-&gt;</span>
             <span class="nf">flowOf</span><span class="p">(</span><span class="nf">quotes</span><span class="p">(</span><span class="n">favedSymbols</span><span class="p">).</span><span class="nf">toFavedQuote</span><span class="p">())</span>
@@ -769,15 +772,15 @@
 <h3 id="next-steps">Next steps</h3>
 
 <ul>
-  <li>The iOS companion app implementation is missing. In general, its implementation is relatively straight forward, but there are some oddities depending on the Swift version used. More information about this can be found on <a href="https://github.com/rickclephas/KMP-NativeCoroutines">KMO-NativeCorouttines</a> or <a href="https://johnoreilly.dev/posts/swift_async_await_kotlin_coroutines/">Using Swift’s new async/await when invoking Kotlin Multiplatform code</a>.</li>
-  <li>In <a href="https://github.com/Rafagf/stonks"><em>Stonks</em></a>, we have a mono-repo where the shared library and both Android and iOS live. This is fine for a pet project but not realistic for the real world. I’ll create another article in which I’ll explain how to decouple the library, so clients can consume it as another regular dependency, getting library updates with <a href="https://dependabot.com/">Dependabot</a> raising PRs.</li>
+  <li>The iOS companion app implementation is missing. In general, its implementation wouldn’t differ much from Android, but there are some oddities depending on the Swift version used. More information about this can be found on <a href="https://github.com/rickclephas/KMP-NativeCoroutines">KMO-NativeCorouttines</a> or <a href="https://johnoreilly.dev/posts/swift_async_await_kotlin_coroutines/">Using Swift’s new async/await when invoking Kotlin Multiplatform code</a>.</li>
+  <li>In <a href="https://github.com/Rafagf/stonks"><em>Stonks</em></a>, we have a mono-repo where the shared library and both Android and iOS live. This is fine for a pet project but not realistic in the real world. I’ll create another article in which I’ll explain how to decouple the library, so clients can consume it as another regular dependency, getting library updates with <a href="https://dependabot.com/">Dependabot</a> raising PRs.</li>
 </ul>
 
 <h3 id="summing-up">Summing up</h3>
 
-<p>KMM is a fantastic tool reaching stable levels. Writing entire features twice, one for Android and one for iOS, is expensive and bug prone, and probably not acceptable for engineering teams in a not too far future. KMM provides a relatively straight forward solution to this problem, while leaving the UI work to be built natively, which Native Mobile Developers are passionate and excited about, specially with the arrival of declarative frameworks like <code class="language-plaintext highlighter-rouge">Jetpack Compose</code> or <code class="language-plaintext highlighter-rouge">SwiftUI</code>.</p>
+<p>KMM is a fantastic tool reaching stable levels. Writing entire features twice, one for Android and one for iOS is expensive and bug-prone, and probably not acceptable for engineering teams in a not too far future. KMM provides a relatively straightforward solution to this problem while leaving the UI work to be built natively, which Native Mobile Developers are passionate and excited about, especially with the arrival of declarative frameworks like <code class="language-plaintext highlighter-rouge">Jetpack Compose</code> or <code class="language-plaintext highlighter-rouge">SwiftUI</code>.</p>
 
-<p>Hope you enjoyed the article. For any questions, my <a href="https://twitter.com/rafa_piki">twitter</a> account is the best place, but feel free to reach my anywhere! Thanks for your time!</p>
+<p>Hope you enjoyed the article. For any questions, my <a href="https://twitter.com/rafa_piki">twitter</a> account is the best place, but feel free to reach me anywhere you like! Thanks for your time!</p>
 
         
       </section>
@@ -842,7 +845,7 @@
 
 
         
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-10-16T00:00:00+00:00">October 16, 2021</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-10-15T00:00:00+00:00">October 15, 2021</time></p>
 
 
       </footer>
