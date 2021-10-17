@@ -350,9 +350,7 @@
 
 <h3 id="lets-get-to-business">Let’s get to business</h3>
 
-<p>To showcase how an app using KMM could look like I’ve built <a href="https://github.com/Rafagf/stonks"><em>Stonks</em></a>, a small open-source KMM library with a companion Android app consuming it - iOS will follow, I’m a simple person with a dog that likes to be walked way too often!-.</p>
-
-<p><em>Stonks</em> is a small app to track stocks: it has a search screen where the user can favourite stocks, and the main screen where you can see the stock’s current price (aka <em>Quote</em>) and its change in the last 24 hours.</p>
+<p>To showcase how an app using KMM could look like I’ve built <a href="https://github.com/Rafagf/stonks"><em>Stonks</em></a>, a small open-source KMM library with a companion Android app consuming it. <em>Stonks</em> is a small app to track stocks: it has a search screen where the user can add favourite stocks, and the main screen where you can see the stock’s current price (aka <em>Quote</em>) and its change in the last 24 hours.</p>
 
 <p align="center">
 <img src="/assets/images/stonks-faved-light.png" height="500" width="250" /> | <img src="/assets/images/stonks-search-light.png" height="500" width="250" />
@@ -370,7 +368,7 @@
 
 <ul>
   <li><strong>Fetch data from a remote data source</strong>: we need to fetch our stocks from somewhere, right? Luckily for us, <a href="https://kotlinlang.org/docs/kmm-use-ktor-for-networking.html">Ktor client</a> is available on KMM, which allows us to do API calls to any given server.  ✅</li>
-  <li><strong>Fetch data from a persistence data source</strong>: being online is great, but sometimes our phone won’t have internet connection and we want our app to still work. KMM to the rescue again thanks to the awesome library <a href="https://cashapp.github.io/sqldelight/multiplatform_sqlite/">SQLDelight</a>, which allow us to persist our data in a database (along with goodies such as typesafe APIs from SQL statements, migrations checks at compile time, etc). ✅</li>
+  <li><strong>Fetch data from a persistence data source</strong>: being online is great, but sometimes our phone won’t have internet connection and we want our app to still work. KMM to the rescue again thanks to the awesome library <a href="https://cashapp.github.io/sqldelight/multiplatform_sqlite/">SQLDelight</a>, which allows us to persist our data in a database (along with goodies such as typesafe APIs from SQL statements, migrations checks at compile time, etc). ✅</li>
 </ul>
 
 <p>Sounds like we are good to put the data layer in our shared KMM library, let’s get to it 🎉.</p>
@@ -592,9 +590,9 @@
 
 <h3 id="propagating-db-changes-with-kotlin-flow">Propagating DB changes with Kotlin Flow</h3>
 
-<p>One of my coding dreams as an Android Developer has always been having an architecture where table updates are immediately propagated to ‘connected’ views by reactive patterns. I was stamped at how easy this is using <a href="https://kotlinlang.org/docs/flow.html">Kotlin Flow</a>.</p>
+<p>One of my coding dreams as an Android Developer has always been having an architecture where table updates are immediately propagated to ‘connected’ views by reactive patterns. I was surprised at how easy this is using <a href="https://kotlinlang.org/docs/flow.html">Kotlin Flow</a>.</p>
 
-<p>For example, we want <em>Stonks</em> users to be able to select favourites stocks. For simplicity, this information will only live in the device (persistence data source). The final implementation of this <code class="language-plaintext highlighter-rouge">FavouritesRepository</code> would be like this:</p>
+<p>For example, we want <em>Stonks</em> users to be able to select favourites stocks. For simplicity, this information will only live in the device (persistence data source). The final implementation of this <code class="language-plaintext highlighter-rouge">FavouritesRepository</code> would look like this:</p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">interface</span> <span class="nc">FavouritesRepository</span> <span class="p">{</span>
 
@@ -676,10 +674,11 @@
 <p align="center" width="100%">
   <img src="/assets/images/stonks-flow.gif" height="500" width="250" />
 </p>
-
 <h3 id="could-we-go-even-further">Could we go even further?</h3>
 
-<p><img src="https://media.giphy.com/media/kPtv3UIPrv36cjxqLs/giphy.gif" alt="gif" /></p>
+<p align="center" width="100%">
+  <img src="/assets/images/stonks-flow.gif" />
+</p>
 
 <p>Next layer on our diagram would be <code class="language-plaintext highlighter-rouge">Domain</code>. Can we move it to a KMM library?</p>
 
@@ -776,9 +775,9 @@
 
 <h3 id="summing-up">Summing up</h3>
 
-<p>KMM is a fantastic tool reaching stable levels. Writing entire features twice, one for Android and one for iOS is expensive and bug-prone, and probably not acceptable for engineering teams in a not too far future. KMM provides a relatively straightforward solution to this problem while leaving the UI work to be built natively, which Native Mobile Developers are passionate and excited about, especially with the arrival of declarative frameworks like <code class="language-plaintext highlighter-rouge">Jetpack Compose</code> or <code class="language-plaintext highlighter-rouge">SwiftUI</code>.</p>
+<p>KMM is a fantastic tool reaching stable levels. Writing entire features twice, one for Android and one for iOS is expensive and bug-prone, and probably not acceptable for engineering teams in a not too far future. KMM provides a relatively straightforward solution to this problem while leaving the UI work to be built natively, which Native Mobile Developers are passionate about, especially with the arrival of declarative frameworks like <code class="language-plaintext highlighter-rouge">Jetpack Compose</code> or <code class="language-plaintext highlighter-rouge">SwiftUI</code>.</p>
 
-<p>Hope you enjoyed the article. For any questions, my <a href="https://twitter.com/rafa_piki">twitter</a> account is the best place, but feel free to reach me anywhere you like! Thanks for your time!</p>
+<p>Hope you enjoyed the article. For any questions, my <a href="https://twitter.com/rafa_piki">twitter</a> account is the best place, but feel free to reach me anywhere you like!</p>
 
 
         
