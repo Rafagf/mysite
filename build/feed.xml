@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://rafagf.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://rafagf.github.io/" rel="alternate" type="text/html" /><updated>2022-02-09T14:54:10+00:00</updated><id>https://rafagf.github.io/feed.xml</id><title type="html">Rafa Garcia</title><subtitle>Android development and random dev stuff</subtitle><author><name>{&quot;avatar&quot;=&gt;&quot;/assets/images/rafa_avatar.jpeg&quot;, &quot;bio&quot;=&gt;&quot;Engineering in broken English&quot;, &quot;location&quot;=&gt;&quot;London&quot;, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;Email&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-envelope-square&quot;, &quot;url&quot;=&gt;&quot;mailto:rafagarfer@gmail.com&quot;}, {&quot;label&quot;=&gt;&quot;Twitter&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-twitter-square&quot;, &quot;url&quot;=&gt;&quot;https://twitter.com/rafa_piki&quot;}, {&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;, &quot;url&quot;=&gt;&quot;https://github.com/rafagf/&quot;}, {&quot;label&quot;=&gt;&quot;Linkedin&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin&quot;, &quot;url&quot;=&gt;&quot;https://www.linkedin.com/in/rafaelgarciafernandez/&quot;}]}</name></author><entry><title type="html">Automating releases with a Mobile Release Pipeline</title><link href="https://rafagf.github.io/development/mobile-release-pipeline/" rel="alternate" type="text/html" title="Automating releases with a Mobile Release Pipeline" /><published>2022-02-09T00:00:00+00:00</published><updated>2022-02-09T00:00:00+00:00</updated><id>https://rafagf.github.io/development/mobile-release-pipeline</id><content type="html" xml:base="https://rafagf.github.io/development/mobile-release-pipeline/">&lt;p&gt;At Memrise we like our apps to be updated as often as possible, ideally in a weekly cadence. We’ve noticed this gives us numerous advantages versus for example releasing only when big features are ready:&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://rafagf.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://rafagf.github.io/" rel="alternate" type="text/html" /><updated>2022-02-09T14:59:30+00:00</updated><id>https://rafagf.github.io/feed.xml</id><title type="html">Rafa Garcia</title><subtitle>Android development and random dev stuff</subtitle><author><name>{&quot;avatar&quot;=&gt;&quot;/assets/images/rafa_avatar.jpeg&quot;, &quot;bio&quot;=&gt;&quot;Engineering in broken English&quot;, &quot;location&quot;=&gt;&quot;London&quot;, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;Email&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-envelope-square&quot;, &quot;url&quot;=&gt;&quot;mailto:rafagarfer@gmail.com&quot;}, {&quot;label&quot;=&gt;&quot;Twitter&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-twitter-square&quot;, &quot;url&quot;=&gt;&quot;https://twitter.com/rafa_piki&quot;}, {&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;, &quot;url&quot;=&gt;&quot;https://github.com/rafagf/&quot;}, {&quot;label&quot;=&gt;&quot;Linkedin&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin&quot;, &quot;url&quot;=&gt;&quot;https://www.linkedin.com/in/rafaelgarciafernandez/&quot;}]}</name></author><entry><title type="html">Automating releases with a Mobile Release Pipeline</title><link href="https://rafagf.github.io/development/mobile-release-pipeline/" rel="alternate" type="text/html" title="Automating releases with a Mobile Release Pipeline" /><published>2022-02-09T00:00:00+00:00</published><updated>2022-02-09T00:00:00+00:00</updated><id>https://rafagf.github.io/development/mobile-release-pipeline</id><content type="html" xml:base="https://rafagf.github.io/development/mobile-release-pipeline/">&lt;p&gt;At Memrise we like our apps to be updated as often as possible, ideally in a weekly cadence. We’ve noticed this gives us numerous advantages versus for example releasing only when big features are ready:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;We can fix non-critical bugs as we go, without the need for hot-fixing.&lt;/li&gt;
@@ -136,15 +136,25 @@
 &lt;h2 id=&quot;build_rc-steps&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;build_rc&lt;/code&gt; steps&lt;/h2&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;Enter &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/newton build_rc&lt;/code&gt; in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#android-newton&lt;/code&gt; Slack channel&lt;/li&gt;
-  &lt;li&gt;Pipeline flow reaches the function &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;createAndroidReleaseCandidate&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Generate release candidate version name (i.e 2022.02.01.0)&lt;/li&gt;
-  &lt;li&gt;Fetch all the tickets from Jira’s API that are part of the release candidate. Once formatted this becomes our release notes, which we’ll use in quite a few places like pull requests or Slack.&lt;/li&gt;
-  &lt;li&gt;Update the current Jira release, so any tickets that go into develop are marked as part of the next release.&lt;/li&gt;
-  &lt;li&gt;Using GitHub’s API, create a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;release-candidate&lt;/code&gt; branch from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;develop&lt;/code&gt; and a PR to merge &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;release-candidate&lt;/code&gt; into &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;release&lt;/code&gt; (this being our main branch, the one that has the same content as the app in the store), with the version code and name updated. The body of the PR will be the release notes we fetched before.&lt;/li&gt;
-&lt;/ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Enter &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/newton build_rc&lt;/code&gt; in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#android-newton&lt;/code&gt; Slack channel&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Pipeline flow reaches the function &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;createAndroidReleaseCandidate&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Generate release candidate version name (i.e 2022.02.01.0)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Fetch all the tickets from Jira’s API that are part of the release candidate. Once formatted this becomes our release notes, which we’ll use in quite a few places like pull requests or Slack.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Update the current Jira release, so any tickets that go into develop are marked as part of the next release.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Using GitHub’s API, create a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;release-candidate&lt;/code&gt; branch from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;develop&lt;/code&gt; and a PR to merge &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;release-candidate&lt;/code&gt; into &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;release&lt;/code&gt; (this being our main branch, the one that has the same content as the app in the store), with the version code and name updated. The body of the PR will be the release notes we fetched before.&lt;/p&gt;
 
-&lt;div class=&quot;language-typescript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;createReleaseCandidatePr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;div class=&quot;language-typescript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;createReleaseCandidatePr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
   &lt;span class=&quot;nx&quot;&gt;repositoryName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
   &lt;span class=&quot;nx&quot;&gt;rcVersion&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
   &lt;span class=&quot;nx&quot;&gt;formattedTickets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
@@ -153,7 +163,7 @@
     &lt;span class=&quot;na&quot;&gt;owner&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;Memrise&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
     &lt;span class=&quot;na&quot;&gt;repo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;repositoryName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
   &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-
+   
   &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;pr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;na&quot;&gt;inputBranch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;DEVELOP_BRANCH&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
     &lt;span class=&quot;na&quot;&gt;intermediateBranch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;RELEASE_CANDIDATE_BRANCH&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
@@ -161,21 +171,26 @@
     &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;`Release candidate &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;rcVersion&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
     &lt;span class=&quot;na&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;releaseCandidateBody&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;formattedTickets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
   &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
-
+   
   &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;createNewBranchPr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;createAndroidReleaseCandidate&lt;/code&gt; execution finishes here. However, we haven’t created our debug and release builds yet. Creating a GitHub PR in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;release-candidate&lt;/code&gt; branch will trigger &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;./gradlew assembleRelease bundleGoogleRelease&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;./gradlew assembleDebug bundleGoogleDebug&lt;/code&gt;, generating our &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aab&lt;/code&gt; files (as in, our app!), which are then updated to AppCenter.&lt;/li&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;createAndroidReleaseCandidate&lt;/code&gt; execution finishes here. However, we haven’t created our debug and release builds yet. Creating a GitHub PR in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;release-candidate&lt;/code&gt; branch will trigger &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;./gradlew assembleRelease bundleGoogleRelease&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;./gradlew assembleDebug bundleGoogleDebug&lt;/code&gt;, generating our &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aab&lt;/code&gt; files (as in, our app!), which are then updated to AppCenter.&lt;/p&gt;
+  &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;Now that we’ve got the URLs to our &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aab&lt;/code&gt; files in AppCenter, we call a Firebase function called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;updateAndroidReleaseCandidate&lt;/code&gt;. This will first update the release candidate PR adding the links to our builds. 
 &lt;img src=&quot;/assets/images/pipeline-release-candidate.jpeg&quot; alt=&quot;Screenshot 2022-01-26 at 22.00.44&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
-  &lt;li&gt;Next, we create a GitHub Release, where we will upload the aab files along with the proguard mapping files. Whenever the release candidate is approved, we will get the release aab from here.
-&lt;img src=&quot;/assets/images/pipeline-github-release.png&quot; alt=&quot;Screenshot 2022-01-26 at 22.00.44&quot; /&gt;&lt;/li&gt;
-  &lt;li&gt;Finally, we post the release notes and the build links in a Slack channel called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#android-rc&lt;/code&gt;. It might be worth noting that we split the release notes by &lt;em&gt;user-facing changes&lt;/em&gt; and &lt;em&gt;others&lt;/em&gt; by using a Jira field that the pipeline looks at when formatting the release notes.
-&lt;img src=&quot;/assets/images/pipeline-release-notes.jpeg&quot; alt=&quot;Screenshot 2022-01-26 at 23.27.23&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Next, we create a GitHub Release, where we will upload the aab files along with the proguard mapping files. Whenever the release candidate is approved, we will get the release aab from here.
+&lt;img src=&quot;/assets/images/pipeline-github-release.png&quot; alt=&quot;Screenshot 2022-01-26 at 22.00.44&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Finally, we post the release notes and the build links in a Slack channel called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#android-rc&lt;/code&gt;. It might be worth noting that we split the release notes by &lt;em&gt;user-facing changes&lt;/em&gt; and &lt;em&gt;others&lt;/em&gt; by using a Jira field that the pipeline looks at when formatting the release notes.
+&lt;img src=&quot;/assets/images/pipeline-release-notes.jpeg&quot; alt=&quot;Screenshot 2022-01-26 at 23.27.23&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;It is now time for our awesome QA team to do a regression on the build, finger crossed no issues are found 🤞&lt;/p&gt;
