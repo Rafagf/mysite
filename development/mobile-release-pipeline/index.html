@@ -486,16 +486,19 @@
     <p><code class="language-plaintext highlighter-rouge">createAndroidReleaseCandidate</code> execution finishes here. However, we haven’t created our debug and release builds yet. Creating a GitHub PR in the <code class="language-plaintext highlighter-rouge">release-candidate</code> branch will trigger <code class="language-plaintext highlighter-rouge">./gradlew assembleRelease bundleGoogleRelease</code> and <code class="language-plaintext highlighter-rouge">./gradlew assembleDebug bundleGoogleDebug</code>, generating our <code class="language-plaintext highlighter-rouge">aab</code> files (as in, our app!), which are then updated to AppCenter.</p>
   </li>
   <li>
-    <p>Now that we’ve got the URLs to our <code class="language-plaintext highlighter-rouge">aab</code> files in AppCenter, we call a Firebase function called <code class="language-plaintext highlighter-rouge">updateAndroidReleaseCandidate</code>. This will first update the release candidate PR adding the links to our builds. 
-<img src="/assets/images/pipeline-release-candidate.jpeg" alt="Screenshot 2022-01-26 at 22.00.44" /></p>
+    <p>Now that we’ve got the URLs to our <code class="language-plaintext highlighter-rouge">aab</code> files in AppCenter, we call a Firebase function called <code class="language-plaintext highlighter-rouge">updateAndroidReleaseCandidate</code>. This will first update the release candidate PR adding the links to our builds.</p>
+
+    <p><img src="/assets/images/pipeline-release-candidate.jpeg" alt="Screenshot 2022-01-26 at 22.00.44" /></p>
   </li>
   <li>
-    <p>Next, we create a GitHub Release, where we will upload the aab files along with the proguard mapping files. Whenever the release candidate is approved, we will get the release aab from here.
-<img src="/assets/images/pipeline-github-release.png" alt="Screenshot 2022-01-26 at 22.00.44" /></p>
+    <p>Next, we create a GitHub Release, where we will upload the aab files along with the proguard mapping files. Whenever the release candidate is approved, we will get the release aab from here.</p>
+
+    <p><img src="/assets/images/pipeline-github-release.png" alt="Screenshot 2022-01-26 at 22.00.44" /></p>
   </li>
   <li>
-    <p>Finally, we post the release notes and the build links in a Slack channel called <code class="language-plaintext highlighter-rouge">#android-rc</code>. It might be worth noting that we split the release notes by <em>user-facing changes</em> and <em>others</em> by using a Jira field that the pipeline looks at when formatting the release notes.
-<img src="/assets/images/pipeline-release-notes.jpeg" alt="Screenshot 2022-01-26 at 23.27.23" /></p>
+    <p>Finally, we post the release notes and the build links in a Slack channel called <code class="language-plaintext highlighter-rouge">#android-rc</code>. It might be worth noting that we split the release notes by <em>user-facing changes</em> and <em>others</em> by using a Jira field that the pipeline looks at when formatting the release notes.</p>
+
+    <p><img src="/assets/images/pipeline-release-notes.jpeg" alt="Screenshot 2022-01-26 at 23.27.23" /></p>
   </li>
 </ol>
 
