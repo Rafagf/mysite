@@ -34,4 +34,10 @@ var store = [{
         "tags": ["android","iOS","mobile development","kotlin multiplatform","kotlin"],
         "url": "https://rafagf.github.io/development/architecting-mobile-apps-with-kotlin-multiplatform/",
         "teaser": null
+      },{
+        "title": "Automating releases with a Mobile Release Pipeline",
+        "excerpt":"At Memrise we like our apps to be updated as often as possible, ideally in a weekly cadence. We’ve noticed this gives us numerous advantages versus for example releasing only when big features are ready: We can fix non-critical bugs as we go, without the need for hot-fixing. We can...","categories": ["development"],
+        "tags": ["typescript","mobile development"],
+        "url": "https://rafagf.github.io/development/mobile-release-pipeline/",
+        "teaser": null
       }]

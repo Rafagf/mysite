@@ -1,0 +1,847 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.21.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Automating releases with a Mobile Release Pipeline - Rafa Garcia</title>
+<meta name="description" content="At Memrise we like our apps to be updated as often as possible, ideally in a weekly cadence. We’ve noticed this gives us numerous advantages versus for example releasing only when big features are ready:">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_UK">
+<meta property="og:site_name" content="Rafa Garcia">
+<meta property="og:title" content="Automating releases with a Mobile Release Pipeline">
+<meta property="og:url" content="https://engineering.memrise.com/automating-releases-with-a-mobile-release-pipeline-eb22cea596bb">
+
+
+  <meta property="og:description" content="At Memrise we like our apps to be updated as often as possible, ideally in a weekly cadence. We’ve noticed this gives us numerous advantages versus for example releasing only when big features are ready:">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2022-02-09T00:00:00+00:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://engineering.memrise.com/automating-releases-with-a-mobile-release-pipeline-eb22cea596bb">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Rafa Garcia",
+      "url": "https://rafagf.github.io/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Rafa Garcia Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+    <style>
+</style>
+    <style>
+</style>
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Rafa Garcia
+          <span class="site-subtitle">Android Developer | Software Engineer</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/blog/">Blog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/cv/">CV</a>
+            </li><li class="masthead__menu-item">
+              <a href="/portfolio/">Portfolio</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content"
+  padding-left: 80px>
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/rafa_avatar.jpeg" alt="" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name"></h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Engineering in broken English</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">London</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:rafagarfer@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/rafa_piki" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/rafagf/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/rafaelgarciafernandez/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">Linkedin</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Automating releases with a Mobile Release Pipeline">
+    <meta itemprop="description" content="At Memrise we like our apps to be updated as often as possible, ideally in a weekly cadence. We’ve noticed this gives us numerous advantages versus for example releasing only when big features are ready:">
+    <meta itemprop="datePublished" content="2022-02-09T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Automating releases with a Mobile Release Pipeline
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>At Memrise we like our apps to be updated as often as possible, ideally in a weekly cadence. We’ve noticed this gives us numerous advantages versus for example releasing only when big features are ready:</p>
+
+<ul>
+  <li>We can fix non-critical bugs as we go, without the need for hot-fixing.</li>
+  <li>We can release features early and get feedback, improving them over the following weeks.</li>
+  <li>Because of the smaller time window, releases are relatively lightweight, meaning we introduce fewer issues than what we would introduce if we waited longer.</li>
+</ul>
+
+<p>However, this doesn’t come for free. Making a release means there’s an effort behind it, just to name a few things:</p>
+
+<ul>
+  <li>Someone has to be responsible for all the release admin, such as coordinating the release cut-off, creating the Release Candidate, or uploading the approved release to Google Play Store and the App Store.</li>
+  <li>Regression testing by the QA team, to make sure we haven’t introduced new issues. And fixing any issues that we might encounter.</li>
+  <li>Monitoring the rollout, making sure crashes and ANRs (Application not responding) are in the expected threshold.</li>
+</ul>
+
+<p>All the above is normally done by the Release Captain, with the help of the QA team. However, this process can be expensive, repetitive, and frankly, quite boring. And in engineering, what should we do when we have something expensive, repetitive, and boring? AUTOMATE IT!  🎉</p>
+
+<h2 id="the-goal">The goal</h2>
+
+<p>We could say the main goal of <strong>a mobile release pipeline is to help us reduce the time it takes to generate a release</strong>. In order to do this, it will need to coordinate all the moving pieces / third-party services involved, which in our case are GitHub, Slack, CircleCI, Jira, AppCenter, Google Play Store, and the App Store.</p>
+
+<p>Our dream was for our release pipeline (called <em>newton</em> in honor of one of our doggie members at the office) to do only 2 simple actions to update our apps in the store:</p>
+
+<ul>
+  <li>Type <code class="language-plaintext highlighter-rouge">/newton build_rc</code> in a Slack channel.</li>
+  <li>Once approved, type <code class="language-plaintext highlighter-rouge">/newton rc_accepted</code> in the same channel.</li>
+</ul>
+
+<p>This is a bit over-simplified, but in reality, it is pretty much what the mobile team at Memrise has achieved.</p>
+
+<h3 id="firebase-functions">Firebase Functions</h3>
+
+<p>Our Release Pipeline is fueled by Firebase Functions. What are these? From their<a href="https://firebase.google.com/docs/functions"> documentation</a>:</p>
+
+<blockquote>
+  <p>Cloud Functions for Firebase is a serverless framework that lets you automatically run backend code in response to events triggered by Firebase features and HTTPS requests. Your JavaScript or TypeScript code is stored in Google’s cloud and runs in a managed environment. There’s no need to manage and scale your own servers.</p>
+</blockquote>
+
+<p>In a nutshell, when you write a Firebase function, you get an URL that will run the function when it is hit. You don’t need to worry about hosting, server configuration, balancing load, or general maintenance since Firebase does everything for you. Deploying functions is as simple as running a single terminal command.</p>
+
+<p>To write Firebase functions, you will need to use <a href="https://nodejs.org/">node.js</a> and either Javascript or Typescript. Because we’re a team of mobile developers, we chose to use Typescript since we’re more familiar with typed languages.</p>
+
+<h2 id="just-show-me-the-code">Just show me the code</h2>
+
+<p>To see how this works in practice, let’s follow a release process to see what’s done under the hood.</p>
+
+<p><strong>The entry point to our release pipeline is Slack</strong>. The first thing we’ll normally do is type <code class="language-plaintext highlighter-rouge">/newton &lt;command&gt;</code> in a channel called <code class="language-plaintext highlighter-rouge">#android-newton</code> or <code class="language-plaintext highlighter-rouge">#iOS-newton</code>. Thanks to a Slack integration, you can create a hook that will call an URL every time a message is written in these channels. And in our case, we’re going to call the URL of a Firebase function named <code class="language-plaintext highlighter-rouge">slashCommand</code>.</p>
+
+<p><img src="/assets/images/pipeline-build-rc.jpeg" alt="Screenshot 2022-01-26 at 22.03.30" /></p>
+
+<p>A sneak peek of the function that handles <code class="language-plaintext highlighter-rouge">slashCommand</code> will give us an idea about the sort of actions that we can handle:</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">function</span> <span class="nx">handleSlashCommand</span><span class="p">(</span>
+  <span class="nx">command</span><span class="p">:</span> <span class="kr">string</span><span class="p">,</span>
+  <span class="nx">channel</span><span class="p">:</span> <span class="kr">string</span><span class="p">,</span>
+  <span class="nx">slackUrl</span><span class="p">:</span> <span class="kr">string</span><span class="p">,</span>
+<span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="kr">any</span><span class="o">&gt;</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">command</span> <span class="o">===</span> <span class="kc">undefined</span> <span class="o">||</span> <span class="nx">command</span> <span class="o">===</span> <span class="dl">''</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">reject</span><span class="p">(</span><span class="nx">generateNewtonHelp</span><span class="p">());</span>
+  <span class="p">}</span>
+
+  <span class="kd">const</span> <span class="nx">platform</span> <span class="o">=</span> <span class="nx">platformForChannel</span><span class="p">(</span><span class="nx">channel</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">platform</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">reject</span><span class="p">(</span><span class="s2">`Cannot run in unsupported channel </span><span class="p">${</span><span class="nx">channel</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="kd">const</span> <span class="nx">parameters</span> <span class="o">=</span> <span class="nx">command</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="sr">/</span><span class="se">\s</span><span class="sr">+/</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">action</span> <span class="o">=</span> <span class="nx">parameters</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+
+  <span class="k">switch</span> <span class="p">(</span><span class="nx">action</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="nx">Commands</span><span class="p">.</span><span class="na">BUILD_RC</span><span class="p">:</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">releaseCandidateRequest</span><span class="p">(</span><span class="nx">platform</span><span class="p">,</span> <span class="nx">parameters</span><span class="p">,</span> <span class="nx">slackUrl</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">case</span> <span class="nx">Commands</span><span class="p">.</span><span class="na">HOT_FIX</span><span class="p">:</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">hotFixRequest</span><span class="p">(</span><span class="nx">platform</span><span class="p">,</span> <span class="nx">parameters</span><span class="p">,</span> <span class="nx">slackUrl</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">case</span> <span class="nx">Commands</span><span class="p">.</span><span class="na">REJECTION</span><span class="p">:</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">rejectionFixRequest</span><span class="p">(</span><span class="nx">parameters</span><span class="p">,</span> <span class="nx">slackUrl</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">case</span> <span class="nx">Commands</span><span class="p">.</span><span class="na">UPDATE_TRANSLATIONS</span><span class="p">:</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">updateTranslationsRequest</span><span class="p">(</span><span class="nx">platform</span><span class="p">,</span> <span class="nx">parameters</span><span class="p">,</span> <span class="nx">slackUrl</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">case</span> <span class="nx">Commands</span><span class="p">.</span><span class="na">RC_ACCEPTED</span><span class="p">:</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">rcAccepted</span><span class="p">(</span><span class="nx">platform</span><span class="p">,</span> <span class="nx">parameters</span><span class="p">,</span> <span class="nx">slackUrl</span><span class="p">);</span>
+    <span class="p">}</span>
+    
+    <span class="p">...</span>
+    
+    <span class="na">default</span><span class="p">:</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">reject</span><span class="p">(</span><span class="nx">generateNewtonHelp</span><span class="p">());</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Some of these commands have just one implementation across Android and iOS, like for example updating translations:</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">updateTranslationsRequest</span> <span class="o">=</span> <span class="k">async</span> <span class="p">(</span>
+  <span class="nx">platform</span><span class="p">:</span> <span class="nx">Platform</span><span class="p">,</span>
+  <span class="nx">parameters</span><span class="p">:</span> <span class="kr">string</span><span class="p">[],</span>
+  <span class="nx">slackUrl</span><span class="p">:</span> <span class="kr">string</span><span class="p">,</span>
+<span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="kr">any</span><span class="o">&gt;</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">await</span> <span class="nx">postToSlack</span><span class="p">(</span>
+    <span class="dl">'</span><span class="s1">Translations on their way https://gph.is/1ikxVLT</span><span class="dl">'</span><span class="p">,</span>
+    <span class="nx">slackUrl</span><span class="p">,</span>
+  <span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">branch</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">develop</span><span class="dl">'</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">triggerPullTranslations</span><span class="p">(</span><span class="nx">repoName</span><span class="p">(</span><span class="nx">platform</span><span class="p">,</span> <span class="nx">parameters</span><span class="p">),</span> <span class="nx">branch</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nx">postToSlack</span><span class="p">(</span><span class="s2">`Job triggered`</span><span class="p">,</span> <span class="nx">slackUrl</span><span class="p">))</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span>
+      <span class="nx">postToSlack</span><span class="p">(</span><span class="s2">`Error updating translations: </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="nx">slackUrl</span><span class="p">),</span>
+    <span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>Others, however, will be platform-specific, since the release process of an iOS app can vary from the Android one, despite having common steps.</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">releaseCandidate</span><span class="p">(</span>
+  <span class="nx">platform</span><span class="p">:</span> <span class="nx">Platform</span><span class="p">,</span>
+  <span class="nx">parameters</span><span class="p">:</span> <span class="kr">string</span><span class="p">[],</span>
+<span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="kr">any</span><span class="o">&gt;</span> <span class="p">{</span>
+  <span class="k">switch</span> <span class="p">(</span><span class="nx">platform</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="nx">Platform</span><span class="p">.</span><span class="na">ANDROID</span><span class="p">:</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">createAndroidReleaseCandidate</span><span class="p">(</span><span class="nx">repoName</span><span class="p">(</span><span class="nx">platform</span><span class="p">,</span> <span class="nx">parameters</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="k">case</span> <span class="nx">Platform</span><span class="p">.</span><span class="na">IOS</span><span class="p">:</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">createIOSReleaseCandidate</span><span class="p">(</span><span class="nx">repoName</span><span class="p">(</span><span class="nx">platform</span><span class="p">,</span> <span class="nx">parameters</span><span class="p">));</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Let’s now focus on the command <code class="language-plaintext highlighter-rouge">build_rc</code> for Android. This command will generate a release candidate that once tested by the QA team, will be released to Google Play. Let’s go step by step to understand all the things the pipeline does for us, so we can appreciate its beauty 😉</p>
+
+<h2 id="build_rc-steps"><code class="language-plaintext highlighter-rouge">build_rc</code> steps</h2>
+
+<ol>
+  <li>Enter <code class="language-plaintext highlighter-rouge">/newton build_rc</code> in the <code class="language-plaintext highlighter-rouge">#android-newton</code> Slack channel</li>
+  <li>Pipeline flow reaches the function <code class="language-plaintext highlighter-rouge">createAndroidReleaseCandidate</code></li>
+  <li>Generate release candidate version name (i.e 2022.02.01.0)</li>
+  <li>Fetch all the tickets from Jira’s API that are part of the release candidate. Once formatted this becomes our release notes, which we’ll use in quite a few places like pull requests or Slack.</li>
+  <li>Update the current Jira release, so any tickets that go into develop are marked as part of the next release.</li>
+  <li>Using GitHub’s API, create a <code class="language-plaintext highlighter-rouge">release-candidate</code> branch from <code class="language-plaintext highlighter-rouge">develop</code> and a PR to merge <code class="language-plaintext highlighter-rouge">release-candidate</code> into <code class="language-plaintext highlighter-rouge">release</code> (this being our main branch, the one that has the same content as the app in the store), with the version code and name updated. The body of the PR will be the release notes we fetched before.</li>
+</ol>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">createReleaseCandidatePr</span> <span class="o">=</span> <span class="k">async</span> <span class="p">(</span>
+  <span class="nx">repositoryName</span><span class="p">:</span> <span class="kr">string</span><span class="p">,</span>
+  <span class="nx">rcVersion</span><span class="p">:</span> <span class="kr">string</span><span class="p">,</span>
+  <span class="nx">formattedTickets</span><span class="p">:</span> <span class="kr">string</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">createNewBranchPr</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">getFunctions</span><span class="p">({</span>
+    <span class="na">owner</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Memrise</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">repo</span><span class="p">:</span> <span class="nx">repositoryName</span><span class="p">,</span>
+  <span class="p">});</span>
+
+  <span class="kd">const</span> <span class="nx">pr</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">inputBranch</span><span class="p">:</span> <span class="nx">DEVELOP_BRANCH</span><span class="p">,</span>
+    <span class="na">intermediateBranch</span><span class="p">:</span> <span class="nx">RELEASE_CANDIDATE_BRANCH</span><span class="p">,</span>
+    <span class="na">outputBranch</span><span class="p">:</span> <span class="nx">RELEASE_BRANCH</span><span class="p">,</span>
+    <span class="na">title</span><span class="p">:</span> <span class="s2">`Release candidate </span><span class="p">${</span><span class="nx">rcVersion</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span>
+    <span class="na">body</span><span class="p">:</span> <span class="nx">releaseCandidateBody</span><span class="p">(</span><span class="nx">formattedTickets</span><span class="p">),</span>
+  <span class="p">};</span>
+
+  <span class="k">return</span> <span class="nx">createNewBranchPr</span><span class="p">(</span><span class="nx">pr</span><span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">createAndroidReleaseCandidate</code> execution finishes here. However, we haven’t created our debug and release builds yet. Creating a GitHub PR in the <code class="language-plaintext highlighter-rouge">release-candidate</code> branch will trigger <code class="language-plaintext highlighter-rouge">./gradlew assembleRelease bundleGoogleRelease</code> and <code class="language-plaintext highlighter-rouge">./gradlew assembleDebug bundleGoogleDebug</code>, generating our <code class="language-plaintext highlighter-rouge">aab</code> files (as in, our app!), which are then updated to AppCenter.</li>
+  <li>
+    <p>Now that we’ve got the URLs to our <code class="language-plaintext highlighter-rouge">aab</code> files in AppCenter, we call a Firebase function called <code class="language-plaintext highlighter-rouge">updateAndroidReleaseCandidate</code>. This will first update the release candidate PR adding the links to our builds. 
+<img src="/assets/images/pipeline-release-candidate.jpeg" alt="Screenshot 2022-01-26 at 22.00.44" /></p>
+  </li>
+  <li>Next, we create a GitHub Release, where we will upload the aab files along with the proguard mapping files. Whenever the release candidate is approved, we will get the release aab from here.
+<img src="/assets/images/pipeline-github-release.png" alt="Screenshot 2022-01-26 at 22.00.44" /></li>
+  <li>Finally, we post the release notes and the build links in a Slack channel called <code class="language-plaintext highlighter-rouge">#android-rc</code>. It might be worth noting that we split the release notes by <em>user-facing changes</em> and <em>others</em> by using a Jira field that the pipeline looks at when formatting the release notes.
+<img src="/assets/images/pipeline-release-notes.jpeg" alt="Screenshot 2022-01-26 at 23.27.23" /></li>
+</ol>
+
+<p>It is now time for our awesome QA team to do a regression on the build, finger crossed no issues are found 🤞</p>
+
+<h2 id="rc_accepted-steps">rc_accepted steps</h2>
+
+<p>On the RC being accepted, the QA team will run <code class="language-plaintext highlighter-rouge">/newton rc_accepted</code> in the <code class="language-plaintext highlighter-rouge">#android-rc</code> channel, which will:</p>
+
+<ol>
+  <li>Merge the release candidate PR, meaning now release is up-to-date with the latest changes.</li>
+  <li>Post final release notes in a <code class="language-plaintext highlighter-rouge">#releases</code> Slack channel.</li>
+  <li>Merge <code class="language-plaintext highlighter-rouge">release</code> into <code class="language-plaintext highlighter-rouge">develop</code> - this way we make sure the version name and code are up-to-date, plus we add any fixes that we might have applied on top of the <code class="language-plaintext highlighter-rouge">release-candidate</code> branch.</li>
+  <li>Mark the Jira version as released.</li>
+</ol>
+
+<p>At this stage, the Android team can just grab the aab from GitHub Release and drag it into Google Play. There’s the potential to actually automate this step too, to streamline the process even more.</p>
+
+<p>That was quite a lot of steps, right? Imagine having to do them manually every week 😅 On top of this, some of these steps are very error prone, so by delegating them to a machine we make our lives easier.</p>
+
+<h2 id="other-pipeline-goodies">Other pipeline goodies</h2>
+
+<p>The great thing about the pipeline is that you can build on top of it all sort of cool automation. Some examples:</p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">androidScheduledUpdateTranslations</code>: a scheduled function that runs every morning updating the app translations.</p>
+
+    <div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">const</span> <span class="nx">androidScheduledUpdateTranslations</span> <span class="o">=</span> <span class="nx">functions</span><span class="p">.</span><span class="nx">pubsub</span>
+  <span class="p">.</span><span class="nx">schedule</span><span class="p">(</span><span class="dl">'</span><span class="s1">0 9 * * 1-5</span><span class="dl">'</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">timeZone</span><span class="p">(</span><span class="dl">'</span><span class="s1">Europe/London</span><span class="dl">'</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">onRun</span><span class="p">(</span><span class="nx">androidUpdateTranslations</span><span class="p">);</span>
+  
+<span class="kd">function</span> <span class="nx">androidUpdateTranslations</span><span class="p">(</span><span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">channel</span> <span class="o">=</span> <span class="nx">ANDROID_NEWTON_NAME</span><span class="p">;</span>
+  <span class="kd">const</span> <span class="nx">slackUrl</span> <span class="o">=</span> <span class="nx">NEWTON_LOGS_URL</span><span class="p">;</span>
+  
+  <span class="nx">handleSlashCommand</span><span class="p">(</span><span class="nx">UPDATE_TRANSLATIONS_COMMAND</span><span class="p">,</span> <span class="nx">channel</span><span class="p">,</span> <span class="nx">slackUrl</span><span class="p">).</span><span class="k">catch</span><span class="p">(</span>
+    <span class="k">async</span> <span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">await</span> <span class="nx">postToSlack</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">slackUrl</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+    <span class="p">},</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">updateTicketWithBuildUrl</code>: every time a ticket has a PR linked where the checks passed, we leave a comment on the Jira ticket with the build, so anyone in the company can pick it up to give it a go if they want.</p>
+
+    <p><img src="/assets/images/pipeline-jira.png" alt="Screenshot 2022-01-26 at 23.27.23" /></p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">updateAndroidCoverage</code>: coverage comparator tool in PRs. Discussed in detail in <a href="https://engineering.memrise.com/tracking-code-coverage-for-free-9d8ebd929293?gi=f1e9e6c4963f">this article</a>.</p>
+  </li>
+</ul>
+
+<p>## Conclusions</p>
+
+<p>Frequent releases are great and very important, but without proper tooling around them, they can take a serious productivity toll in the long term, on top of being error-prone. A release pipeline is a great solution for any medium-big team that wants to release their engineers from this tedious process, so they can focus on building awesome products.</p>
+
+<p>PS: Building the release pipeline was a team effort by the whole mobile team at Memrise, so BIG KUDOS to everyone who took part in it, you’re awesome! ❤️</p>
+
+<p>NOTE: <em>This article was first published in the <a href="https://engineering.memrise.com/automating-releases-with-a-mobile-release-pipeline-eb22cea596bb">Memrise Engineering Blog</a>. Check the blog out, there’s great content!</em></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#mobile-development" class="page__taxonomy-item" rel="tag">mobile development</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#typescript" class="page__taxonomy-item" rel="tag">typescript</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#development" class="page__taxonomy-item" rel="tag">development</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2022-02-09T00:00:00+00:00">February 9, 2022</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Automating+releases+with+a+Mobile+Release+Pipeline%20https%3A%2F%2Frafagf.github.io%2Fdevelopment%2Fmobile-release-pipeline%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Frafagf.github.io%2Fdevelopment%2Fmobile-release-pipeline%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Frafagf.github.io%2Fdevelopment%2Fmobile-release-pipeline%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/development/architecting-mobile-apps-with-kotlin-multiplatform/" class="pagination--pager" title="Architecting mobile apps with Kotlin Multiplatform
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/development/architecting-mobile-apps-with-kotlin-multiplatform/" rel="permalink">Architecting mobile apps with Kotlin Multiplatform
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          12 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Note: This article focuses on Kotlin Multiplatform Mobile (KMM), which can be seen as a subset of Kotlin Multiplatform (KMP).
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/development/decompiling-kotlin-into-java/" rel="permalink">Decompiling Kotlin into Java - Few years late
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Recently I was asked by a co-worker “what are sealed classes?” and realised the classic answer “enums in steroid” falls really short and a clear sign that I ...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/development/modelling-the-domain-layer-using-composables-use-cases/" rel="permalink">Modelling the domain layer using composable use cases
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Some time ago we had a problem inside the Memrise Android codebase with our domain layer. Repositories and Use Cases were heavily used but there weren’t clea...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/development/tracking-code-coverage-for-free/" rel="permalink">Tracking code coverage for free
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">In the Android team at Memrise, we’ve gotten a lot of value from tracking code coverage. It’s something we’ve worked very hard to improve over the last few y...</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 Rafa Garcia. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JQN7MDGSH4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JQN7MDGSH4', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+
+  </body>
+</html>
