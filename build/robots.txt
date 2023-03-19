@@ -1,1 +1,1 @@
-Sitemap: https://rafagf.github.io/mysite/mysite/sitemap.xml
+Sitemap: rafagarcia.dev/sitemap.xml
