@@ -1,1 +1,1 @@
-Sitemap: https://rafagf.github.io/mysite/sitemap.xml
+Sitemap: https://rafagf.github.io/mysite/mysite/sitemap.xml
