@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="rafagarcia.dev/feed.xml" rel="self" type="application/atom+xml" /><link href="rafagarcia.dev/" rel="alternate" type="text/html" /><updated>2023-03-19T21:08:10+00:00</updated><id>rafagarcia.dev/feed.xml</id><title type="html">Rafa Garcia</title><subtitle>Android development and random dev stuff</subtitle><author><name>{&quot;avatar&quot;=&gt;&quot;/assets/images/rafa_avatar.jpeg&quot;, &quot;bio&quot;=&gt;&quot;Engineering in broken English&quot;, &quot;location&quot;=&gt;&quot;London / Granada&quot;, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;Email&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-envelope-square&quot;, &quot;url&quot;=&gt;&quot;mailto:rafagarfer@gmail.com&quot;}, {&quot;label&quot;=&gt;&quot;Twitter&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-twitter-square&quot;, &quot;url&quot;=&gt;&quot;https://twitter.com/rafa_piki&quot;}, {&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;, &quot;url&quot;=&gt;&quot;https://github.com/rafagf/&quot;}, {&quot;label&quot;=&gt;&quot;Linkedin&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin&quot;, &quot;url&quot;=&gt;&quot;https://www.linkedin.com/in/rafaelgarciafernandez/&quot;}]}</name></author><entry><title type="html">Automating releases with a Mobile Release Pipeline</title><link href="rafagarcia.dev/development/mobile-release-pipeline/" rel="alternate" type="text/html" title="Automating releases with a Mobile Release Pipeline" /><published>2022-02-09T00:00:00+00:00</published><updated>2022-02-09T00:00:00+00:00</updated><id>rafagarcia.dev/development/mobile-release-pipeline</id><content type="html" xml:base="rafagarcia.dev/development/mobile-release-pipeline/">&lt;p&gt;At Memrise we like our apps to be updated as often as possible, ideally in a weekly cadence. We’ve noticed this gives us numerous advantages versus for example releasing only when big features are ready:&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="rafagarcia.dev/feed.xml" rel="self" type="application/atom+xml" /><link href="rafagarcia.dev/" rel="alternate" type="text/html" /><updated>2023-03-19T21:21:34+00:00</updated><id>rafagarcia.dev/feed.xml</id><title type="html">Rafa Garcia</title><subtitle>Android development and random dev stuff</subtitle><author><name>{&quot;avatar&quot;=&gt;&quot;/assets/images/rafa_avatar.jpeg&quot;, &quot;bio&quot;=&gt;&quot;Engineering in broken English&quot;, &quot;location&quot;=&gt;&quot;London / Granada&quot;, &quot;links&quot;=&gt;[{&quot;label&quot;=&gt;&quot;Email&quot;, &quot;icon&quot;=&gt;&quot;fas fa-fw fa-envelope-square&quot;, &quot;url&quot;=&gt;&quot;mailto:rafagarfer@gmail.com&quot;}, {&quot;label&quot;=&gt;&quot;Twitter&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-twitter-square&quot;, &quot;url&quot;=&gt;&quot;https://twitter.com/rafa_piki&quot;}, {&quot;label&quot;=&gt;&quot;GitHub&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-github&quot;, &quot;url&quot;=&gt;&quot;https://github.com/rafagf/&quot;}, {&quot;label&quot;=&gt;&quot;Linkedin&quot;, &quot;icon&quot;=&gt;&quot;fab fa-fw fa-linkedin&quot;, &quot;url&quot;=&gt;&quot;https://www.linkedin.com/in/rafaelgarciafernandez/&quot;}]}</name></author><entry><title type="html">Automating releases with a Mobile Release Pipeline</title><link href="rafagarcia.dev/development/mobile-release-pipeline/" rel="alternate" type="text/html" title="Automating releases with a Mobile Release Pipeline" /><published>2022-02-09T00:00:00+00:00</published><updated>2022-02-09T00:00:00+00:00</updated><id>rafagarcia.dev/development/mobile-release-pipeline</id><content type="html" xml:base="rafagarcia.dev/development/mobile-release-pipeline/">&lt;p&gt;At Memrise we like our apps to be updated as often as possible, ideally in a weekly cadence. We’ve noticed this gives us numerous advantages versus for example releasing only when big features are ready:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;We can fix non-critical bugs as we go, without the need for hot-fixing.&lt;/li&gt;
@@ -47,7 +47,7 @@
 
 &lt;p&gt;&lt;strong&gt;The entry point to our release pipeline is Slack&lt;/strong&gt;. The first thing we’ll normally do is type &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/newton &amp;lt;command&amp;gt;&lt;/code&gt; in a channel called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#android-newton&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#iOS-newton&lt;/code&gt;. Thanks to a Slack integration, you can create a hook that will call an URL every time a message is written in these channels. And in our case, we’re going to call the URL of a Firebase function named &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;slashCommand&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/mysite/assets/images/pipeline-build-rc.jpeg&quot; alt=&quot;Screenshot 2022-01-26 at 22.03.30&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/pipeline-build-rc.jpeg&quot; alt=&quot;Screenshot 2022-01-26 at 22.03.30&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;A sneak peek of the function that handles &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;slashCommand&lt;/code&gt; will give us an idea about the sort of actions that we can handle:&lt;/p&gt;
 
@@ -182,17 +182,17 @@
   &lt;li&gt;
     &lt;p&gt;Now that we’ve got the URLs to our &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aab&lt;/code&gt; files in AppCenter, we call a Firebase function called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;updateAndroidReleaseCandidate&lt;/code&gt;. This will first update the release candidate PR adding the links to our builds.&lt;/p&gt;
 
-    &lt;p&gt;&lt;img src=&quot;/mysite/assets/images/pipeline-release-candidate.jpeg&quot; alt=&quot;Screenshot 2022-01-26 at 22.00.44&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;img src=&quot;/assets/images/pipeline-release-candidate.jpeg&quot; alt=&quot;Screenshot 2022-01-26 at 22.00.44&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;Next, we create a GitHub Release, where we will upload the aab files along with the proguard mapping files. Whenever the release candidate is approved, we will get the release aab from here.&lt;/p&gt;
 
-    &lt;p&gt;&lt;img src=&quot;/mysite/assets/images/pipeline-github-release.png&quot; alt=&quot;Screenshot 2022-01-26 at 22.00.44&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;img src=&quot;/assets/images/pipeline-github-release.png&quot; alt=&quot;Screenshot 2022-01-26 at 22.00.44&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;Finally, we post the release notes and the build links in a Slack channel called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#android-rc&lt;/code&gt;. It might be worth noting that we split the release notes by &lt;em&gt;user-facing changes&lt;/em&gt; and &lt;em&gt;others&lt;/em&gt; by using a Jira field that the pipeline looks at when formatting the release notes.&lt;/p&gt;
 
-    &lt;p&gt;&lt;img src=&quot;/mysite/assets/images/pipeline-release-notes.jpeg&quot; alt=&quot;Screenshot 2022-01-26 at 23.27.23&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;img src=&quot;/assets/images/pipeline-release-notes.jpeg&quot; alt=&quot;Screenshot 2022-01-26 at 23.27.23&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
 
@@ -241,7 +241,7 @@
   &lt;li&gt;
     &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;updateTicketWithBuildUrl&lt;/code&gt;: every time a ticket has a PR linked where the checks passed, we leave a comment on the Jira ticket with the build, so anyone in the company can pick it up to give it a go if they want.&lt;/p&gt;
 
-    &lt;p&gt;&lt;img src=&quot;/mysite/assets/images/pipeline-jira.png&quot; alt=&quot;Screenshot 2022-01-26 at 23.27.23&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;img src=&quot;/assets/images/pipeline-jira.png&quot; alt=&quot;Screenshot 2022-01-26 at 23.27.23&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;updateAndroidCoverage&lt;/code&gt;: coverage comparator tool in PRs. Discussed in detail in &lt;a href=&quot;https://engineering.memrise.com/tracking-code-coverage-for-free-9d8ebd929293?gi=f1e9e6c4963f&quot;&gt;this article&lt;/a&gt;.&lt;/p&gt;
@@ -283,7 +283,7 @@
 &lt;p&gt;To showcase how an app using KMM could look like I’ve built &lt;a href=&quot;https://github.com/Rafagf/stonks&quot;&gt;&lt;em&gt;Stonks&lt;/em&gt;&lt;/a&gt;, a small open-source KMM library with a companion Android app consuming it. &lt;em&gt;Stonks&lt;/em&gt; is a small app to track stocks: it has a search screen where the user can add favourite stocks and the main screen where you can see the stock’s current price (aka &lt;em&gt;Quote&lt;/em&gt;) and its change in the last 24 hours.&lt;/p&gt;
 
 &lt;p align=&quot;center&quot;&gt;
-&lt;img src=&quot;/mysite/assets/images/stonks-faved-light.png&quot; height=&quot;500&quot; width=&quot;250&quot; /&gt; | &lt;img src=&quot;/mysite/assets/images/stonks-search-light.png&quot; height=&quot;500&quot; width=&quot;250&quot; /&gt;
+&lt;img src=&quot;/assets/images/stonks-faved-light.png&quot; height=&quot;500&quot; width=&quot;250&quot; /&gt; | &lt;img src=&quot;/assets/images/stonks-search-light.png&quot; height=&quot;500&quot; width=&quot;250&quot; /&gt;
 &lt;/p&gt;
 
 &lt;h3 id=&quot;what-layers-could-we-reuse&quot;&gt;What layers could we reuse?&lt;/h3&gt;
@@ -602,7 +602,7 @@
 
 &lt;p&gt;To see this in action in &lt;em&gt;Stonks&lt;/em&gt;, we can go to the search page, mark a stonk as favourite and come back to the main page. The stock will be there waiting for us magically without us having to refresh the page 👇.&lt;/p&gt;
 &lt;p align=&quot;center&quot; width=&quot;100%&quot;&gt;
-  &lt;img src=&quot;/mysite/assets/images/stonks-flow.gif&quot; height=&quot;500&quot; width=&quot;250&quot; /&gt;
+  &lt;img src=&quot;/assets/images/stonks-flow.gif&quot; height=&quot;500&quot; width=&quot;250&quot; /&gt;
 &lt;/p&gt;
 &lt;h3 id=&quot;could-we-go-even-further&quot;&gt;Could we go even further?&lt;/h3&gt;
 
@@ -1270,7 +1270,7 @@ This one had us thinking since we had some questions, such as:&lt;/li&gt;
 
 &lt;p&gt;To get an idea of how a CSV Jacoco report looks like, have a look at the screenshot.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/mysite/assets/images/tracking-coverage-jacoco-example.png&quot; alt=&quot;Example of a Jacoco report&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/tracking-coverage-jacoco-example.png&quot; alt=&quot;Example of a Jacoco report&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Every row is a different class and every column an attribute. We’ll be using the &lt;em&gt;LINE_MISSED&lt;/em&gt; and &lt;em&gt;LINE_COVERED&lt;/em&gt; attributes.&lt;/p&gt;
 
@@ -1307,7 +1307,7 @@ This one had us thinking since we had some questions, such as:&lt;/li&gt;
   &lt;li&gt;The script will parse the JSON and dump the data into our spreadsheet.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;img src=&quot;/mysite/assets/images/tracking-coverage-spreadsheet.png&quot; alt=&quot;Coverage data stored in a spreadsheet&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/tracking-coverage-spreadsheet.png&quot; alt=&quot;Coverage data stored in a spreadsheet&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;This is the result! 🎉 We store unique records per day and every new module will be added as a new column.&lt;/p&gt;
 
@@ -1315,7 +1315,7 @@ This one had us thinking since we had some questions, such as:&lt;/li&gt;
 
 &lt;p&gt;We needed to be able to easily visualize coverage reports. Since spreadsheets can be added as data sources in Data Studio, all we had to do is decide what type of data we want to see. Some examples could be plotting &lt;em&gt;global&lt;/em&gt; coverage to make sure it keeps going up, or any specific feature module where the team wants to refactor or increase coverage.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/mysite/assets/images/tracking-coverage-dashboard.png&quot; alt=&quot;Example of coverage reports in our metrics dashboard&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/tracking-coverage-dashboard.png&quot; alt=&quot;Example of coverage reports in our metrics dashboard&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;With this we’ve completed our first requirement: &lt;strong&gt;Easy visualization of coverage stats ✅&lt;/strong&gt; Let’s now move onto coverage PR reports!&lt;/p&gt;
 
@@ -1348,7 +1348,7 @@ This one had us thinking since we had some questions, such as:&lt;/li&gt;
 
 &lt;p&gt;And with this, we’ll get beautiful reports in our Pull Requests, making our code coverage tracking work completed! &lt;strong&gt;✅ 🚀🚀🚀&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/mysite/assets/images/tracking-coverage-github-comment.png&quot; alt=&quot;Coverage report in GitHub&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/tracking-coverage-github-comment.png&quot; alt=&quot;Coverage report in GitHub&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;next-steps&quot;&gt;Next steps&lt;/h3&gt;
 
@@ -1380,7 +1380,7 @@ This one had us thinking since we had some questions, such as:&lt;/li&gt;
 
 &lt;p&gt;That’s how I decided to build &lt;a href=&quot;https://theflightplanner.herokuapp.com/&quot;&gt;FlightPlanner&lt;/a&gt; with Ktor, a small pet project to track booked flights with similar requirements to the client’s project: a backend application backed by a DB, an API to be used by mobile clients and a web client to visualise and add new data.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/mysite/assets/images/flightplanner-flights.png&quot; alt=&quot;FlightPlanner&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/flightplanner-flights.png&quot; alt=&quot;FlightPlanner&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Before we dive into seeing some code, it’s worth mentioning that the project can be found in &lt;a href=&quot;https://github.com/Rafagf/FlightPlanner&quot;&gt;GitHub&lt;/a&gt;. Now, let’s get to it!&lt;/p&gt;
 

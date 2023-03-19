@@ -128,6 +128,8 @@
           <span class="site-subtitle">Android Developer | Software Engineer</span>
         </a>
         <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/blog/">Blog</a>
+            </li><li class="masthead__menu-item">
               <a href="/cv/">CV</a>
             </li><li class="masthead__menu-item">
               <a href="/portfolio/">Portfolio</a>
@@ -351,7 +353,7 @@
 
 <p><strong>The entry point to our release pipeline is Slack</strong>. The first thing we’ll normally do is type <code class="language-plaintext highlighter-rouge">/newton &lt;command&gt;</code> in a channel called <code class="language-plaintext highlighter-rouge">#android-newton</code> or <code class="language-plaintext highlighter-rouge">#iOS-newton</code>. Thanks to a Slack integration, you can create a hook that will call an URL every time a message is written in these channels. And in our case, we’re going to call the URL of a Firebase function named <code class="language-plaintext highlighter-rouge">slashCommand</code>.</p>
 
-<p><img src="/mysite/assets/images/pipeline-build-rc.jpeg" alt="Screenshot 2022-01-26 at 22.03.30" /></p>
+<p><img src="/assets/images/pipeline-build-rc.jpeg" alt="Screenshot 2022-01-26 at 22.03.30" /></p>
 
 <p>A sneak peek of the function that handles <code class="language-plaintext highlighter-rouge">slashCommand</code> will give us an idea about the sort of actions that we can handle:</p>
 
@@ -486,17 +488,17 @@
   <li>
     <p>Now that we’ve got the URLs to our <code class="language-plaintext highlighter-rouge">aab</code> files in AppCenter, we call a Firebase function called <code class="language-plaintext highlighter-rouge">updateAndroidReleaseCandidate</code>. This will first update the release candidate PR adding the links to our builds.</p>
 
-    <p><img src="/mysite/assets/images/pipeline-release-candidate.jpeg" alt="Screenshot 2022-01-26 at 22.00.44" /></p>
+    <p><img src="/assets/images/pipeline-release-candidate.jpeg" alt="Screenshot 2022-01-26 at 22.00.44" /></p>
   </li>
   <li>
     <p>Next, we create a GitHub Release, where we will upload the aab files along with the proguard mapping files. Whenever the release candidate is approved, we will get the release aab from here.</p>
 
-    <p><img src="/mysite/assets/images/pipeline-github-release.png" alt="Screenshot 2022-01-26 at 22.00.44" /></p>
+    <p><img src="/assets/images/pipeline-github-release.png" alt="Screenshot 2022-01-26 at 22.00.44" /></p>
   </li>
   <li>
     <p>Finally, we post the release notes and the build links in a Slack channel called <code class="language-plaintext highlighter-rouge">#android-rc</code>. It might be worth noting that we split the release notes by <em>user-facing changes</em> and <em>others</em> by using a Jira field that the pipeline looks at when formatting the release notes.</p>
 
-    <p><img src="/mysite/assets/images/pipeline-release-notes.jpeg" alt="Screenshot 2022-01-26 at 23.27.23" /></p>
+    <p><img src="/assets/images/pipeline-release-notes.jpeg" alt="Screenshot 2022-01-26 at 23.27.23" /></p>
   </li>
 </ol>
 
@@ -545,7 +547,7 @@
   <li>
     <p><code class="language-plaintext highlighter-rouge">updateTicketWithBuildUrl</code>: every time a ticket has a PR linked where the checks passed, we leave a comment on the Jira ticket with the build, so anyone in the company can pick it up to give it a go if they want.</p>
 
-    <p><img src="/mysite/assets/images/pipeline-jira.png" alt="Screenshot 2022-01-26 at 23.27.23" /></p>
+    <p><img src="/assets/images/pipeline-jira.png" alt="Screenshot 2022-01-26 at 23.27.23" /></p>
   </li>
   <li>
     <p><code class="language-plaintext highlighter-rouge">updateAndroidCoverage</code>: coverage comparator tool in PRs. Discussed in detail in <a href="https://engineering.memrise.com/tracking-code-coverage-for-free-9d8ebd929293?gi=f1e9e6c4963f">this article</a>.</p>
