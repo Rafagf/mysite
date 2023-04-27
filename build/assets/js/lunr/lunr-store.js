@@ -30,7 +30,7 @@ var store = [{
         "teaser": null
       },{
         "title": "Architecting mobile apps with Kotlin Multiplatform",
-        "excerpt":"Note: This article focuses on Kotlin Multiplatform Mobile (KMM), which can be seen as a subset of Kotlin Multiplatform (KMP). KMM is a hot topic in mobile development. Its main advantages can be summarised as: Sharing code across platforms: meaning less code to maintain, fewer bugs (or at least consistent...","categories": ["development"],
+        "excerpt":"Note: This article has been featured in both Android Weekly (#490) and Kotlin Weeekly (#273). Thanks to both! 🙏 KMM is a hot topic in mobile development. Its main advantages can be summarised as: Sharing code across platforms: meaning less code to maintain, fewer bugs (or at least consistent bugs...","categories": ["development"],
         "tags": ["android","iOS","mobile development","kotlin multiplatform","kotlin"],
         "url": "rafagarcia.dev/development/architecting-mobile-apps-with-kotlin-multiplatform/",
         "teaser": null
