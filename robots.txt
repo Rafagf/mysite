@@ -1,1 +1,1 @@
-Sitemap: rafagarcia.dev/sitemap.xml
+Sitemap: /sitemap.xml
