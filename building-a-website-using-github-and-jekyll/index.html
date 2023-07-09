@@ -1,0 +1,710 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.21.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Building a website using GitHub and Jekyll - Rafa Garcia</title>
+<meta name="description" content="Learn how to build a website using GitHub and Jekyll. Discover the simplicity of static website generation and explore the process of deployment on GitHub Pages.">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_UK">
+<meta property="og:site_name" content="Rafa Garcia">
+<meta property="og:title" content="Building a website using GitHub and Jekyll">
+<meta property="og:url" content="/building-a-website-using-github-and-jekyll/">
+
+
+  <meta property="og:description" content="Learn how to build a website using GitHub and Jekyll. Discover the simplicity of static website generation and explore the process of deployment on GitHub Pages.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2021-02-28T00:00:00+00:00">
+
+
+
+
+
+
+<link rel="canonical" href="/building-a-website-using-github-and-jekyll/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Rafa Garcia",
+      "url": "/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Rafa Garcia Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+    <style>
+</style>
+    <style>
+</style>
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Rafa Garcia
+          <span class="site-subtitle">Android Developer | Software Engineer</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/blog/">Blog</a>
+            </li><li class="masthead__menu-item">
+              <a href="/cv/">CV</a>
+            </li><li class="masthead__menu-item">
+              <a href="/portfolio/">Portfolio</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content"
+  padding-left: 80px>
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/rafa_avatar.jpeg" alt="" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name"></h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Engineering in broken English</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">London / Granada</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:rafagarfer@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/rafa_piki" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/rafagf/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/rafaelgarciafernandez/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">Linkedin</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Building a website using GitHub and Jekyll">
+    <meta itemprop="description" content="For 2021 I decided it was time to start sharing some of my developer adventures. I want to do this with the hope that it helps someone and as a way to learn for myself, as writing makes you aware of the things you know and the things you don’t.">
+    <meta itemprop="datePublished" content="2021-02-28T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Building a website using GitHub and Jekyll
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>For 2021 I decided it was time to start sharing some of my developer adventures. I want to do this with the hope that it helps someone and as a way to learn for myself, as writing makes you aware of the things you know and the things you don’t.</p>
+
+<p>The first step for this was to actually have a site for it, and embarrassingly enough, my web skills are close to none. I’ll blame Wordpress.</p>
+
+<p>For my site I knew that:</p>
+
+<ul>
+  <li>I didn’t want to pay for hosting. Sorry, been there, done that.</li>
+  <li>I wanted to own the source code and use a very simple stack. Sounds like a static website generator tool!</li>
+</ul>
+
+<h2 id="1-tools">1. Tools</h2>
+
+<h3 id="hosting">Hosting</h3>
+
+<p><a href="https://pages.github.com/">GitHub Pages</a> was a very easy choice. You can host and push your changes directly from a GitHub repository, something which I’m very familiar with. And it’s free!</p>
+
+<h3 id="static-website-generator">Static Website Generator</h3>
+
+<p>After a quick Google search it seemed to be a dilemma between <a href="https://jekyllrb.com/">Jekyll</a> and <a href="https://gohugo.io/">Hugo</a>. While they both looked great, I decided to go with Jekyll simply because it appeared to glue very well with GitHub Pages, as suggested in their main site or in this <a href="https://docs.github.com/en/github/working-with-github-pages/setting-up-a-github-pages-site-with-jekyll">official tutorial</a>.</p>
+
+<h2 id="2-building-the-site">2. Building the site</h2>
+
+<p>First, let’s install Jekyll to get that out of our way. They’ve got a great <a href="https://jekyllrb.com/docs/">tutorial</a> on how to do it. Once you’re done, running <code class="language-plaintext highlighter-rouge">jekyll serve</code> will deploy the app to <code class="language-plaintext highlighter-rouge">http://localhost:4000/</code></p>
+
+<p>It was time to look for a Jekyll theme. I chose <a href="https://mmistakes.github.io/minimal-mistakes/">minimal mistakes</a> by Michael Rose, because it looked great for personal sites/blogs and because its GitHub repository is super well maintaned. Big kudos to Michael!</p>
+
+<p>Time to build my actual site in the next few steps:</p>
+
+<ol>
+  <li>Integrating minimal mistakes. There are a few ways to do it but since I didn’t have an existing website, I forked the whole <a href="https://github.com/mmistakes/minimal-mistakes">project</a> and deployed it locally.</li>
+  <li>I then went file by file to first, understand how the project is built, and second, to remove all the clutter that I’m not going to need.</li>
+  <li>Tweaking the site settings in <code class="language-plaintext highlighter-rouge">_config.yml</code>. Pick a skin theme (of course had to be <code class="language-plaintext highlighter-rouge">dark</code>) ✅, fill in my personal information ✅, choose a photo where I look like someone professional ✅, SEO and Analytics (if any) ✅, etc.</li>
+  <li>Modifying <code class="language-plaintext highlighter-rouge">_data/navigation.yml</code> to add the pages I want to have: <code class="language-plaintext highlighter-rouge">blog</code>, <code class="language-plaintext highlighter-rouge">CV</code>, <code class="language-plaintext highlighter-rouge">Portfolio</code> and <code class="language-plaintext highlighter-rouge">About</code>. And of course adding the content.</li>
+</ol>
+
+<h2 id="3-deployment">3. Deployment</h2>
+
+<p>The deployment part is actually very simple. You just need to host your source code into a GitHub repository named <code class="language-plaintext highlighter-rouge">your-github-username.github.io</code> and tell Jekyll to build your static site. For this, you can use this GitHub action:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">name</span><span class="pi">:</span> <span class="s">Build and deploy Jekyll site to GitHub Pages</span>
+
+<span class="na">on</span><span class="pi">:</span>
+  <span class="na">push</span><span class="pi">:</span>
+    <span class="na">branches</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">main</span>
+
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">github-pages</span><span class="pi">:</span>
+    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v2</span>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/cache@v2</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">path</span><span class="pi">:</span> <span class="s">vendor/bundle</span>
+          <span class="na">key</span><span class="pi">:</span> <span class="s">$-gems-$</span>
+          <span class="na">restore-keys</span><span class="pi">:</span> <span class="pi">|</span>
+            <span class="s">$-gems-</span>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">helaili/jekyll-action@2.0.5</span>
+        <span class="na">env</span><span class="pi">:</span>
+          <span class="na">JEKYLL_PAT</span><span class="pi">:</span> <span class="s">$</span>
+</code></pre></div></div>
+
+<p>There’s a small but: you’ll need to have your source code repo public in GitHub. For you to have it private, you can either pay for GitHub Pro or alternatively as a middle ground, you can do the following: have 2 repos, one private and one public. The private repo will have your source code and run the Jekyll action into a separate branch, and then we’ll have another GitHub action to move the generated code (aka our website) to the public repo. This is how it looks like:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">name</span><span class="pi">:</span> <span class="s">Build and deploy Jekyll site to GitHub Pages</span>
+
+<span class="na">on</span><span class="pi">:</span>
+  <span class="na">push</span><span class="pi">:</span>
+    <span class="na">branches</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">main</span>
+
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">github-pages</span><span class="pi">:</span>
+    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v2</span>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/cache@v2</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">path</span><span class="pi">:</span> <span class="s">vendor/bundle</span>
+          <span class="na">key</span><span class="pi">:</span> <span class="s">$-gems-$</span>
+          <span class="na">restore-keys</span><span class="pi">:</span> <span class="pi">|</span>
+            <span class="s">$-gems-</span>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">helaili/jekyll-action@2.0.5</span>
+        <span class="na">env</span><span class="pi">:</span>
+          <span class="na">JEKYLL_PAT</span><span class="pi">:</span> <span class="s">$</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">target_branch</span><span class="pi">:</span> <span class="s1">'</span><span class="s">temp-static-site'</span>
+
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v2</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">persist-credentials</span><span class="pi">:</span> <span class="no">false</span>
+          <span class="na">ref</span><span class="pi">:</span> <span class="s">temp-static-site</span>
+          <span class="na">clean</span><span class="pi">:</span> <span class="no">false</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Pushes to public repository</span>
+        <span class="na">uses</span><span class="pi">:</span> <span class="s">dmnemec/copy_file_to_another_repo_action@v1.0.4</span>
+        <span class="na">env</span><span class="pi">:</span>
+          <span class="na">API_TOKEN_GITHUB</span><span class="pi">:</span> <span class="s">$</span>
+        <span class="na">with</span><span class="pi">:</span>
+            <span class="na">source_file</span><span class="pi">:</span> <span class="s1">'</span><span class="s">*'</span>
+            <span class="na">destination_repo</span><span class="pi">:</span> <span class="s1">'</span><span class="s">your-repo'</span>
+            <span class="na">user_email</span><span class="pi">:</span> <span class="s1">'</span><span class="s">your-mail'</span>
+            <span class="na">user_name</span><span class="pi">:</span> <span class="s1">'</span><span class="s">your-github-username'</span>
+</code></pre></div></div>
+
+<p>And ​🎉 Every commit into master will update our site!</p>
+
+<h2 id="4-domain">4. Domain</h2>
+
+<p>Your site will be automatically hosted in <code class="language-plaintext highlighter-rouge">your-github-username.github.io</code>. You probably want to give it a more personal touch, and <code class="language-plaintext highlighter-rouge">.dev</code> domains sounds like a great domain for a developer’s site, right!?</p>
+
+<p>There are many domain providers so I won’t get into that. To me they all seem to provide very similar functionality so I went with something familiar and cheap: <a href="https://domains.google.com/">Google Domains</a>. The yearly price is £10 which sounds fair to me. I only hope Google don’t kill Google Domains and I gotta switch to a new one 🤭</p>
+
+<p>There are many tutorials on how to connect your just bought domain into your github page, like <a href="https://dev.to/trentyang/how-to-setup-google-domain-for-github-pages-1p58">this</a>. Something to not forget, is to enforce https as it’s a requirement for <code class="language-plaintext highlighter-rouge">dev</code> domains.</p>
+
+<p>This is all! Hope you enjoyed the article. For any questions, <a href="https://twitter.com/rafa_piki">twitter</a> is the best place for them! Thanks!</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#github" class="page__taxonomy-item" rel="tag">github</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#jekyll" class="page__taxonomy-item" rel="tag">jekyll</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#web" class="page__taxonomy-item" rel="tag">web</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-02-28T00:00:00+00:00">February 28, 2021</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Building+a+website+using+GitHub+and+Jekyll%20%2Fbuilding-a-website-using-github-and-jekyll%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=%2Fbuilding-a-website-using-github-and-jekyll%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=%2Fbuilding-a-website-using-github-and-jekyll%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="#" class="pagination--pager disabled">Previous</a>
+    
+    
+      <a href="/building-a-backend-an-api-and-a-web-client-using-ktor/" class="pagination--pager" title="Building a backend, an API and a web client using Ktor
+">Next</a>
+    
+  </nav>
+
+    </div>
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/automating-releases-with-a-release-pipeline/" rel="permalink">Automating releases with a Release Pipeline
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">At Memrise, we prioritize frequent updates to our apps, ideally on a weekly cadence. This approach offers numerous advantages over releasing only when signif...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/architecting-mobile-apps-with-kotlin-multiplatform/" rel="permalink">Architecting mobile apps with Kotlin Multiplatform
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          12 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Note: This article has been featured in both Android Weekly (#490) and Kotlin Weeekly (#273). Thanks to both! 🙏
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/decompiling-kotlin-into-java/" rel="permalink">Decompiling Kotlin into Java - Few years late
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Recently I was asked by a co-worker “what are sealed classes?” and realised the classic answer “enums in steroid” falls really short and a clear sign that I ...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/modelling-the-domain-layer-using-composables-use-cases/" rel="permalink">Modelling the domain layer using composable use cases
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Some time ago we had a problem inside the Memrise Android codebase with our domain layer. Repositories and Use Cases were heavily used but there weren’t clea...</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2023 Rafa Garcia. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JQN7MDGSH4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JQN7MDGSH4', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+
+  </body>
+</html>

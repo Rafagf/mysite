@@ -1,8 +1,8 @@
 var store = [{
-        "title": "Building my site using GitHub and Jekyll",
+        "title": "Building a website using GitHub and Jekyll",
         "excerpt":"For 2021 I decided it was time to start sharing some of my developer adventures. I want to do this with the hope that it helps someone and as a way to learn for myself, as writing makes you aware of the things you know and the things you don’t....","categories": [],
         "tags": ["web","jekyll","github"],
-        "url": "/building-my-site-using-github-and-jekyll/",
+        "url": "/building-a-website-using-github-and-jekyll/",
         "teaser": null
       },{
         "title": "Building a backend, an API and a web client using Ktor",
@@ -24,19 +24,19 @@ var store = [{
         "teaser": null
       },{
         "title": "Decompiling Kotlin into Java - Few years late",
-        "excerpt":"Recently I was asked by a co-worker “what are sealed classes?” and realised the classic answer “enums in steroid” falls really short and a clear sign that I didn’t fully understand what they are. Because of this, I decided to spend some time decompiling Kotlin code into Bytecode and then...","categories": [],
+        "excerpt":"Recently I was asked by a co-worker “what are sealed classes?” and realised the classic answer “enums in steroid” falls really short and a clear sign that I didn’t fully understand what they are. Because of this, I decided to spend some time decompiling Kotlin code into Java (decompiling into...","categories": [],
         "tags": ["android","mobile development","kotlin"],
         "url": "/decompiling-kotlin-into-java/",
         "teaser": null
       },{
         "title": "Architecting mobile apps with Kotlin Multiplatform",
-        "excerpt":"Note: This article has been featured in both Android Weekly (#490) and Kotlin Weeekly (#273). Thanks to both! 🙏 KMM is a hot topic in mobile development. Its main advantages can be summarised as: Sharing code across platforms: meaning less code to maintain, fewer bugs (or at least consistent bugs...","categories": [],
+        "excerpt":"Note: This article has been featured in both Android Weekly (#490) and Kotlin Weeekly (#273). Thanks to both! 🙏 KMM is a hot topic in mobile development. Before we dive into how architecting mobile apps with Kotlin Multiplatform can be done, let’s summarise its main advantages: Sharing code across platforms:...","categories": [],
         "tags": ["android","iOS","mobile development","kotlin multiplatform","kotlin"],
         "url": "/architecting-mobile-apps-with-kotlin-multiplatform/",
         "teaser": null
       },{
         "title": "Automating releases with a Release Pipeline",
-        "excerpt":"At Memrise we like our apps to be updated as often as possible, ideally in a weekly cadence. We’ve noticed this gives us numerous advantages versus for example releasing only when big features are ready: We can fix non-critical bugs as we go, without the need for hot-fixing. We can...","categories": [],
+        "excerpt":"At Memrise, we prioritize frequent updates to our apps, ideally on a weekly cadence. This approach offers numerous advantages over releasing only when significant features are ready: We can fix non-critical bugs as we go, eliminating the need for hot-fixing. We can release features early, gather feedback, and make improvements...","categories": [],
         "tags": ["typescript","mobile development"],
         "url": "/automating-releases-with-a-release-pipeline/",
         "teaser": null
