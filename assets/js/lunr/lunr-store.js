@@ -29,15 +29,15 @@ var store = [{
         "url": "/decompiling-kotlin-into-java/",
         "teaser": null
       },{
-        "title": "Architecting mobile apps with Kotlin Multiplatform",
-        "excerpt":"Note: This article has been featured in both Android Weekly (#490) and Kotlin Weeekly (#273). Thanks to both! 🙏 KMM is a hot topic in mobile development. Before we dive into how architecting mobile apps with Kotlin Multiplatform can be done, let’s summarise its main advantages: Sharing code across platforms:...","categories": [],
-        "tags": ["android","iOS","mobile development","kotlin multiplatform","kotlin"],
-        "url": "/architecting-mobile-apps-with-kotlin-multiplatform/",
-        "teaser": null
-      },{
         "title": "Automating releases with a Release Pipeline",
         "excerpt":"At Memrise, we prioritize frequent updates to our apps, ideally on a weekly cadence. This approach offers numerous advantages over releasing only when significant features are ready: We can fix non-critical bugs as we go, eliminating the need for hot-fixing. We can release features early, gather feedback, and make improvements...","categories": [],
         "tags": ["typescript","mobile development"],
         "url": "/automating-releases-with-a-release-pipeline/",
+        "teaser": null
+      },{
+        "title": "Architecting mobile apps with Kotlin Multiplatform",
+        "excerpt":"Note: This article has been featured in both Android Weekly (#490) and Kotlin Weeekly (#273). Thanks to both! 🙏 KMM is a hot topic in mobile development. Before we dive into how architecting mobile apps with Kotlin Multiplatform can be done, let’s summarise its main advantages: Sharing code across platforms:...","categories": [],
+        "tags": ["android","iOS","mobile development","kotlin multiplatform","kotlin"],
+        "url": "/architecting-mobile-apps-with-kotlin-multiplatform/",
         "teaser": null
       }]
