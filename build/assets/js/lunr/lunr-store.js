@@ -17,12 +17,6 @@ var store = [{
         "url": "/tracking-code-coverage-for-free/",
         "teaser": null
       },{
-        "title": "Modelling the domain layer using composable use cases",
-        "excerpt":"Some time ago we had a problem inside the Memrise Android codebase with our domain layer. Repositories and Use Cases were heavily used but there weren’t clear guidelines on what they were supposed to do and not do. It was common to find them being used in combination, which in...","categories": [],
-        "tags": ["android","mobile development","architecture"],
-        "url": "/modelling-the-domain-layer-using-composables-use-cases/",
-        "teaser": null
-      },{
         "title": "Decompiling Kotlin into Java - Few years late",
         "excerpt":"Recently I was asked by a co-worker “what are sealed classes?” and realised the classic answer “enums in steroid” falls really short and a clear sign that I didn’t fully understand what they are. Because of this, I decided to spend some time decompiling Kotlin code into Java (decompiling into...","categories": [],
         "tags": ["android","mobile development","kotlin"],
@@ -39,5 +33,11 @@ var store = [{
         "excerpt":"Note: This article has been featured in both Android Weekly (#490) and Kotlin Weeekly (#273). Thanks to both! 🙏 KMM is a hot topic in mobile development. Before we dive into how architecting mobile apps with Kotlin Multiplatform can be done, let’s summarise its main advantages: Sharing code across platforms:...","categories": [],
         "tags": ["android","iOS","mobile development","kotlin multiplatform","kotlin"],
         "url": "/architecting-mobile-apps-with-kotlin-multiplatform/",
+        "teaser": null
+      },{
+        "title": "Modelling the domain layer using composable use cases",
+        "excerpt":"Some time ago we had a problem inside the Memrise Android codebase with our domain layer. Repositories and Use Cases were heavily used but there weren’t clear guidelines on what they were supposed to do and not do. It was common to find them being used in combination, which in...","categories": [],
+        "tags": ["android","mobile development","architecture"],
+        "url": "/modelling-the-domain-layer-using-composables-use-cases/",
         "teaser": null
       }]

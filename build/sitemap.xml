@@ -13,10 +13,6 @@
 <lastmod>2021-04-24T00:00:00+00:00</lastmod>
 </url>
 <url>
-<loc>/modelling-the-domain-layer-using-composables-use-cases/</loc>
-<lastmod>2021-07-21T00:00:00+00:00</lastmod>
-</url>
-<url>
 <loc>/decompiling-kotlin-into-java/</loc>
 <lastmod>2021-07-23T00:00:00+00:00</lastmod>
 </url>
@@ -27,6 +23,10 @@
 <url>
 <loc>/architecting-mobile-apps-with-kotlin-multiplatform/</loc>
 <lastmod>2023-06-16T00:00:00+00:00</lastmod>
+</url>
+<url>
+<loc>/modelling-the-domain-layer-using-composables-use-cases/</loc>
+<lastmod>2023-06-21T00:00:00+00:00</lastmod>
 </url>
 <url>
 <loc>/categories/</loc>
@@ -74,9 +74,6 @@
 <loc>/tags/mobile-development/</loc>
 </url>
 <url>
-<loc>/tags/architecture/</loc>
-</url>
-<url>
 <loc>/tags/typescript/</loc>
 </url>
 <url>
@@ -86,7 +83,10 @@
 <loc>/tags/kotlin-multiplatform/</loc>
 </url>
 <url>
+<loc>/tags/architecture/</loc>
+</url>
+<url>
 <loc>/assets/pdf/rafa-garcia-cv.pdf</loc>
-<lastmod>2023-07-24T16:23:28+00:00</lastmod>
+<lastmod>2023-07-28T22:58:56+00:00</lastmod>
 </url>
 </urlset>
