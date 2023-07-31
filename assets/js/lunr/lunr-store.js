@@ -30,7 +30,7 @@ var store = [{
         "teaser": null
       },{
         "title": "Architecting mobile apps with Kotlin Multiplatform",
-        "excerpt":"Note: This article has been featured in both Android Weekly (#490) and Kotlin Weeekly (#273). Thanks to both! 🙏 KMM is a hot topic in mobile development. Before we dive into how architecting mobile apps with Kotlin Multiplatform can be done, let’s summarise its main advantages: Sharing code across platforms:...","categories": [],
+        "excerpt":"Note: This article has been featured in both Android Weekly (#490) and Kotlin Weeekly (#273). Thanks to both! 🙏 KMP is a hot topic in mobile development. Before we dive into how architecting mobile apps with Kotlin Multiplatform can be done, let’s summarise its main advantages: Sharing code across platforms:...","categories": [],
         "tags": ["android","iOS","mobile development","kotlin multiplatform","kotlin"],
         "url": "/architecting-mobile-apps-with-kotlin-multiplatform/",
         "teaser": null

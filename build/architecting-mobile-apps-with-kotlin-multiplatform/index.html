@@ -326,14 +326,14 @@
         
         <p><em>Note: This article has been featured in both <a href="https://androidweekly.net/issues/issue-490">Android Weekly (#490)</a> and <a href="https://mailchi.mp/kotlinweekly/kotlin-weekly-273">Kotlin Weeekly (#273)</a>. Thanks to both!</em> 🙏</p>
 
-<p>KMM is a hot topic in mobile development. Before we dive into how architecting mobile apps with Kotlin Multiplatform can be done, let’s summarise its main advantages:</p>
+<p>KMP is a hot topic in mobile development. Before we dive into how architecting mobile apps with Kotlin Multiplatform can be done, let’s summarise its main advantages:</p>
 
 <ul>
   <li><strong>Sharing code across platforms</strong>: meaning less code to maintain, fewer bugs (or at least consistent bugs across platforms! 😄) and, in general fewer efforts to ship new features.</li>
   <li><strong>UI remains managed by platform specialists</strong>: Android or iOS devs can do their magic interacting directly with their preferred UI toolkits, just the way they’re used to.</li>
 </ul>
 
-<p>As KMM’s popularity grows and more teams adopt it, questions about how to architecture mobile apps around it arise. While adoption might sound like a big shift on how we normally build mobile apps, it actually turns out that the change can be relatively straightforward if we already have a decent architecture in place (🤞).</p>
+<p>As KMP’s popularity grows and more teams adopt it, questions about how to architecture mobile apps around it arise. While adoption might sound like a big shift on how we normally build mobile apps, it actually turns out that the change can be relatively straightforward if we already have a decent architecture in place (🤞).</p>
 
 <h3 id="quick-refresher-on-mobile-architecture">Quick refresher on mobile architecture</h3>
 
@@ -350,7 +350,7 @@
 
 <h3 id="lets-get-to-business-architecting-mobile-apps-for-kotlin-multiplatform">Let’s get to business. Architecting mobile apps for Kotlin Multiplatform</h3>
 
-<p>To showcase how an app using KMM could look like I’ve built <a href="https://github.com/Rafagf/stonks"><em>Stonks</em></a>, a small open-source KMM library with a companion Android app consuming it. <em>Stonks</em> is a small app to track stocks: it has a search screen where the user can add favourite stocks and the main screen where you can see the stock’s current price (aka <em>Quote</em>) and its change in the last 24 hours.</p>
+<p>To showcase how an app using KMP could look like I’ve built <a href="https://github.com/Rafagf/stonks"><em>Stonks</em></a>, a small open-source KMP library with a companion Android app consuming it. <em>Stonks</em> is a small app to track stocks: it has a search screen where the user can add favourite stocks and the main screen where you can see the stock’s current price (aka <em>Quote</em>) and its change in the last 24 hours.</p>
 
 <p align="center">
 <img src="/assets/images/stonks-faved-light.png" height="500" width="250" /> | <img src="/assets/images/stonks-search-light.png" height="500" width="250" />
@@ -364,14 +364,14 @@
   <p>Is this something that iOS and Android can reuse?</p>
 </blockquote>
 
-<p>The first layer we should consider is <strong>Data</strong> (aka repositories). To know if it can be part of a shared KMM library, we need to understand its responsibilities:</p>
+<p>The first layer we should consider is <strong>Data</strong> (aka repositories). To know if it can be part of a shared KMP library, we need to understand its responsibilities:</p>
 
 <ul>
-  <li><strong>Fetch data from a remote data source</strong>: we need to fetch our stocks from somewhere, right? Luckily for us, <a href="https://kotlinlang.org/docs/kmm-use-ktor-for-networking.html">Ktor client</a> is available on KMM, which allows us to do API calls to any given server.  ✅</li>
-  <li><strong>Fetch data from a persistence data source</strong>: being online is great, but sometimes our phone won’t have internet connection and we want our app to still work. KMM to the rescue again thanks to the awesome library <a href="https://cashapp.github.io/sqldelight/multiplatform_sqlite/">SQLDelight</a>, which allows us to persist our data in a database (along with goodies such as typesafe APIs from SQL statements, migrations checks at compile time, etc). ✅</li>
+  <li><strong>Fetch data from a remote data source</strong>: we need to fetch our stocks from somewhere, right? Luckily for us, <a href="https://kotlinlang.org/docs/kmm-use-ktor-for-networking.html">Ktor client</a> is available on KMP, which allows us to do API calls to any given server.  ✅</li>
+  <li><strong>Fetch data from a persistence data source</strong>: being online is great, but sometimes our phone won’t have internet connection and we want our app to still work. KMP to the rescue again thanks to the awesome library <a href="https://cashapp.github.io/sqldelight/multiplatform_sqlite/">SQLDelight</a>, which allows us to persist our data in a database (along with goodies such as typesafe APIs from SQL statements, migrations checks at compile time, etc). ✅</li>
 </ul>
 
-<p>Sounds like we are good to put the data layer in our shared KMM library, let’s get to it 🎉.</p>
+<p>Sounds like we are good to put the data layer in our shared KMP library, let’s get to it 🎉.</p>
 
 <h3 id="implementing-our-data-sources">Implementing our data sources</h3>
 
@@ -421,7 +421,7 @@
 <span class="k">enum</span> <span class="kd">class</span> <span class="nc">Method</span> <span class="p">{</span> <span class="nc">GET</span><span class="p">,</span> <span class="nc">POST</span><span class="p">,</span> <span class="nc">DELETE</span> <span class="p">}</span>
 </code></pre></div></div>
 
-<p>For the persistence data source, it gets a bit more complicated. We need to provide <a href="https://kotlinlang.org/docs/kmm-configure-sqldelight-for-data-storage.html#create-an-sqlite-driver">multiple platform-specific implementations of the SQLite Driver</a>. We can do this by using the <code class="language-plaintext highlighter-rouge">expect / actual</code> mechanism of KMM.</p>
+<p>For the persistence data source, it gets a bit more complicated. We need to provide <a href="https://kotlinlang.org/docs/kmm-configure-sqldelight-for-data-storage.html#create-an-sqlite-driver">multiple platform-specific implementations of the SQLite Driver</a>. We can do this by using the <code class="language-plaintext highlighter-rouge">expect / actual</code> mechanism of KMP.</p>
 
 <p>In the folder <code class="language-plaintext highlighter-rouge">commonMain</code> (where common code for all platforms live), we can have the following interface:</p>
 
@@ -653,7 +653,7 @@
 
 <p>For example, in Android we could have something like this to unwrap the DB updates:</p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//Code sitting in an Android ViewModel for example, similar for iOS</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//Code sitting in an Android ViewModel, it would be similar for iOS</span>
 <span class="k">fun</span> <span class="nf">load</span><span class="p">()</span> <span class="p">{</span>
         <span class="n">viewModelScope</span><span class="p">.</span><span class="nf">launch</span> <span class="p">{</span>
             <span class="n">fetchFavedQuotesUseCase</span><span class="p">.</span><span class="nf">invoke</span><span class="p">()</span> <span class="c1">//---&gt; the method which returns our Flow</span>
@@ -680,14 +680,14 @@
   <img src="https://media.giphy.com/media/kPtv3UIPrv36cjxqLs/giphy.gif" />
 </p>
 
-<p>Next layer on our diagram would be <code class="language-plaintext highlighter-rouge">Domain</code>. Can we move it to a KMM library?</p>
+<p>Next layer on our diagram would be <code class="language-plaintext highlighter-rouge">Domain</code>. Can we move it to a KMP library?</p>
 
-<p>The answer is <strong>YES! And we should definitely do it!</strong> Before we get to the code, I want to highlight what are the advantages of moving this into our KMM library. Also, for simplicity, I think we can simplify the term <em>domain logic</em> to ‘use cases’.</p>
+<p>The answer is <strong>YES! And we should definitely do it!</strong> Before we get to the code, I want to highlight what are the advantages of moving this into our KMP library. Also, for simplicity, I think we can simplify the term <em>domain logic</em> to ‘use cases’.</p>
 
 <ul>
   <li>By sharing use cases <strong>we get consistency on how they’re consumed in the presentation layer across Android &amp; iOS</strong>, which helps to more consistent features across teams.</li>
   <li>We <strong>no longer need to expose repositories to clients</strong> (i.e they can have <em>internal</em> visibility in our shared library), which avoid bad usage of them - hands up who hasn’t worked in an app where repositories were injected all over the place…</li>
-  <li>It could already be the case without using a KMM library, but in general, we contribute to a <a href="https://proandroiddev.com/why-you-need-use-cases-interactors-142e8a6fe576">Use Case Driven architecture</a>, where each app action has a use case <em>and</em> potentially each repository method has a Use Case associated to it.</li>
+  <li>It could already be the case without using a KMP library, but in general, we contribute to a <a href="https://proandroiddev.com/why-you-need-use-cases-interactors-142e8a6fe576">Use Case Driven architecture</a>, where each app action has a use case <em>and</em> potentially each repository method has a Use Case associated to it.</li>
   <li>And of course, <strong>we reduce at least by half the number of code to write</strong>, and therefore the bugs 🐛.</li>
 </ul>
 
@@ -775,7 +775,7 @@
 
 <h3 id="summing-up">Summing up</h3>
 
-<p>KMM is a fantastic tool reaching stable levels. Writing entire features twice, one for Android and one for iOS is expensive and bug-prone, and probably not acceptable for engineering teams in a not too far future. KMM provides a relatively straightforward solution to this problem while leaving the UI work to be built natively, which Native Mobile Developers are passionate about, especially with the arrival of declarative frameworks like <code class="language-plaintext highlighter-rouge">Jetpack Compose</code> or <code class="language-plaintext highlighter-rouge">SwiftUI</code>.</p>
+<p>KMP is a fantastic tool reaching stable levels. Writing entire features twice, one for Android and one for iOS is expensive and bug-prone, and probably not acceptable for engineering teams in a not too far future. KMP provides a relatively straightforward solution to this problem while leaving the UI work to be built natively, which Native Mobile Developers are passionate about, especially with the arrival of declarative frameworks like <code class="language-plaintext highlighter-rouge">Jetpack Compose</code> or <code class="language-plaintext highlighter-rouge">SwiftUI</code>.</p>
 
 <p>Hope you enjoyed the article. For any questions, my <a href="https://www.linkedin.com/in/rafaelgarciafernandez/">Linkedin</a> and <a href="https://twitter.com/rafa_piki">Twitter</a> accounts are the best place. Thanks for your time!</p>
 
