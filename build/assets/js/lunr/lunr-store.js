@@ -6,7 +6,7 @@ var store = [{
         "teaser": null
       },{
         "title": "Building a backend, an API and a web client using Ktor",
-        "excerpt":"Some time ago I had a potential client that wanted the following: An Android app that would send data to a backend. The app would also consume and display data from the backend. The consumed data would be created by an administrator in a website (dashboard look-alike). Pretty standard, right?...","categories": [],
+        "excerpt":"Note: Thanks Kotlin Weekly for featuring this article in Kotlin Weekly (#241) 🙏 Some time ago I had a potential client that wanted the following: An Android app that would send data to a backend. The app would also consume and display data from the backend. The consumed data would...","categories": [],
         "tags": ["ktor","kotlin"],
         "url": "/building-a-backend-an-api-and-a-web-client-using-ktor/",
         "teaser": null
