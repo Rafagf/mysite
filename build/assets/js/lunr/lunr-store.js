@@ -36,7 +36,7 @@ var store = [{
         "teaser": null
       },{
         "title": "Modelling the domain layer using composable use cases",
-        "excerpt":"Some time ago we had a problem inside the Memrise Android codebase with our domain layer. Repositories and Use Cases were heavily used but there weren’t clear guidelines on what they were supposed to do and not do. It was common to find them being used in combination, which in...","categories": [],
+        "excerpt":"Note: This article has been featured in both Android Weekly (#581) and Kotlin Weeekly (#367). Thanks to both! 🙏 Some time ago we had a problem inside the Memrise Android codebase with our domain layer. Repositories and Use Cases were heavily used but there weren’t clear guidelines on what they...","categories": [],
         "tags": ["android","mobile development","architecture"],
         "url": "/modelling-the-domain-layer-using-composables-use-cases/",
         "teaser": null
